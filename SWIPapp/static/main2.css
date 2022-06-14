@@ -1,0 +1,495 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+*{
+  padding:0;
+  margin:0;
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+}
+
+
+body{
+    background: rgb(103,26,255);
+    background: linear-gradient(52deg, rgba(103,26,255,1) 0%, rgba(87,229,255,1) 100%);
+    display: grid;
+    place-content:center;
+    min-height:100vh;
+    min-width: 100vh;
+    }
+
+.footer{
+  position: fixed;
+  bottom: 0.2vh;
+  left: 1vw;
+}
+
+.footertext{
+  color: white;
+  font-size: 11px;
+  font-weight: lighter;
+}
+
+.search{
+  position: fixed;
+  margin-left: auto;
+  margin-right: auto;
+  top:3vh;
+  left: 0;
+  right: 0;
+  text-align: center;
+  }
+  
+form .searchbar{
+    align-self: center;
+    text-align: center;
+    width: 30vw;
+    height: 5vh;
+    border-radius: 1vh;
+    outline: 0;
+    border: 0;
+    background-color: white;
+    transition: 1s;
+    font-size: 1.5vh;
+    box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+  }
+  
+form .searchbar:hover{
+    background-color: #282A32;
+  }
+
+.userinfo{
+  display:block;
+  position:fixed;
+  top:18vh;
+  right: 5vw;
+  height:5vh;
+  width: 16vw;
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+}
+
+.userinfo:hover{
+  background: linear-gradient(217deg, rgba(255,189,176,1) 0%, rgba(255,124,99,1) 100%);
+}
+
+.userinfo p{
+  margin-top: 0.2vh;
+  margin-left: 1vw;
+}
+
+
+
+.navbar{
+  position:fixed;
+  top:18vh;
+  left: 5vw;
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+}
+
+
+.nav-item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: left;
+  height: 4vh;
+  margin: 0.2vw;
+  padding: 0.2vh;
+  border-radius: 1vh;
+}
+
+.nav-item:hover{
+  background: rgb(205, 205, 205);
+}
+
+.navbar-nav{
+  list-style-type: none;
+  display: block;
+}
+
+.nav-link{
+  padding: 0.5vw;
+  display: block;
+  text-decoration: none;
+  color: black;
+}
+
+
+.assets-sidebar{
+  position:fixed;
+  top:25vh;
+  left: 5vw;
+  height: 30vh;
+  width:10vw;
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+}
+
+.assets-sidebar-top{
+  background-color:#282A32; 
+  height: 4vh;
+  border-top-left-radius: 1vh;
+  border-top-right-radius: 1vh;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+h3{
+  margin-left: 1vw;
+  color: white;
+  font-weight: normal;
+}
+
+.sid-item{
+  list-style-type: none;
+  display: block;
+  padding: 1.5vh;
+}
+
+.sid-item:hover{
+  background:rgba(103,26,255,1);
+}
+
+.sid-link{
+  text-decoration: none;
+  color: black;
+  padding: 1vh;
+}
+
+.recentorders{
+  position:fixed;
+  top:25vh;
+  left:5vw;
+  height: 60vh;
+  width:40vw;
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+}
+
+.listtitle{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  height: 6vh;
+  width: 75%;
+  border-bottom:#282A32 solid 0.05vh;
+}
+
+h4{
+  font-size: 2.5vh;
+  color: black;
+
+}
+
+.listcontainer{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  max-height: 85%;
+  margin-top: 2vh;
+  overflow-y: scroll;
+}
+
+.listcontainer a{
+  text-decoration: none;
+}
+
+.listitem{
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1vh;
+  width: 80%;
+  text-align: center;
+  height: 5vh;
+  transition: 0.4s;
+}
+
+p.maininfo{
+  font-size: 20px;
+  color:black;
+  text-align: left;
+  margin-left: 2vh;
+  margin-top: 1vh;
+}
+
+p.moreinfo{
+  font-size:14px;
+  font-weight: lighter;
+  color: #282A32;
+  text-align: left;
+  margin-left: 3.5vh;
+}
+
+.listitem:hover{
+  height: 8.5vh;
+  background: rgba(103,26,255,1);
+}
+
+
+p.revealinfo{
+  font-size:14px;
+  font-weight: lighter;
+  color: white;
+  text-align: left;
+  margin-left: 3.5vh;
+  visibility: hidden;
+  transition: 0.1s;
+}
+
+.listitem:hover p.maininfo{
+  color: white;
+}
+
+.listitem:hover p.moreinfo{
+  color: white;
+}
+
+.listitem:hover p.revealinfo{
+  visibility: visible;
+  transition: 0.7s;
+  color: white;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0.35vw;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffffff; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 1vh;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+.createorder{
+  position:fixed;
+  top:25vh;
+  right:10vw;
+  height: 30vh;
+  width:40vw;
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+}
+
+.toggle-btn{
+  position: fixed;
+  top:25vh;
+  right:10vw;
+  height:6vh;
+  width: 40vw;
+  background-color: red;
+}
+
+.toggle-btn button{
+  height: 100%;
+  width: 6vw;
+  background-color: #282A32;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  color: white;
+  border-radius: 1vh;
+  border: none;
+}
+
+.toggle-btn button:hover{
+  background: rgba(103,26,255,1);
+}
+
+
+.toggle-btn button:after{
+  width:3vw;
+}
+
+.orderinfo{
+  position:fixed;
+  top:25vh;
+  left:5vw;
+  height: 38vh;
+  width:18.5vw;
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+}
+
+.submitbtn{
+  position: fixed;
+  top:47vh;
+  right:17.5vw;
+  height: 6vh;
+  width: 8vw;
+  background-color: #282A32;
+  text-decoration: none;
+  font-size: 16px;
+  color: white;
+  border-radius: 1vh;
+  border: none;
+}
+
+.submitbtn:hover{
+  background: rgba(103,26,255,1);
+}
+
+.ordernumber{
+  text-align: center;
+  background-color: white;
+  font-size: 16px;
+  border-radius: 1vh;
+  height: 4vh;
+  width: 12vw;
+  border-style: solid;
+  border-color:#888;
+  border-width: 0.1ch;
+  margin: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+}
+
+
+.ordercustomer{
+  text-align: center;
+  background-color: white;
+  font-size: 16px;
+  border-radius: 1vh;
+  height: 4vh;
+  width: 12vw;
+  border-style: solid;
+  border-width: 0.1ch;
+  border-color:#888;
+  margin: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+}
+
+.orderaddress{
+  text-align: center;
+  position: relative;
+  left:50%;
+  top:-12vh;
+  background-color: white;
+  font-size: 16px;
+  border-radius: 1vh;
+  height: 10vh;
+  width: 12vw;
+  border-style: solid;
+  border-color:#888;
+  border-width: 0.1ch;
+  margin: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+}
+
+.orderform{
+  position: relative;
+  top:1vh;
+  left:4vw;
+  width: 80%;
+}
+
+.orderreportbtn{
+  position: fixed;
+  top:55vh;
+  left: 14.5vw;
+  height: 6vh;
+  width: 8vw;
+  background-color: white;
+  text-decoration: none;
+  font-size: 16px;
+  color: black;
+  border-radius: 1vh;
+  border-color: rgba(222,235,63,1);
+  border-style: dashed;
+  transition: 0.4s;
+}
+
+.orderreportbtn:hover{
+  background: radial-gradient(circle, rgba(222,235,63,1) 0%, rgba(191,238,29,1) 43%, rgba(210,227,0,1) 100%);
+  border:none;
+}
+
+.orderedittbtn{
+  position: fixed;
+  top:48vh;
+  left:14.5vw;
+  height: 6vh;
+  width: 8vw;
+  background-color: white;
+  text-decoration: none;
+  font-size: 16px;
+  color: black;
+  border-radius: 1vh;
+  border-color: rgba(103,26,255,1);
+  border-style: dashed;
+  transition: 0.4s;
+}
+
+.orderedittbtn:hover{
+  background: rgba(103,26,255,1);
+  border:none;
+}
+
+.orderdeletebtn{
+  position: fixed;
+  top:48vh;
+  left: 5.5vw;
+  height: 6vh;
+  width: 8vw;
+  background-color: white;
+  text-decoration: none;
+  font-size: 16px;
+  color: black;
+  border-radius: 1vh;
+  border-color: rgba(196,75,75,1);
+  border-style: dashed;
+  transition: 0.4s;
+}
+
+.orderdeletebtn:hover{
+  background: radial-gradient(circle, rgba(244,88,88,1) 0%, rgba(227,44,44,1) 100%);
+  border:none;
+}
+
+
+.attachedassets{
+  position:fixed;
+  top:25vh;
+  left:28vw;
+  height: 65vh;
+  width:25vw;
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+}
+
+.attachmoreassets{
+  position:fixed;
+  top:25vh;
+  left:58vw;
+  height: 65vh;
+  width:25vw;
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+}

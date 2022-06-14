@@ -1,0 +1,55 @@
+{% load static %}
+
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href={% static "main2.css" %}>
+    
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+
+  <div class="search">
+    <form id="search-form" autocomplete="off">
+      {% csrf_token %}
+      <input type "text" id="search-input" class="searchbar" placeholder="Search Anything...">
+    </form>
+  <div id="results-box" class="not-visible results-card"></div>
+  </div>
+  
+  <div class = "userinfo">
+    <p> <b> Mateusz Kozinski </b> First Mile LTD</p>
+    <p> ITAD Manager </p>
+  </div>
+  <nav class="navbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href='{%url 'home'%}'>Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='{%url 'assets'%}'>Assets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='{%url 'orders'%}'>Orders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Lists</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Settings</a>
+          </li>
+        </ul>
+  </nav>
+
+<div class="footer"><p class="footertext">SWIP™ made by Mateusz Kozinski - all rights reserved. Current version: v0.4</p></div>
+
+  
+{%block content%}
+<div id ="content", name="content">
+{% endblock %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

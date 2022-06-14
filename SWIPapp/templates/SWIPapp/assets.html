@@ -1,0 +1,32 @@
+{% extends "SWIPapp/navbar.html" %}
+{% load static %}
+
+{%block content%}
+
+
+<div class="recentorders">
+  <div class='listtitle'>
+      <h4> Recent Assets </h4>
+  </div>
+      <div class='listcontainer'>
+          {%for i in asset %}   
+          <a href='#'>
+              <div class="listitem">
+                  <p class="maininfo"> Asset QR: {{i.Asset_QR}}</p>
+                  <p class="moreinfo">{{i.Make}} {{i.Model}} {{i.Serial_Number}} </p>
+                  <p class="revealinfo">{{i.CPU}} {{i.RAM}} GB RAM </p>
+                  <p class="revealinfo">Storage: {{i.Storage}} {{i.Storage_Capacity}}GB</p>
+              </div> 
+          </a>
+          {% endfor %}
+      </div>      
+</div>
+
+<div class='createorder'>
+  <div class='listtitle'><h4> Add or Import Assets</h4></div>
+
+</div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "SWIPapp/navbar.html" %}
+{% load static %}
+
+{%block content%}
+
+
+<div class="orderinfo">
+    <div class='listtitle'>
+        <h4> Order Information </h4>
+    </div>
+<p class="maininfo"> <b>Order Number:</b> {{order.Order_Number}}</p>
+<p class="maininfo"> <b>Customer Name:</b> {{order.Customer}} </p>
+<p class="maininfo"> <b>Customer Address:</b> {{order.Customer_Address}} </p>
+<button class="orderedittbtn">Edit Report</button>
+<button class="orderdeletebtn">Delete Report</button>
+<button class="orderreportbtn">Generate Report</button>
+</div>
+
+<div class="attachedassets">
+    <div class='listtitle'>
+        <h4> Attached Assets and HDDs </h4>
+    </div>
+</div> 
+
+<div class="attachmoreassets">
+    <div class='listtitle'>
+        <h4> Attach More Assets </h4>
+    </div>
+</div> 
+
+{% endblock %}
