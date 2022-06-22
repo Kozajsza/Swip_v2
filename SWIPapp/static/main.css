@@ -26,7 +26,7 @@ body{
 
 .footertext{
   color: white;
-  font-size: 11px;
+  font-size: 1vh;
   font-weight: lighter;
 }
 
@@ -62,7 +62,7 @@ form .searchbar:hover{
   display:block;
   position:fixed;
   top:18vh;
-  right: 5vw;
+  right: 8vw;
   height:5vh;
   width: 16vw;
   background-color: white;
@@ -77,6 +77,7 @@ form .searchbar:hover{
 .userinfo p{
   margin-top: 0.2vh;
   margin-left: 1vw;
+  font-size: 1.5vh;
 }
 
 
@@ -84,7 +85,7 @@ form .searchbar:hover{
 .navbar{
   position:fixed;
   top:18vh;
-  left: 5vw;
+  left: 8vw;
   background-color: white;
   border-radius: 1vh;
   box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
@@ -103,7 +104,7 @@ form .searchbar:hover{
 }
 
 .nav-item:hover{
-  background: linear-gradient(52deg, rgba(103,26,255,1) 0%, rgba(87,229,255,1) 100%);
+  background: rgb(205, 205, 205);
 }
 
 .navbar-nav{
@@ -153,7 +154,7 @@ h3{
 }
 
 .sid-item:hover{
-  background: linear-gradient(52deg, rgba(103,26,255,1) 0%, rgba(87,229,255,1) 100%);
+  background:rgba(103,26,255,1);
 }
 
 .sid-link{
@@ -165,7 +166,7 @@ h3{
 .recentorders{
   position:fixed;
   top:25vh;
-  left:5vw;
+  left:8vw;
   height: 60vh;
   width:40vw;
   background-color: white;
@@ -177,22 +178,24 @@ h3{
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: auto;
+  margin-right: auto;
   height: 6vh;
-  background-color: #282A32; 
-  border-top-left-radius: 1vh;
-  border-top-right-radius: 1vh;
+  width: 75%;
+  border-bottom:#282A32 solid 0.05vh;
 }
 
 h4{
   font-size: 2.5vh;
-  color: white;
+  color: black;
+
 }
 
 .listcontainer{
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 80%;
+  width: 90%;
   max-height: 85%;
   margin-top: 2vh;
   overflow-y: scroll;
@@ -210,14 +213,14 @@ h4{
   margin-left: auto;
   margin-right: auto;
   margin-top: 1vh;
-  width: 80%;
+  width: 90%;
   text-align: center;
   height: 5vh;
   transition: 0.4s;
 }
 
 p.maininfo{
-  font-size: 20px;
+  font-size: 1.5vh;
   color:black;
   text-align: left;
   margin-left: 2vh;
@@ -225,7 +228,7 @@ p.maininfo{
 }
 
 p.moreinfo{
-  font-size:14px;
+  font-size:1.5vh;
   font-weight: lighter;
   color: #282A32;
   text-align: left;
@@ -234,12 +237,12 @@ p.moreinfo{
 
 .listitem:hover{
   height: 8.5vh;
-  background: linear-gradient(52deg, rgba(103,26,255,1) 0%, rgba(87,229,255,1) 100%);
+  background: rgba(103,26,255,1);
 }
 
 
 p.revealinfo{
-  font-size:14px;
+  font-size:1.5vh;
   font-weight: lighter;
   color: white;
   text-align: left;
@@ -286,7 +289,7 @@ p.revealinfo{
 .createorder{
   position:fixed;
   top:25vh;
-  right:10vw;
+  right: 8vw;
   height: 30vh;
   width:40vw;
   background-color: white;
@@ -297,7 +300,7 @@ p.revealinfo{
 .toggle-btn{
   position: fixed;
   top:25vh;
-  right:10vw;
+  right:8vw;
   height:6vh;
   width: 40vw;
   background-color: red;
@@ -309,14 +312,14 @@ p.revealinfo{
   background-color: #282A32;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 4vh;
   color: white;
   border-radius: 1vh;
   border: none;
 }
 
 .toggle-btn button:hover{
-  background: linear-gradient(52deg, rgba(103,26,255,1) 0%, rgba(87,229,255,1) 100%);
+  background: rgba(103,26,255,1);
 }
 
 
@@ -327,7 +330,7 @@ p.revealinfo{
 .orderinfo{
   position:fixed;
   top:25vh;
-  left:5vw;
+  left:8vw;
   height: 38vh;
   width:18.5vw;
   background-color: white;
@@ -338,25 +341,25 @@ p.revealinfo{
 .submitbtn{
   position: fixed;
   top:47vh;
-  right:17.5vw;
+  right:14.5vw;
   height: 6vh;
   width: 8vw;
   background-color: #282A32;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 1.8vh;
   color: white;
   border-radius: 1vh;
   border: none;
 }
 
 .submitbtn:hover{
-  background: linear-gradient(52deg, rgba(103,26,255,1) 0%, rgba(87,229,255,1) 100%);
+  background: rgba(103,26,255,1);
 }
 
 .ordernumber{
   text-align: center;
   background-color: white;
-  font-size: 16px;
+  font-size: 1.8vh;
   border-radius: 1vh;
   height: 4vh;
   width: 12vw;
@@ -371,7 +374,7 @@ p.revealinfo{
 .ordercustomer{
   text-align: center;
   background-color: white;
-  font-size: 16px;
+  font-size: 1.8vh;
   border-radius: 1vh;
   height: 4vh;
   width: 12vw;
@@ -388,7 +391,7 @@ p.revealinfo{
   left:50%;
   top:-12vh;
   background-color: white;
-  font-size: 16px;
+  font-size: 1.5vh;
   border-radius: 1vh;
   height: 10vh;
   width: 12vw;
@@ -409,12 +412,12 @@ p.revealinfo{
 .orderreportbtn{
   position: fixed;
   top:55vh;
-  left: 14.5vw;
+  left: 18vw;
   height: 6vh;
   width: 8vw;
   background-color: white;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 1.8vh;
   color: black;
   border-radius: 1vh;
   border-color: rgba(222,235,63,1);
@@ -430,12 +433,12 @@ p.revealinfo{
 .orderedittbtn{
   position: fixed;
   top:48vh;
-  left:14.5vw;
+  left:18vw;
   height: 6vh;
   width: 8vw;
   background-color: white;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 1.8vh;
   color: black;
   border-radius: 1vh;
   border-color: rgba(103,26,255,1);
@@ -444,19 +447,19 @@ p.revealinfo{
 }
 
 .orderedittbtn:hover{
-  background: linear-gradient(52deg, rgba(103,26,255,1) 0%, rgba(87,229,255,1) 100%);
+  background: rgba(103,26,255,1);
   border:none;
 }
 
 .orderdeletebtn{
   position: fixed;
   top:48vh;
-  left: 5.5vw;
+  left: 9vw;
   height: 6vh;
   width: 8vw;
   background-color: white;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 1.8vh;
   color: black;
   border-radius: 1vh;
   border-color: rgba(196,75,75,1);
@@ -473,9 +476,9 @@ p.revealinfo{
 .attachedassets{
   position:fixed;
   top:25vh;
-  left:28vw;
+  left:29vw;
   height: 65vh;
-  width:25vw;
+  width:35vw;
   background-color: white;
   border-radius: 1vh;
   box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
@@ -484,10 +487,19 @@ p.revealinfo{
 .attachmoreassets{
   position:fixed;
   top:25vh;
-  left:58vw;
+  right:8vw;
   height: 65vh;
   width:25vw;
   background-color: white;
   border-radius: 1vh;
   box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+}
+
+.importasset{
+  background-color: red;
+  width: 10vw;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -24,7 +24,17 @@
 
 <div class='createorder'>
   <div class='listtitle'><h4> Add or Import Assets</h4></div>
+    <div class='importasset'>
+        <form method="POST" action-"/" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="buttons">
+            <input type="file" id="files" name="myfile" multiple><br><br>
+            <button type="submit" class = "submitbtn", name="save">Submit</button>
+            </div>
+        </form>
 
+    </div>
 </div>
 </div>
 

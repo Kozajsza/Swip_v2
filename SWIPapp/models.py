@@ -42,14 +42,14 @@ class Asset(models.Model):
     Wipe_End_Time = models.CharField(max_length=100, default='',null=True, blank=True)
     Wipe_Result = models.CharField(max_length=100, default='',null=True, blank=True)
     Weight = models.FloatField(null=True, blank=True)
-    Created = models.DateTimeField(auto_now_add=True, null=True) #this is currently broken - works on import but updating returns error if null=False for some reason
-    Updated = models.DateTimeField(auto_now_add=True, null= True) #this is currently broken - works on import but updating returns error if null=False for some reason
     Ecommerce_Title = models.CharField(max_length=80, default='', null=True, blank=True)
     Ecommerce_Category = models.CharField(max_length=30, default='', null=True, blank=True)
     Ecommerce_Condition = models.CharField(max_length=10, default='', null=True, blank=True)
     Ecommerce_Condition_Description = models.CharField(max_length=1000, default='', null=True, blank=True)
     Ecommerce_Item_Description = models.CharField(max_length=1000, default='', null=True, blank=True)
     Ecommerce_Price = models.FloatField(null=True, blank=True)
+    Created = models.DateTimeField(auto_now_add=True, null=True) #this is currently broken - works on import but updating returns error if null=False for some reason
+    Updated = models.DateTimeField(auto_now_add=True, null= True) #this is currently broken - works on import but updating returns error if null=False for some reason
 
     class Meta:
         ordering =['-Updated', '-Created']
