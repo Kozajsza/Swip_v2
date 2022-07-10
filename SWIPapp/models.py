@@ -47,12 +47,10 @@ class Asset(models.Model):
     Ecommerce_Condition = models.CharField(max_length=10, default='', null=True, blank=True)
     Ecommerce_Condition_Description = models.CharField(max_length=1000, default='', null=True, blank=True)
     Ecommerce_Item_Description = models.CharField(max_length=1000, default='', null=True, blank=True)
-    Ecommerce_Price = models.FloatField(null=True, blank=True)
+    Ecommerce_Price = models.FloatField(null=True, blank=True, default='0')
     Created = models.DateTimeField(auto_now_add=True, null=True) #this is currently broken - works on import but updating returns error if null=False for some reason
     Updated = models.DateTimeField(auto_now_add=True, null= True) #this is currently broken - works on import but updating returns error if null=False for some reason
 
-    class Meta:
-        ordering =['-Updated', '-Created']
 
     def __str__(self):
         return self.Asset_QR
@@ -68,3 +66,10 @@ class Asset(models.Model):
         self.Asset_QR_Img.save(fname, File(buffer), save=False)
         canvas.close()
         super().save(*args, **kwargs)
+
+class AssetLog(models.Model):
+    ConnectedAsset = models.ForeignKey(Asset, on_delete=models.CASCADE, null=True, blank=True)
+    Log = models.CharField(max_length=100, default='')
+
+    def __str__(self):
+        return self.Log

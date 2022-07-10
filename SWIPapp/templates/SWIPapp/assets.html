@@ -6,15 +6,15 @@
 
 <div class="recentorders">
   <div class='listtitle'>
-      <h4> Recent Assets </h4>
+      <h4> Recently Added </h4>
   </div>
       <div class='listcontainer'>
           {%for i in asset %}   
-          <a href='#'>
+          <a href='/asset/{{i.id}}'>
               <div class="listitem">
                   <p class="maininfo"> Asset QR: {{i.Asset_QR}}</p>
                   <p class="moreinfo">{{i.Make}} {{i.Model}} {{i.Serial_Number}} </p>
-                  <p class="revealinfo">{{i.CPU}} {{i.RAM}} GB RAM </p>
+                  <p class="revealinfo">CPU: {{i.CPU}}, Memory: {{i.RAM}} GB RAM </p>
                   <p class="revealinfo">Storage: {{i.Storage}} {{i.Storage_Capacity}}GB</p>
               </div> 
           </a>
@@ -22,21 +22,27 @@
       </div>      
 </div>
 
-<div class='createorder'>
-  <div class='listtitle'><h4> Add or Import Assets</h4></div>
-    <div class='importasset'>
-        <form method="POST" action-"/" enctype="multipart/form-data">
-            {% csrf_token %}
-            
-            <div class="buttons">
-            <input type="file" id="files" name="myfile" multiple><br><br>
-            <button type="submit" class = "submitbtn", name="save">Submit</button>
-            </div>
-        </form>
-
+    <div class='uploadasset'>
+    <div class='listtitle'><h4> Add or Import Assets</h4></div>
+    <p class="explanation"> Select one or multiple CSV files and press <b>Submit</b> to import Assets </p>
+            <form method="POST" action-"/" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="buttons">
+                <input type="file" id="files" name="myfile" style="display:none;" multiple>
+                <label class="uploadlabel" for="files">Upload CSVs</label>
+                <br><br>
+                <button type="submit" class = "submitbtn2", name="save">Submit</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-</div>
+
+    <div class="createasset">
+        <div class='listtitle'><h4> Create New Asset</h4></div>
+        <p class="explanation"> Open a separate form in order to create Asset manually </p>
+        <a href='createasset'><button> Add Asset Manually </button> </a>
+    </div>
 
 
 {% endblock %}

@@ -26,12 +26,10 @@
     <div class='listtitle'><h4> Create New Order</h4></div>
         <form method="POST" action =''>
             {% csrf_token %}
-            <div class="orderform">
-            {{form.Order_Number}}<br>
-            {{form.Customer}}<br>
+            {{form.Order_Number}}
+            {{form.Customer}}
             {{form.Customer_Address}}
             <button class="submitbtn", name="save">Add Order</button>
-            </div>
         </form>
 </div>
 </div>

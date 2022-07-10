@@ -1,0 +1,37 @@
+{% extends "SWIPapp/navbar.html" %}
+{% load static %}
+
+{%block content%}
+
+<div class="assetinfo">
+    <div class='listtitle'>
+        <h4> Create New or Update Existing Asset </h4>
+    </div>
+    <form method="POST" action =''>
+        {% csrf_token %}
+        <p class="basicinfo"> Basic Information </p>
+        {{form.Type}}
+        {{form.Asset_QR}}
+        {{form.Make}} {{form.Model}} {{form.Serial_Number}}
+        <p class="specinfo"> Asset Specification </p>
+        {{form.CPU}} {{form.RAM}}
+
+        {{form.Storage}} {{form.Storage_Serial_Number}} {{form.Storage_Capacity}}
+        {{form.Weight}}
+        <input type="hidden" name="next" value={{asset.id}}>
+        <button class="submitbtn3", name="save">Submit</button>
+    </form>
+    <button class="generateqr" id='generateqr'>Generate QR</button>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock %}

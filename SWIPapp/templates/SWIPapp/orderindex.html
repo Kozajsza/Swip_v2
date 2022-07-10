@@ -4,28 +4,69 @@
 {%block content%}
 
 
+
 <div class="orderinfo">
-    <div class='listtitle'>
-        <h4> Order Information </h4>
-    </div>
-<p class="maininfo"> <b>Order Number:</b> {{order.Order_Number}}</p>
+    <div class='listtitle2'>
+        <p class="topinfo"><b>Order Number:</b> {{order.Order_Number}}</p>
+      <div class="buttonlabels">
+        <ul>
+          <li class="asset-desc" id='deldes'>  <p class="link-desc"> Delete</p></li>
+          <li class="asset-desc" id='editdes'>  <p class="link-desc">Edit</p></li>
+          <li class="asset-desc" id='dupdes'>  <p class="link-desc">Report</p></li>
+      </ul>
+      </div>
+      <ul class="assetbuttons">
+        <li class="assetbutton" id='delicon'>  <a class="assset-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M15 2H9c-1.103 0-2 .897-2 2v2H3v2h2v12c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2V8h2V6h-4V4c0-1.103-.897-2-2-2zM9 4h6v2H9V4zm8 16H7V8h10v12z"></path></svg></a></li>
+        <li class="assetbutton" id='editicon'>  <a class="assset-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z"></path><path d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z"></path></svg></a></li>
+        <li class="assetbutton" id='dupicon'>  <a class="assset-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M19 3h-2.25a1 1 0 0 0-1-1h-7.5a1 1 0 0 0-1 1H5c-1.103 0-2 .897-2 2v15c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm0 17H5V5h2v2h10V5h2v15z"></path></svg></a></li>
+      </div>
+<br>
+
 <p class="maininfo"> <b>Customer Name:</b> {{order.Customer}} </p>
 <p class="maininfo"> <b>Customer Address:</b> {{order.Customer_Address}} </p>
-<button class="orderedittbtn">Edit Report</button>
-<button class="orderdeletebtn">Delete Report</button>
-<button class="orderreportbtn">Generate Report</button>
 </div>
 
 <div class="attachedassets">
     <div class='listtitle'>
         <h4> Attached Assets and HDDs </h4>
     </div>
+    <div class='listcontainer'>
+        {%for i in asset %}   
+        <a href='/asset/{{i.id}}'>
+            <div class="listitem">
+                <p class="maininfo"> Asset QR: {{i.Asset_QR}}</p>
+                <p class="moreinfo">{{i.Make}} {{i.Model}} {{i.Serial_Number}} </p>
+                <p class="revealinfo">CPU: {{i.CPU}}, Memory: {{i.RAM}} GB RAM </p>
+                <p class="revealinfo">Storage: {{i.Storage}} {{i.Storage_Capacity}}GB</p>
+            </div> 
+        </a>
+        {% endfor %}     
 </div> 
 
-<div class="attachmoreassets">
+
+<div class="attachtoorder">
     <div class='listtitle'>
-        <h4> Attach More Assets </h4>
+        <h4> Import Assets from CSV</h4>
     </div>
-</div> 
+    <p class="explanation"> Select one or multiple CSV files and press <b>Submit</b> to import Assets to this job </p>
+    <div class='importasset2'>
+        <form method="POST" action-"/" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="buttons">
+            <input type="file" id="files" name="myfile" style="display:none;" multiple>
+            <label class="uploadlabel" for="files">Upload CSVs</label>
+            <button type="submit" class = "submitbtn2", name="save">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="attachhddtoorder">
+    <div class='listtitle'>
+        <h4> Import Hard Drives from CSV</h4>
+    </div>
+</div>
 
 {% endblock %}
+<script src="{% static 'script2.js' %}"></script>
