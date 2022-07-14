@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;700&display=swap');
+
 
 *{
   padding:0;
@@ -21,6 +21,7 @@ body{
   position: fixed;
   bottom: 0.2vh;
   left: 1vw;
+  z-index: 1000;
 }
 
 .footertext{
@@ -193,18 +194,6 @@ h3{
   z-index: 1000;
 }
 
-.buttonlabels{
-  position: fixed;
-  right:16.25vw;
-  top:13vh;
-  width: fit-content;
-  padding-right:1.5vw;
-  height:4vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  visibility: hidden;
-}
 
 .assetbuttons{
   position:absolute;
@@ -218,11 +207,29 @@ h3{
 }
 
 .asset-desc{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  float: left;
-  padding: 0.45vw;
+list-style: none;
+}
+
+#deldes{
+  position: fixed;
+  right:25.5vw;
+  top:13.5vh;
+  visibility: hidden;
+}
+
+
+#editdes{
+  position: fixed;
+  right: 22.6vw;
+  top:13.5vh;
+  visibility: hidden;
+}
+
+#dupdes{
+  position: fixed;
+  right:18.75vw;
+  top:13.5vh;
+  visibility: hidden;
 }
 
 .assetbutton{
@@ -247,7 +254,6 @@ h3{
 }
 
 .assset-link:hover{
-  background: rgb(205, 205, 205);
   box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
 }
 
@@ -375,6 +381,38 @@ p.revealinfo{
   box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
 }
 
+.createasset{
+  position:fixed;
+  top:42vh;
+  right: 10vw;
+  height: 25vh;
+  width:30vw;
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+}
+
+.createasset button{
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  height: 6vh;
+  width: 16vw;
+  bottom:6vh;
+  background: #555; 
+  text-decoration: none;
+  font-size: 1.8vh;
+  color: white;
+  border-radius: 1vh;
+  border: none;
+  transition: 0.4s;
+}
+
+.createasset button:hover{
+  background-color: rgb(103,26,255);;
+}
 
 
 .createorder{
@@ -392,6 +430,7 @@ p.explanation{
   position:absolute;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
   left:0;
   right:0;
   width: 80%;
@@ -491,12 +530,107 @@ p.explanation{
   transition: 0.4s;
 }
 
+.submitbtn3{
+  position: absolute;
+  bottom:4vh;
+  right:5.5vw;
+  height: 6vh;
+  width: 8vw;
+  background: #555; 
+  text-decoration: none;
+  font-size: 1.8vh;
+  color: white;
+  border-radius: 1vh;
+  border: none;
+  transition: 0.4s;
+}
+
+.submitbtn4{
+  position: absolute;
+  bottom:4vh;
+  right:5.5vw;
+  height: 6vh;
+  width: 8vw;
+  background: #555; 
+  text-decoration: none;
+  font-size: 1.8vh;
+  color: white;
+  border-radius: 1vh;
+  border: none;
+  transition: 0.4s;
+}
+
 .submitbtn:hover{
   background: rgba(103,26,255,1);
 }
 
 .submitbtn2:hover{
   background: rgba(103,26,255,1);
+}
+
+.submitbtn3:hover{
+  background-color: #39C664;
+}
+
+.submitbtn4:hover{
+  background-color: #E70000;
+}
+
+.cancelbtn{
+  position: absolute;
+  bottom:4vh;
+  left:5.5vw;
+  height: 6vh;
+  width: 8vw;
+  background: #555; 
+  text-decoration: none;
+  font-size: 1.8vh;
+  color: white;
+  border-radius: 1vh;
+  border: none;
+  transition: 0.4s;
+}
+
+.cancelbtn:hover{
+  background-color: #39C664;
+}
+
+.cancelbtn2{
+  position: absolute;
+  bottom:4vh;
+  right:16vw;
+  height: 6vh;
+  width: 8vw;
+  background: #555; 
+  text-decoration: none;
+  font-size: 1.8vh;
+  color: white;
+  border-radius: 1vh;
+  border: none;
+  transition: 0.4s;
+}
+
+.cancelbtn2:hover{
+  background-color: #E70000;
+}
+
+.cancelbtn3{
+  position: absolute;
+  bottom:4vh;
+  left:5.5vw;
+  height: 6vh;
+  width: 8vw;
+  background: #555; 
+  text-decoration: none;
+  font-size: 1.8vh;
+  color: white;
+  border-radius: 1vh;
+  border: none;
+  transition: 0.4s;
+}
+
+.cancelbtn3:hover{
+  background-color: #E70000;
 }
 
 .ordernumber{
@@ -947,42 +1081,287 @@ p.topinfo{
 }
 
 .halfleft{
-  position: fixed;
-  left: 0;
-  width: 50vw;
-  height: 100vh;
   display: flex;
-align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
-.logo{
+.assettype{
   position: absolute;
-  margin-left: auto;
-  margin-right: auto;
+  left: 2vw;
+  top:16vh;
+  text-align: center;
+  background-color: white;
+  font-size: 1vh;
+  border-radius: 1vh;
+  height: 4vh;
+  width: 12vw;
+  border-style: solid;
+  border-color:#888;
+  border-width: 0.1ch;
+  margin: 1vh;
+  text-align: left;
+  text-indent: 1vw;
+}
+
+.assetqr{
+    position: absolute;
+    left: 2vw;
+    top:22vh;
+    text-align: center;
+    background-color: white;
+    font-size: 1vh;
+    border-radius: 1vh;
+    height: 4vh;
+    width: 16vw;
+    border-style: solid;
+    border-color:#888;
+    border-width: 0.1ch;
+    margin: 1vh;
+    text-align: left;
+    text-indent: 1vw;
+  }
+
+  .assetmake{
+    position: absolute;
+    left: 2vw;
+    top:28vh;
+    text-align: center;
+    background-color: white;
+    font-size: 1vh;
+    border-radius: 1vh;
+    height: 4vh;
+    width: 12vw;
+    border-style: solid;
+    border-color:#888;
+    border-width: 0.1ch;
+    margin: 1vh;
+    text-align: left;
+    text-indent: 1vw;
+  }
+
+  .assetmodel{
+    position: absolute;
+    left: 16vw;
+    top:28vh;
+    text-align: center;
+    background-color: white;
+    font-size: 1vh;
+    border-radius: 1vh;
+    height: 4vh;
+    width: 12vw;
+    border-style: solid;
+    border-color:#888;
+    border-width: 0.1ch;
+    margin: 1vh;
+    text-align: left;
+    text-indent: 1vw;
+  }
+
+  .assetserial{
+    position: absolute;
+    left: 30vw;
+    top:28vh;
+    text-align: center;
+    background-color: white;
+    font-size: 1vh;
+    border-radius: 1vh;
+    height: 4vh;
+    width: 12vw;
+    border-style: solid;
+    border-color:#888;
+    border-width: 0.1ch;
+    margin: 1vh;
+    text-align: left;
+    text-indent: 1vw;
+  }
+
+  .assetcpu{
+    position: absolute;
+    left: 2vw;
+    top:42vh;
+    text-align: center;
+    background-color: white;
+    font-size: 1vh;
+    border-radius: 1vh;
+    height: 4vh;
+    width: 12vw;
+    border-style: solid;
+    border-color:#888;
+    border-width: 0.1ch;
+    margin: 1vh;
+    text-align: left;
+    text-indent: 1vw;
+  }
+  
+  .assetram{
+    position: absolute;
+    left: 16vw;
+    top:42vh;
+    text-align: center;
+    background-color: white;
+    font-size: 1vh;
+    border-radius: 1vh;
+    height: 4vh;
+    width: 12vw;
+    border-style: solid;
+    border-color:#888;
+    border-width: 0.1ch;
+    margin: 1vh;
+    text-align: left;
+    text-indent: 1vw;
+  }
+  
+
+  .assetstorage{
+    position: absolute;
+    left: 2vw;
+    top:48vh;
+    text-align: center;
+    background-color: white;
+    font-size: 1vh;
+    border-radius: 1vh;
+    height: 4vh;
+    width: 12vw;
+    border-style: solid;
+    border-color:#888;
+    border-width: 0.1ch;
+    margin: 1vh;
+    text-align: left;
+    text-indent: 1vw;
+  }
+
+  .assetstorageserial{
+    position: absolute;
+    left: 16vw;
+    top:48vh;
+    text-align: center;
+    background-color: white;
+    font-size: 1vh;
+    border-radius: 1vh;
+    height: 4vh;
+    width: 12vw;
+    border-style: solid;
+    border-color:#888;
+    border-width: 0.1ch;
+    margin: 1vh;
+    text-align: left;
+    text-indent: 1vw;
+  }
+
+  .assetstoragecap{
+    position: absolute;
+    left: 30vw;
+    top:48vh;
+    text-align: center;
+    background-color: white;
+    font-size: 1vh;
+    border-radius: 1vh;
+    height: 4vh;
+    width: 12vw;
+    border-style: solid;
+    border-color:#888;
+    border-width: 0.1ch;
+    margin: 1vh;
+    text-align: left;
+    text-indent: 1vw;
+  }
+
+  .assetweight{
+    position: absolute;
+    left: 2vw;
+    top:56vh;
+    text-align: center;
+    background-color: white;
+    font-size: 1vh;
+    border-radius: 1vh;
+    height: 4vh;
+    width: 12vw;
+    border-style: solid;
+    border-color:#888;
+    border-width: 0.1ch;
+    margin: 1vh;
+    text-align: left;
+    text-indent: 1vw;
+  }
+
+p.basicinfo{
+  position: absolute;
+  left:2vw;
+  top: 10vh;
+  font-size: 2vh;
+}
+
+p.specinfo{
+  position: absolute;
+  left:2vw;
+  top: 36vh;
+  font-size: 2vh;
+}
+
+.generateqr{
+  position: absolute;
+  top: 23vh;
+  left: 20vw;
+  height: 4vh;
+  width: 6vw;
+  background: #555; 
+  text-decoration: none;
+  font-size: 1vh;
+  color: white;
+  border-radius: 1vh;
+  border: none;
+  transition: 0.4s;
+}
+
+.generateqr:hover{
+  background: rgba(103,26,255,1);
+}
+
+.generateqr:active{
+  position: absolute;
+  top:23.1vh;
+  transition: 0s all;
+  box-shadow: 5px 5px 15px 5px rgba(103,26,255,0.25), 0px 0px 23px 5px rgba(103,26,255,0.15);
+}
+
+.fullscreenglass{
+background: rgba(255, 255, 255, 0.32);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(9.4px);
+-webkit-backdrop-filter: blur(9.4px);
+width: 100vw;
+height: 100vh;
+position: fixed;
+left: 0;
+right: 0;
+top:0;
+}
+
+.deleteprompt{
+  position: fixed;
+  top:30vh;
   left:0;
   right: 0;
-  width: fit-content;
-  height: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  width: 35vw;
+  height: 25vh;
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
 }
 
-.logo img{
-width:13vw;
-}
-
-p.SWIP{
-  font-family: "Dosis", sans-serif;
-  font-weight: 700;
-  text-align: center;
-  font-size: 4.4vh;
-  color: white;
-  text-shadow: 1px 2px 10px #000000;
-}
-
-p.SWIPbtm{
-  font-family: "Dosis", sans-serif;
-  font-weight: 200;
-  text-align: center;
-  font-size: 1vh;
-  font-weight: 900;
-  color: white;
+.updateorderprompt{
+  position: fixed;
+  top:30vh;
+  left:0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 35vw;
+  height: 35vh;
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
 }

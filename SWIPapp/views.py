@@ -21,6 +21,14 @@ def home(request):
 def login(request):
     return render (request, 'SWIPapp/login.html')
 
+def assetlabel(request,id):
+    asset = Asset.objects.get(id=id)
+    context = {
+        'asset':asset,
+    }
+
+    return render(request, 'SWIPapp/assetlabel.html', context)
+
 def assets(request):
     asset = Asset.objects.order_by('-Created')
     if request.method == 'POST':
@@ -204,6 +212,42 @@ def orderindex(request, id):
                 }
 
     return render(request, 'SWIPapp/orderindex.html', context)
+
+def orderreport(request, id):
+    order = Order.objects.get(id=id)
+    asset = Asset.objects.filter(Order_Number_id=order)
+
+    context = {'order':order,
+                'asset':asset,
+                #'hdds':hdds,
+                }
+
+    return render(request, 'SWIPapp/orderreport.html', context)
+
+
+def updateorder(request, id):
+    order = Order.objects.get(id=id)
+    form = CreateNewOrder(instance=order)
+
+    if request.method == 'POST':
+        form = CreateNewOrder(request.POST, instance=order)
+        if form.is_valid:
+            form.save()
+            return HttpResponseRedirect("/order/{id}/".format(id=id))
+
+    context = {'form':form}
+    return render(request, 'SWIPapp/updateorder.html', context)
+
+def deleteorder(request, id):
+    order = Order.objects.get(id=id)
+    if request.method == 'POST':
+        order.delete()
+        return redirect ('orders')
+    
+    context = {'order':order}
+
+    return render (request, 'SWIPapp/deleteorder.html', context)
+
 
 def assetindex(request, id):
     asset = Asset.objects.get(id=id)

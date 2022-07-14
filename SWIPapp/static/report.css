@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+*{
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  size:A4;
+    overflow-y: visible;
+}
+
+@page {
+    margin: 0;
+}
+
+body{
+    min-height: fit-content;
+}
+
+.heading{
+    position:relative;
+    left:0;
+    top:0;
+    width: 100%;
+    height:3cm;
+    background: rgb(103,26,255);
+    background: linear-gradient(52deg, rgba(103,26,255,1) 0%, rgba(87,229,255,1) 100%);
+}
+
+h4{
+    position: absolute;
+    top: 0.8cm;
+    left:1.5cm;
+    font-size: 0.9cm;
+    color: white;
+}
+
+.heading p{
+    position: absolute;
+    right:1.5cm;
+    top:0.8cm;
+    color: white;
+    font-size:0.25cm;
+}
+
+.heading hr{
+    border: 2cm solid rgb(255, 255, 255) 100%;
+    border-radius: 1vh;
+    background-color: white;
+    height:0.20cm;
+    width: 3cm;
+    position: absolute;
+    top: 2.1cm;
+    left: 1.7cm;
+    }
+
+.orderinfo{
+    position: relative;
+    width: 100%;
+    margin-bottom: 0.25cm;
+}
+
+.orderinfo p{
+    margin-left:1.75cm;
+    margin-top:0.5cm;
+    font-size:0.4cm;
+    color:black;
+}
+
+p.ptitle{
+    margin-left: 2.25cm;
+    font-size:0.65cm;
+}
+
+.title{
+    width:100%;
+    position:relative;
+    background-color: rgb(103,26,255);
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.35cm;
+}
+
+.title h5{
+    font-size: 1.2cm;
+    color: white;
+}
+
+.listcontainer{
+    position: relative;
+    width: 100%; 
+    height: fit-content;
+}
+
+.listitem{
+    margin-left: 5%;
+    margin-bottom: 0.25cm;
+    width: 90%;
+    height: fit-content;
+    border-bottom: solid rgba(103,26,255,0.1) 0.01cm;
+}
+
+.listitem p{
+    margin-left: 1cm;
+}
+
+p.maininfo{
+    font-size:0.65cm;
+    margin-left: 1.5cm;
+    margin-bottom: 0.1cm;
+}
+
+p.moreinfo{
+    margin-bottom: 0.05cm;
+}
+
+p.wipeinfo {
+    margin-left: 2cm;
+    margin-bottom: 0.1cm;
+}
+
+.wd{
+    position: absolute;
+    top:45%;
+    left:35%;
+    width: 6cm;
+}
+
+.wd img{
+    width: 100%;
+    height: 100%;
+}
+
+.bronze{
+    position: absolute;
+    width: 4.5cm;
+    top: 10%;
+    left:57.5%;
+}
+
+.bronze img{
+    width: 100%;
+    height: 100%;
+}
+
+.fm{
+    position: absolute;
+    top: 5%;
+    left:75%;
+    width: 9cm;
+}
+
+.fm img{
+    width: 100%;
+    height: 100%;
+}

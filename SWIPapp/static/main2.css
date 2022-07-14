@@ -21,6 +21,7 @@ body{
   position: fixed;
   bottom: 0.2vh;
   left: 1vw;
+  z-index: 1000;
 }
 
 .footertext{
@@ -193,18 +194,6 @@ h3{
   z-index: 1000;
 }
 
-.buttonlabels{
-  position: fixed;
-  right:16.25vw;
-  top:13vh;
-  width: fit-content;
-  padding-right:1.5vw;
-  height:4vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  visibility: hidden;
-}
 
 .assetbuttons{
   position:absolute;
@@ -218,11 +207,28 @@ h3{
 }
 
 .asset-desc{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  float: left;
-  padding: 0.45vw;
+list-style: none;
+}
+
+#deldes{
+  position: fixed;
+  right:25.5vw;
+  top:13.5vh;
+  visibility: hidden;
+}
+
+#editdes{
+  position: fixed;
+  right: 22.6vw;
+  top:13.5vh;
+  visibility: hidden;
+}
+
+#dupdes{
+  position: fixed;
+  right:18.75vw;
+  top:13.5vh;
+  visibility: hidden;
 }
 
 .assetbutton{
@@ -539,6 +545,21 @@ p.explanation{
   transition: 0.4s;
 }
 
+.submitbtn4{
+  position: absolute;
+  bottom:4vh;
+  right:5.5vw;
+  height: 6vh;
+  width: 8vw;
+  background: #555; 
+  text-decoration: none;
+  font-size: 1.8vh;
+  color: white;
+  border-radius: 1vh;
+  border: none;
+  transition: 0.4s;
+}
+
 .submitbtn:hover{
   background: rgba(103,26,255,1);
 }
@@ -549,6 +570,67 @@ p.explanation{
 
 .submitbtn3:hover{
   background-color: #39C664;
+}
+
+.submitbtn4:hover{
+  background-color: #E70000;
+}
+
+.cancelbtn{
+  position: absolute;
+  bottom:4vh;
+  left:5.5vw;
+  height: 6vh;
+  width: 8vw;
+  background: #555; 
+  text-decoration: none;
+  font-size: 1.8vh;
+  color: white;
+  border-radius: 1vh;
+  border: none;
+  transition: 0.4s;
+}
+
+.cancelbtn:hover{
+  background-color: #39C664;
+}
+
+.cancelbtn2{
+  position: absolute;
+  bottom:4vh;
+  right:16vw;
+  height: 6vh;
+  width: 8vw;
+  background: #555; 
+  text-decoration: none;
+  font-size: 1.8vh;
+  color: white;
+  border-radius: 1vh;
+  border: none;
+  transition: 0.4s;
+}
+
+.cancelbtn2:hover{
+  background-color: #E70000;
+}
+
+.cancelbtn3{
+  position: absolute;
+  bottom:4vh;
+  left:5.5vw;
+  height: 6vh;
+  width: 8vw;
+  background: #555; 
+  text-decoration: none;
+  font-size: 1.8vh;
+  color: white;
+  border-radius: 1vh;
+  border: none;
+  transition: 0.4s;
+}
+
+.cancelbtn3:hover{
+  background-color: #E70000;
 }
 
 .ordernumber{
@@ -1236,12 +1318,50 @@ p.specinfo{
   background: rgba(103,26,255,1);
 }
 
-.generateqr:after{
-  transition: all 0.5s;
-  box-shadow: 0 0 10px 40px rgba(103,26,255,1);
+.generateqr:active{
+  position: absolute;
+  top:23.1vh;
+  transition: 0s all;
+  box-shadow: 5px 5px 15px 5px rgba(103,26,255,0.25), 0px 0px 23px 5px rgba(103,26,255,0.15);
 }
 
-.generateqr:active:after{
-  transition: all 0.5s;
-  box-shadow: 0 0 10px 40px rgba(103,26,255,1);
+.fullscreenglass{
+background: rgba(255, 255, 255, 0.32);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(9.4px);
+-webkit-backdrop-filter: blur(9.4px);
+width: 100vw;
+height: 100vh;
+position: fixed;
+left: 0;
+right: 0;
+top:0;
+}
+
+.deleteprompt{
+  position: fixed;
+  top:30vh;
+  left:0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 35vw;
+  height: 25vh;
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+}
+
+.updateorderprompt{
+  position: fixed;
+  top:30vh;
+  left:0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 35vw;
+  height: 35vh;
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
 }

@@ -1,0 +1,31 @@
+{% load static %}
+
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href={% static "label.css" %}>
+
+    
+<meta charset="utf-8">
+
+</head>
+
+<body> 
+
+    <div class ="qrimage">
+        {% load static %}
+        {% with 'SWIPapp/images/qr_codes/'|add:asset.Asset_QR|add:'.png' as image_static %}
+          <img src="{% static image_static %}" width="" height=""/>
+        {% endwith %}
+      </div>
+
+      <div class="labelcontent">
+        <p class="maininfo"> <b>Unique QR identifier:</b> {{asset.Asset_QR}}</p>
+        <p class="maininfo"> {{asset.Make}} {{asset.Model}} {{asset.Serial_Number}}</p>
+        <p class="maininfo"> {{asset.CPU}}  </p>
+        <p class="maininfo"> {{asset.RAM}} GB RAM </p>
+        <p class="maininfo"> <b>Storage:</b> {{asset.Storage}} {{asset.Storage_Serial_Number}} </p>
+        <p class="maininfo"> <b>Capacity:</b> {{asset.Storage_Capacity}} GB </p>
+    </div>
+
+</body>

@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+*{
+  margin:0;
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+}
+
+@page {
+    margin: 0;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+ }
+
+.qrimage{
+    position: fixed;
+    width: fit-content;
+    height: fit-content;
+    top:0.2in;
+}
+
+.qrimage img{
+    width: 1.5in;
+    height: 1.5in;
+}
+
+.labelcontent{
+    position: fixed;
+    top:0.35in;
+    left: 1.8in;
+    width: fit-content;
+    font-size: 0.13in;
+}
+
+
+.heading{
+    width: 100%;
+    height:3cm;
+    background: rgb(103,26,255);
+    background: linear-gradient(52deg, rgba(103,26,255,1) 0%, rgba(87,229,255,1) 100%);
+}
+
+h4{
+    position: absolute;
+    top: 0.8cm;
+    left:1.5cm;
+    font-size: 0.9cm;
+    color: white;
+}
+
+.heading p{
+    position: absolute;
+    right:1.5cm;
+    top:0.8cm;
+    color: white;
+    font-size:0.25cm;
+}
+
+.heading hr{
+    border: 2cm solid rgb(255, 255, 255) 100%;
+    border-radius: 1vh;
+    background-color: white;
+    height:0.20cm;
+    width: 3cm;
+    position: absolute;
+    top: 2.1cm;
+    left: 1.7cm;
+    }
+
+.orderinfo{
+    position: fixed;
+    top:3cm;
+    width: fit-content;
+    max-width: 35%;
+    height:5.5cm;
+}
+
+.orderinfo p{
+    margin-left:1.75cm;
+    margin-top:0.5cm;
+    font-size:0.4cm;
+    color:black;
+}
+
+p.ptitle{
+    margin-left: 2.25cm;
+    font-size:0.65cm;
+}
+
+.title{
+    width:100%;
+    position:fixed;
+    top:10cm;
+    background-color: #B1A8B9;
+    display: flex;
+    justify-content: center;
+}
+
+.title h5{
+    font-size: 1.2cm;
+}
+
+.listcontainer{
+    position: fixed;
+    top:12cm;
+}
+
+p.maininfo{
+    font-size:0.75cm;
+}
