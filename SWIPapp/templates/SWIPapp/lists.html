@@ -1,0 +1,35 @@
+{% extends "SWIPapp/navbar.html" %}
+{% load static %}
+
+{%block content%}
+
+<div class="recentorders">
+    <div class='listtitle'>
+        <h4> Recent Lists </h4>
+    </div>
+    <div class='listcontainer'>
+        {%for i in list %}   
+        <a href='/list/{{i.id}}'>
+            <div class="listitem2">
+                <p class="maininfo"> List name: {{i.ListName}}</p>
+                <p class="moreinfo"> Created {{i.Created}} </p>
+                <p class="revealinfo"> Attached Assets:</b> {{i.AttachedAssets.all.count}}</p>
+            </div>
+            
+        </a>
+        {% endfor %}
+    </div>    
+
+</div>
+
+<div class='createorder'>
+    <div class='listtitle'><h4> Create New List</h4></div>
+    <form method="POST" action =''>
+        {% csrf_token %}
+    {{form.ListName}}
+    <button class="submitbtn", name="save">Create List</button>
+</form>
+</div>
+
+
+{% endblock %}

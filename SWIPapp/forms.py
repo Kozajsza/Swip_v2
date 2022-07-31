@@ -1,6 +1,6 @@
 from tkinter import Widget
 from django import forms
-from .models import Order, AssetLog, Asset
+from .models import Order, AssetLog, Asset, Lists
 
 class CreateNewOrder(forms.ModelForm):
     class Meta:
@@ -42,3 +42,12 @@ class CreateNewAsset(forms.ModelForm):
             'Storage_Capacity': forms.TextInput(attrs={'class': 'assetstoragecap', 'placeholder ': 'Storage Capacity'}),
             'Weight': forms.TextInput(attrs={'class': 'assetweight', 'placeholder ': 'Weight in Grams'}),
         }
+
+class CreateNewList(forms.ModelForm):
+    class Meta:
+        model = Lists
+        fields = ('ListName', )
+    
+        widgets = {
+            'ListName': forms.TextInput(attrs={'class': 'ListName', 'placeholder': 'Name Your List'}),
+    }

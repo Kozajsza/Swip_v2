@@ -5,14 +5,11 @@
 
 <div class="menu">
   <ul class="assetmenu">
-    <li class="menu-item">
-      <a class="nav-link2" aria-current="page" href='#1'>Basic Info</a>
-    </li>
-    <li class="menu-item">
-     <a class="nav-link2" href='#2'>Wipe Info</a>
+    <li class="menu-item active">
+      <a class="nav-link2" aria-current="page" href='#1'>General Info</a>
     </li>
   <li class="menu-item">
-    <a class="nav-link2" href="#3">Ecommerce</a>
+    <a class="nav-link2" href='/asset/{{asset.id}}/ecommerce'>Ecommerce</a>
   </li>
   <li class="menu-item">
     <a class="nav-link2" href="#4">History</a>
@@ -49,21 +46,18 @@
             {% endwith %}
           </div>
         <div class="labelcontent">
-            <p class="maininfo"> <b>Unique QR identifier:</b> {{asset.Asset_QR}}</p>
-            <p class="maininfo"> {{asset.Make}} {{asset.Model}} {{asset.Serial_Number}}</p>
-            <p class="maininfo"> {{asset.CPU}},  </p>
-            <p class="maininfo"> {{asset.RAM}} GB RAM </p>
-            <p class="maininfo"> <b>Storage:</b> {{asset.Storage}} {{asset.Storage_Serial_Number}} </p>
-            <p class="maininfo"> <b>Capacity:</b> {{asset.Storage_Capacity}} GB </p>
+            <p> <b>Unique QR identifier:</b> {{asset.Asset_QR}}</p>
+            <p> {{asset.Make}} {{asset.Model}} {{asset.Serial_Number}}</p>
+            <p> {{asset.CPU}},  </p>
+            <p> {{asset.RAM}} GB RAM </p>
+            <p> <b>Storage:</b> {{asset.Storage}} {{asset.Storage_Serial_Number}} </p>
+            <p> <b>Capacity:</b> {{asset.Storage_Capacity}} GB </p>
         </div>
           <div class ="labelclick">
             <p> Click on the Label to print it</p>
         </div>
       </a>
     </div>
-
-
-
 
       <div class="assetspec">
         <h5> Basic Asset Info </h5>
@@ -92,37 +86,25 @@
 
        </div>
   </div>
-<div class = "assetwipe" id="2"> 
-  <div class = "assetspec">
+<div class = "assetwipe"> 
     <h5> Asset Secure Wipe Info </h5>
 
-    <p> <b>Wipe Result: </b>: {{asset.Wipe_Result}} </p>  
-    <p> <b>Wipe Method: </b>: {{asset.Wipe_Method}} </p>  
-    <p> <b>Wipe Started: </b>: {{asset.Wipe_Start_Time}} </p>  
-    <p> <b>Wipe Finished: </b>: {{asset.Wipe_End_Time}} </p>  
-
-
-    <p> <b>Motherboard Test Result: </b>: {{asset.Motherboard_Test}} </p>  
-    <p> <b>CPU Test Result: </b>: {{asset.CPU_Test}} </p>  
-    <p> <b>Memory Test Result: </b>: {{asset.RAM_Test}} </p>  
-  </div>
-  <div class='wd'>
-  <img src="{% static 'SWIPapp/images/wipedrive.png' %}" width="500" height="120"/>
-  </div>
-  <div class ="bronze">
-    <img src="{% static 'SWIPapp/images/Bronze.png' %}" width="400" height="400"/>
-</div>
-</div>
-<div class = "assetecom" id="3">
-  <div class = "assetspec">
-    <h5> Ecommerce Info </h5>
+    <p> <b>Wipe Result: </b> {{asset.Wipe_Result}} </p>  
+    <p> <b>Wipe Method: </b> {{asset.Wipe_Method}} </p>  
+    <p> <b>Wipe Started: </b> {{asset.Wipe_Start_Time}} </p>  
+    <p> <b>Wipe Finished: </b> {{asset.Wipe_End_Time}} </p>  
     <hr><br>
-    <p> <b>Item Title: </b>: {{asset.Ecommerce_Title}} </p>  
-    <p> <b>Category: </b>: {{asset.Ecommerce_Category}} </p>  
-    <p> <b>Condition: </b>: {{asset.Ecommerce_Condition}} </p>  
-    <p> <b>Condition Description: </b>: {{asset.Ecommerce_Condition_Description}} </p>  
-    <p> <b>Price: </b>: £{{asset.Ecommerce_Price}} </p> 
- </div>
+
+    <p> <b>Motherboard Test Result: </b> {{asset.Motherboard_Test}} </p>  
+    <p> <b>CPU Test Result: </b> {{asset.CPU_Test}} </p>  
+    <p> <b>Memory Test Result: </b> {{asset.RAM_Test}} </p>  
+  </div>
+
+
+
+</div>
+
+</div>
 
 <div class = "assetlog" id="4"> 
    <!--

@@ -1,0 +1,43 @@
+{% extends "SWIPapp/navbar.html" %}
+{% load static %}
+
+{%block content%}
+
+<div class="orderinfo">
+    <div class='listtitle2'>
+        <p class="topinfo"><b>List Name:</b> {{list.ListName}}</p>
+    </div>
+    <br>
+    <p class="maininfo"><b> Created: </b> {{list.Created}}</p>
+    <p class="maininfo"><b> Number of Attached Assets: </b> {{list.AttachedAssets.all.count}} </p>
+</div>
+
+<div class="attachedassets">
+    <div class='listtitle'>
+        <h4> Assets on the List: </h4>
+    </div>
+    <div class='listcontainer'>
+        {% for i in list.AttachedAssets.all%}
+
+        <a href='/asset/{{i.id}}'>
+            <div class="listitem3">
+                <p class="maininfo"> Asset QR: {{i.Asset_QR}}</p>
+                <p class="moreinfo">{{i.Make}} {{i.Model}} {{i.Serial_Number}} </p>
+                <p class="revealinfo">{{i.CPU}} , {{i.RAM}} GB RAM, {{i.Storage_Capacity}} GB Storage </p>
+                <p class="revealinfo"> £{{i.Ecommerce_Price}}</p>
+            </div> 
+        </a>
+        <div class = "removeassetfromlist">
+            <button>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="48" height="48" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z"></path>
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                 </svg>
+            </button>
+
+        </div>
+        {%endfor%}
+        
+    </div>
+{% endblock %}

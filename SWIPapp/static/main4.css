@@ -303,6 +303,46 @@ h4{
   transition: 0.4s;
 }
 
+.listitem2{
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1vh;
+  width: 90%;
+  text-align: center;
+  height: 5vh;
+  transition: ease 0.4s;
+}
+
+.listitem3{
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1vh;
+  width: 70%;
+  text-align: center;
+  height: 5vh;
+  transition: 0.4s;
+}
+
+.ebay{
+  float:right;
+  margin-top: 1vh;
+  margin-right: 1.5vw;
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 p.maininfo{
   font-size: 1.5vh;
   color:black;
@@ -311,8 +351,24 @@ p.maininfo{
   margin-top: 1vh;
 }
 
+p.maininfo2{
+  font-size: 1vh;
+  color:black;
+  text-align: left;
+  margin-left: 2vh;
+  padding-top: .5vh;
+}
+
 p.moreinfo{
   font-size:1.3vh;
+  font-weight: lighter;
+  color: #282A32;
+  text-align: left;
+  margin-left: 3.5vh;
+}
+
+p.moreinfo2{
+  font-size:0.85vh;
   font-weight: lighter;
   color: #282A32;
   text-align: left;
@@ -324,6 +380,10 @@ p.moreinfo{
   background: rgba(103,26,255,1);
 }
 
+.listitem2:hover{
+  height: 7.5vh;
+  background: rgba(103,26,255,1);
+}
 
 p.revealinfo{
   font-size:1.3vh;
@@ -335,7 +395,25 @@ p.revealinfo{
   transition: 0.1s;
 }
 
+p.revealinfo2{
+  font-size:0.95vh;
+  font-weight: lighter;
+  color: white;
+  text-align: center;
+  visibility: hidden;
+  transition: 0.1s;
+  margin-top: 2vh;
+}
+
 .listitem:hover p.maininfo{
+  color: white;
+}
+
+.listitem2:hover p.maininfo{
+  color: white;
+}
+
+.listitem:hover p.maininfo2{
   color: white;
 }
 
@@ -343,7 +421,31 @@ p.revealinfo{
   color: white;
 }
 
+.listitem:hover p.moreinfo{
+  color: white;
+}
+
+.listitem2:hover p.moreinfo{
+  color: white;
+}
+
+.listitem:hover p.moreinfo2{
+  color: white;
+}
+
 .listitem:hover p.revealinfo{
+  visibility: visible;
+  transition: 0.7s;
+  color: white;
+}
+
+.listitem2:hover p.revealinfo{
+  visibility: visible;
+  transition: 0.7s;
+  color: white;
+}
+
+.listitem:hover p.revealinfo2{
   visibility: visible;
   transition: 0.7s;
   color: white;
@@ -795,10 +897,7 @@ p.explanation{
 
 .menu{
   position:fixed;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
+  left: 16vw;
   width:fit-content;
   height: fit-content;
   top:11vh;
@@ -864,12 +963,21 @@ p.explanation{
     background: rgb(205, 205, 205);
   }
 
+.menu-item.active{
+  background: #282A32;
+  font-weight: bold;
+}
+
+.menu-item.active a{
+  color: white;
+}
+
 .assetlabel{
   position:absolute;
-  right:2vw;
-  top: 3vh;
-  width: 36vw;
-  height: 28vh;
+  right:13vw;
+  top: 40vh;
+  width: 25vw;
+  height: 14vh;
   background-color: white;
   border-radius: 2vh;
   border-width: 0.01vh;
@@ -882,12 +990,19 @@ p.explanation{
   box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
 }
 
+.assetlabel p{
+  font-size: 0.75vh;
+  text-decoration: none;
+  color:black;
+  text-align: left;
+}
+
 .qrimage{
   position:absolute;
   left:1vw;
-  top:3vh;
-  width: 10vw;
-  height: 18vh;
+  top:0.5vh;
+  width: 4.5vw;
+  height: 10vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -901,10 +1016,10 @@ p.explanation{
 
 .labelcontent{
   position:absolute;
-  left:12vw;
-  top:1vh;
-  width: 20vw;
-  height: 20vh;
+  left:5.75vw;
+  top:1.5vh;
+  width: fit-content;
+  height: fit-content;
 }
 
 .labelclick{
@@ -958,6 +1073,7 @@ p.topinfo{
   top:3vh;
   width: 27vw;
   height:fit-content;
+  min-height: 50vh;
   border-left:#282A32 solid 0.05vh;
   border-right: #282A32 solid 0.05vh;
   text-align: left;
@@ -1006,13 +1122,34 @@ p.topinfo{
 
 .assetwipe{
   position: absolute;
+  right: 12vw;
+  top: 3vh;
+  width: 26vw;
+  text-align: left;
+}
+
+.assetwipe h5{
+  margin-top: 1vh;
+  margin-left: 1.5vw;
+  font-size:2vh;
+}
+
+.assetwipe p{
+  margin-top: 2vh;
+  margin-left: 2.5vw;
+  display: block;
+}
+
+.assetwipe hr{
+  margin-top:2vh;
+  margin-bottom: 2vh;
+  border: 0.1vh solid black 60%;
+  width: 75%;
+  position: absolute;
+  left: 0;
+  right: 0;
   margin-left: auto;
   margin-right: auto;
-  left:0;
-  right: 0;
-  width:100%;
-  height:90%;
-  top:100vh;
 }
 
 .assetecom{
@@ -1025,6 +1162,7 @@ p.topinfo{
   height:90%;
   top:200vh; 
 }
+
 
 .assetlog{
   position: absolute;
@@ -1365,3 +1503,154 @@ top:0;
   border-radius: 1vh;
   box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
 }
+
+.ecommerceinfo{
+  position: absolute;
+  left:0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  height: 20vh;
+  padding-top: 1vh;
+  text-align: left;
+}
+
+.ecommerceinfo p{
+  margin-left: 1vw;
+  margin-bottom: 0.5vh;
+}
+
+
+.ecommerceinfo h3{
+  position: absolute;
+  bottom: 0vh;
+  color: black;
+  font-size: 2vh;
+  left:0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ebaylookup{
+  position: absolute;
+  top:9.5vh;
+  left:0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  height: 62vh;
+}
+
+
+.ecommerce{
+  position: fixed;
+  top:15vh;
+  left: 12vw;
+  height: 55vh;
+  width:42vw;
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+}
+
+.ecommerceinfo{
+  height: fit-content;
+  padding-bottom: 1vh;
+  width: 75%;
+  border-bottom: #282A32 0.1vh solid;
+}
+
+.ebaysearch{
+  position: fixed;
+  top:15vh;
+  right: 10vw;
+  height: 75vh;
+  width:32vw;
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+}
+
+.ebaysearchbtn{
+  position: absolute;
+  top:3vh;
+  right:4.5vw;
+  height: 4.5vh;
+  width: 2.5vw;
+  background-color: white;
+  border-radius: 1vh;
+  border: none;
+  transition: 0.4s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ebaysearchbtn svg{
+  fill:#282A32;
+  transition: 0.4s;
+}
+
+.ebaysearchbtn:hover{
+background-color: rgb(103,26,255);
+box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+}
+
+.ebaysearchbtn:hover svg{
+  fill: white;
+  transform: rotate(-180deg);
+  }
+
+  .editbutton{
+  position: absolute;
+  top:3vh;
+  right:6.5vw;
+  height: 4.5vh;
+  width: 2.5vw;
+  background-color: white;
+  border-radius: 1vh;
+  border: none;
+  transition: 0.4s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+.editbutton svg{
+    fill:#282A32;
+    transition: 0.4s;
+  }
+
+.editbutton:hover{
+  background-color: #FFC03C;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+  }
+    
+.editbutton:hover svg{
+  fill: white;
+  }
+
+.createorder form{
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ListName{
+  text-align: center;
+  background-color: white;
+  font-size: 1vh;
+  border-radius: 1vh;
+  height: 4vh;
+  width: 20vw;
+  border-style: solid;
+  border-color:#888;
+  border-width: 0.1ch;
+  margin: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+  }

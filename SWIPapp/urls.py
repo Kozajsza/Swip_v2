@@ -12,8 +12,11 @@ urlpatterns = [
     path('updateorder/<str:id>/', views.updateorder, name="updateorder"),
     path('deleteorder/<str:id>/', views.deleteorder, name="deleteorder"),
     path('asset/<int:id>/', views.assetindex, name='assetindex'),
+    path('asset/<int:id>/ecommerce', views.assetindexecommerce, name='assetindexecommerce'),
     path('assetlabel/<int:id>/', views.assetlabel, name='assetlabel'),
     path('createasset', views.createasset, name='createasset'),
     path('updateasset/<str:id>/', views.updateasset, name="updateasset"),
     path('deleteasset/<str:id>/', views.deleteasset, name="deleteasset"),
+    path('lists', views.lists, name='lists'),
+    path('list/<int:id>/', views.listindex, name='listindex'),
 ]

@@ -73,3 +73,22 @@ class AssetLog(models.Model):
 
     def __str__(self):
         return self.Log
+
+class ebayLookup(models.Model):
+    ConnectedAsset = models.ForeignKey(Asset, on_delete=models.CASCADE, null=True, blank=True)
+    Title = models.CharField(max_length=100, default='')
+    SoldPrice = models.FloatField(null=True, blank=True)
+    SoldDate = models.CharField(max_length=100, default='')
+    ListingLink = models.CharField(max_length=100, default='')
+
+    def __str__(self):
+        return self.Title
+
+
+class Lists(models.Model):
+    ListName = models.CharField(max_length=100, default='')
+    AttachedAssets = models.ManyToManyField(Asset)
+    Created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering =['-Created']
