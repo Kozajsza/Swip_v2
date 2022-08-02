@@ -20,13 +20,13 @@ const logoutDesc = document.getElementById('logoutdesc')
 
 const delBut = document.getElementById('delicon')
 const editBut = document.getElementById('editicon')
-const dupBut = document.getElementById('dupicon')
+const dupBut = document.getElementById('repicon')
 
 //Grabbing icon desctiption paragraphs on Asset page by id:
 
 const delDes = document.getElementById('deldes')
 const editDes = document.getElementById('editdes')
-const dupDes = document.getElementById('dupdes')
+const dupDes = document.getElementById('repdes')
 
 //Script that grabs hover on icon and makes description visible: 
 

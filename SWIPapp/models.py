@@ -85,6 +85,28 @@ class ebayLookup(models.Model):
         return self.Title
 
 
+class HDD(models.Model):
+    Order_Number = models.ForeignKey(Order, on_delete=models.CASCADE, null=True, blank=True)
+    Asset_QR = models.CharField(max_length=100, default='')
+    Asset_QR_Img = models.ImageField (upload_to='main\static\lessapp\images\qr_codes', blank=True, null=True)
+    Storage = models.CharField(max_length=100, default='',null=True, blank=True)
+    Storage_Serial_Number = models.CharField(max_length=100, default='',null=True, blank=True)
+    Storage_Capacity = models.CharField(max_length=100, default='',null=True, blank=True)
+    Wipe_Method = models.CharField(max_length=100, default='',null=True, blank=True)
+    Wipe_Start_Time = models.CharField(max_length=100, default='',null=True, blank=True)
+    Wipe_End_Time = models.CharField(max_length=100, default='',null=True, blank=True)
+    Wipe_Result = models.CharField(max_length=100, default='',null=True, blank=True)
+    Created = models.DateTimeField(auto_now_add=True, null=True) #this is currently broken - works on import but updating returns error if null=False for some reason
+    Updated = models.DateTimeField(auto_now_add=True, null= True) #this is currently broken - works on import but updating returns error if null=False for some reason
+
+
+    class Meta:
+        ordering =['-Updated', '-Created']
+
+    def __str__(self):
+        return self.Asset_QR
+
+
 class Lists(models.Model):
     ListName = models.CharField(max_length=100, default='')
     AttachedAssets = models.ManyToManyField(Asset)

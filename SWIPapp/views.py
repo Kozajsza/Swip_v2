@@ -455,9 +455,14 @@ def lists(request):
 
 def listindex(request, id):
     list = Lists.objects.get(id=id)
+    asset = Lists.objects.get(id=id).AttachedAssets.filter()
+
+
+
 
     context = {
-        'list':list
+        'list':list,
+        'asset':asset
     }
 
     return render (request, 'SWIPapp/listindex.html', context)

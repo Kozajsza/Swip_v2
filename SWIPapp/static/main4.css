@@ -195,40 +195,130 @@ h3{
 }
 
 
-.assetbuttons{
+.buttonlabels{
   position:absolute;
-  right:8vw;
-  width:11vw;
-  height: 8vh;
-  display: block;
+  right:12vw;
+  width:8vw;
+  height: 13vh;
+}
+
+.buttonlabels2{
+  position:absolute;
+  right:6vw;
+  width:4vw;
+  height: 13vh;
+}
+
+.buttonlabels3{
+  position:absolute;
+  right:12vw;
+  width:12vw;
+  height: 13vh;
+}
+
+#delicon{
+ position: absolute;
+ right: 0.5vw;
+ top: 4.5vh; 
+ transition: 0.4s;
+ padding: 0.25vw;
   display: flex;
   justify-content: center;
-  align-items:flex-end;
+  align-items: center;
+  stroke: #282A32;
+  background: white;
+  width: 2.75vw;
+  height: 5vh;
+  border-radius: 1vh;
 }
 
-.asset-desc{
-list-style: none;
+#delicon:hover{
+  background-color: #E70000;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
 }
+
+#delicon:hover svg{
+stroke: white;
+}
+
+#editicon{
+  position: absolute;
+  left: 0.5vw;
+  right: 0.5vw;
+  top: 4.5vh; 
+  transition: 0.4s;
+  padding: 0.25vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  stroke: #282A32;
+  background: white;
+  width: 2.75vw;
+  height: 5vh;
+  border-radius: 1vh;
+}
+
+
+#editicon:hover{
+  background-color:#FFC03C;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+}
+
+#editicon:hover svg{
+  stroke: white;
+  }
+
+#repicon{
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top: 4.5vh; 
+  transition: 0.4s;
+  padding: 0.25vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  stroke: #282A32;
+  background: white;
+  width: 2.75vw;
+  height: 5vh;
+  border-radius: 1vh;
+}
+
+#repicon:hover{
+  background-color:#39C664;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+}
+
+#repicon:hover svg{
+  stroke: white;
+  }
 
 #deldes{
-  position: fixed;
-  right:25.5vw;
-  top:13.5vh;
+  position: absolute;
+  right:0.5vw;
+  top:-0.5;
   visibility: hidden;
 }
 
 #editdes{
-  position: fixed;
-  right: 22.6vw;
-  top:13.5vh;
+  position: absolute;
+  left:1vw;
+  top:-0.5;
   visibility: hidden;
 }
 
-#dupdes{
-  position: fixed;
-  right:18.75vw;
-  top:13.5vh;
+#repdes{
+  position: absolute;
+  left:0;
+  right:0;
+  margin-left: auto;
+  margin-right: auto;
+  top:-0.5;
   visibility: hidden;
+  width: fit-content;
 }
 
 .assetbutton{
@@ -237,24 +327,6 @@ list-style: none;
   align-items: center;
   float: left;
   padding: 0.35vw;
-}
-
-.assset-link{
-  padding: 0.25vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #282A32;
-  background: white;
-  width: 2.75vw;
-  height: 5vh;
-  border-radius: 1vh;
-  transition: 0.4s;
-}
-
-.assset-link:hover{
-  background: rgb(205, 205, 205);
-  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
 }
 
 
@@ -322,10 +394,9 @@ h4{
   border-radius: 1vh;
   box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 2vw;
   margin-top: 1vh;
-  width: 70%;
+  width: 80%;
   text-align: center;
   height: 5vh;
   transition: 0.4s;
@@ -385,6 +456,11 @@ p.moreinfo2{
   background: rgba(103,26,255,1);
 }
 
+.listitem3:hover{
+  height: 8.5vh;
+  background: rgba(103,26,255,1);
+}
+
 p.revealinfo{
   font-size:1.3vh;
   font-weight: lighter;
@@ -413,6 +489,10 @@ p.revealinfo2{
   color: white;
 }
 
+.listitem3:hover p.maininfo{
+  color: white;
+}
+
 .listitem:hover p.maininfo2{
   color: white;
 }
@@ -429,6 +509,10 @@ p.revealinfo2{
   color: white;
 }
 
+.listitem3:hover p.moreinfo{
+  color: white;
+}
+
 .listitem:hover p.moreinfo2{
   color: white;
 }
@@ -440,6 +524,12 @@ p.revealinfo2{
 }
 
 .listitem2:hover p.revealinfo{
+  visibility: visible;
+  transition: 0.7s;
+  color: white;
+}
+
+.listitem3:hover p.revealinfo{
   visibility: visible;
   transition: 0.7s;
   color: white;
@@ -578,6 +668,12 @@ p.explanation{
   background-color: white;
   border-radius: 1vh;
   box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+}
+
+.orderdetails{
+  position: absolute;
+  top: 9vh;
+
 }
 
 .attachtoorder{
@@ -922,12 +1018,13 @@ p.explanation{
 }
 
 .assetinfoinner{
+
   position: fixed;
   margin-left: auto;
   margin-right: auto;
   right: 0;
   left:0;
-  width:70vw;
+  width:75vw;
   height: 60vh;
   top:25vh;
   overflow-y: hidden;
@@ -964,7 +1061,7 @@ p.explanation{
   }
 
 .menu-item.active{
-  background: #282A32;
+  background: rgb(103,26,255);
   font-weight: bold;
 }
 
@@ -974,10 +1071,10 @@ p.explanation{
 
 .assetlabel{
   position:absolute;
-  right:13vw;
-  top: 40vh;
-  width: 25vw;
-  height: 14vh;
+  left:3vw;
+  top: 5vh;
+  width: 10vw;
+  height: 35vh;
   background-color: white;
   border-radius: 2vh;
   border-width: 0.01vh;
@@ -998,11 +1095,15 @@ p.explanation{
 }
 
 .qrimage{
+  background-color: #E70000;
   position:absolute;
-  left:1vw;
-  top:0.5vh;
-  width: 4.5vw;
-  height: 10vh;
+  left:0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top:1.5vh;
+  width: fit-content;
+  height: 15vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1016,10 +1117,15 @@ p.explanation{
 
 .labelcontent{
   position:absolute;
-  left:5.75vw;
-  top:1.5vh;
+  top:18vh;
   width: fit-content;
   height: fit-content;
+}
+
+.labelcontent p{
+  font-size: 0.75vh;
+  text-align: center;
+  align-self: center;
 }
 
 .labelclick{
@@ -1069,7 +1175,7 @@ p.topinfo{
 
 .assetspec{
   position: absolute;
-  left:3vw;
+  left:15vw;
   top:3vh;
   width: 27vw;
   height:fit-content;
@@ -1122,7 +1228,7 @@ p.topinfo{
 
 .assetwipe{
   position: absolute;
-  right: 12vw;
+  right: 7vw;
   top: 3vh;
   width: 26vw;
   text-align: left;
@@ -1510,6 +1616,7 @@ top:0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
+  top:10vh;
   width: 90%;
   height: 20vh;
   padding-top: 1vh;
@@ -1549,7 +1656,7 @@ top:0;
   position: fixed;
   top:15vh;
   left: 12vw;
-  height: 55vh;
+  height: 75vh;
   width:42vw;
   background-color: white;
   border-radius: 1vh;
@@ -1590,7 +1697,6 @@ top:0;
 }
 
 .ebaysearchbtn svg{
-  fill:#282A32;
   transition: 0.4s;
 }
 
@@ -1600,8 +1706,8 @@ box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
 }
 
 .ebaysearchbtn:hover svg{
-  fill: white;
-  transform: rotate(-180deg);
+  stroke: white;
+  transform: rotate(180deg);
   }
 
   .editbutton{
@@ -1653,4 +1759,39 @@ box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
   border-width: 0.1ch;
   margin: 1vh;
   box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+  }
+
+  .removeassetfromlist{
+    margin-left: 90%;
+    margin-top: -5vh;
+    width: 7.5%;
+    text-align: center;
+    height: 5vh;
+    transition: 0.4s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+  }
+
+  .removeassetfromlist button{
+    background-color: #E70000;
+    border-radius: 1vh;
+    border-style: none;
+    width:2.5vw;
+  }
+
+  .removeassetfromlist:hover button{
+    background-color: white;
+    box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+  }
+
+  .removeassetfromlist button svg{
+    color: white;
+    transition: 0.4s;
+  }
+
+  .removeassetfromlist:hover button svg{
+    color: #E70000;
+    transform: rotate(-180deg);
   }

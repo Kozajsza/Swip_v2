@@ -8,20 +8,36 @@
 <div class="orderinfo">
     <div class='listtitle2'>
         <p class="topinfo"><b>Order Number:</b> {{order.Order_Number}}</p>
-      <div class="buttonlabels">
-        <ul>
-          <li class="asset-desc" id='deldes'>  <p class="link-desc"> Delete</p></li>
-          <li class="asset-desc" id='editdes'>  <p class="link-desc">Edit</p></li>
-          <li class="asset-desc" id='dupdes'>  <p class="link-desc">Report</p></li>
-      </ul>
+      <div class="buttonlabels3">
+          <div class="asset-desc" id='deldes'>  <p class="link-desc"> Delete</p></div>
+          <div class="asset-desc" id='editdes'>  <p class="link-desc">Edit</p></div>
+        <div class="asset-desc" id='repdes'>  <p class="link-desc">Report</p></div>
+        <div class="assetbutton" id='delicon'>  <a class="assset-link" href='/deleteorder/{{order.id}}'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash-x" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M4 7h16"></path>
+            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+            <path d="M10 12l4 4m0 -4l-4 4"></path>
+         </svg></a></div>
+         <div class="assetbutton" id='editicon'>  <a class="assset-link" href='/updateorder/{{order.id}}'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
+            <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
+            <path d="M16 5l3 3"></path>
+         </svg></a></div>
+        <div class="assetbutton" id='repicon'>  <a class="assset-link" href='/orderreport/{{order.id}}'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clipboard-list" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path>
+            <rect x="9" y="3" width="6" height="4" rx="2"></rect>
+            <line x1="9" y1="12" x2="9.01" y2="12"></line>
+            <line x1="13" y1="12" x2="15" y2="12"></line>
+            <line x1="9" y1="16" x2="9.01" y2="16"></line>
+            <line x1="13" y1="16" x2="15" y2="16"></line>
+         </svg></a></div>
       </div>
-      <ul class="assetbuttons">
-        <li class="assetbutton" id='delicon'>  <a class="assset-link" href='/deleteorder/{{order.id}}'><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M15 2H9c-1.103 0-2 .897-2 2v2H3v2h2v12c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2V8h2V6h-4V4c0-1.103-.897-2-2-2zM9 4h6v2H9V4zm8 16H7V8h10v12z"></path></svg></a></li>
-        <li class="assetbutton" id='editicon'>  <a class="assset-link" href='/updateorder/{{order.id}}'><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z"></path><path d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z"></path></svg></a></li>
-        <li class="assetbutton" id='dupicon'>  <a class="assset-link" href='/orderreport/{{order.id}}'><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M19 3h-2.25a1 1 0 0 0-1-1h-7.5a1 1 0 0 0-1 1H5c-1.103 0-2 .897-2 2v15c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zm0 17H5V5h2v2h10V5h2v15z"></path></svg></a></li>
-      </div>
-<br>
+    </div>
 
+<div class='orderdetails'>
 <p class="maininfo"> <b>Customer Name:</b> {{order.Customer}} </p>
 <p class="maininfo"> <b>Customer Address:</b> {{order.Customer_Address}} </p>
 </div>
@@ -55,7 +71,7 @@
             
             <div class="buttons">
             <input type="file" id="files" name="myfile" style="display:none;" multiple>
-            <label class="uploadlabel" for="files">Upload CSVs</label>
+            <label class="uploadlabel" for="files">Select CSVs</label>
             <button type="submit" class = "submitbtn2", name="save">Submit</button>
             </div>
         </form>
@@ -66,6 +82,9 @@
     <div class='listtitle'>
         <h4> Import Hard Drives from CSV</h4>
     </div>
+    <p class="explanation"> Select one or multiple CSV files and press to import loose HDDs to this job </p>
+    <label class="uploadlabel" for="files">Select CSVs</label>
+    <button type="submit" class = "submitbtn2", name="save">Submit</button>
 </div>
 
 {% endblock %}
