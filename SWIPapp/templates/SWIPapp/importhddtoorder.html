@@ -46,11 +46,10 @@
     <div class='listtitle'>
         <h4> {{assetcount}} Attached Assets and {{hddcount}} Attached HDDs </h4>
     </div>
-
     <div class='listcontainer'>
         {%for i in asset %}   
         <a href='/asset/{{i.id}}'>
-            <div class="listitem">
+            <div class="listitem shake">
                 <p class="maininfo"> Asset QR: {{i.Asset_QR}}</p>
                 <p class="moreinfo">{{i.Make}} {{i.Model}} {{i.Serial_Number}} </p>
                 <p class="revealinfo">CPU: {{i.CPU}}, Memory: {{i.RAM}} GB RAM </p>
@@ -60,33 +59,53 @@
         {% endfor %}
         <br>
         {%for j in hdd%}
-        <div class="listitem">
+        <div class="listitem shake">
             <p class="maininfo"> Hard Drive QR: {{j.Asset_QR}}</p>
             <p class="moreinfo">{{j.Storage}} {{j.Storage_Serial_Number}}</p>
-            <p class="revealinfo">Capacity: {{j.Storage_Capacity}}GB</p>
-            <p class="revealinfo">Wiped: {{j.Wipe_End_Time}} <b>Result: </b>{{j.Wipe_Result}}</p>
-        </div>
-        {% endfor %}
-
+            <p class="revealinfo">Capacity: {{j.Storage_Capacity}}GB </p>
+            <p class="revealinfo">Wiped: {{j.Wipe_End_Time}} <b>Result:</b> {{j.Wipe_Result}}</p>
+        </div> 
+        {% endfor %}     
 </div>
-
 
 
 <div class="attachtoorder">
+    <div class = "smallglasshdd"></div>
     <div class='listtitle'>
         <h4> Import Assets from CSV</h4>
     </div>
-    <p class="explanation"> Upload Assets to Order</p>    
-            <a href='/importassettoorder/{{order.id}}'><button class="uploadlabel2">Import Assets</button></a>
+    <p class="explanation"> Select one or multiple CSV files and press to import Assets to this job </p>
+    <button class= "uploadlabel2">Import HDDs</button>
 </div>
 
-<div class="attachhddtoorder">
+
+<div class="attachhddtoorder" >
+    <div class="buttonlabels4">
+        <div class="asset-desc" id='backdes'>  <p class="link-desc"> Go Back</p></div>
+        <div class="assetbutton" id="backicon">
+            <a class="assset-link" href='/order/{{order.id}}'>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-back-up" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M9 13l-4 -4l4 -4m-4 4h11a4 4 0 0 1 0 8h-1"></path>
+                 </svg>
+            </a>
+        </div>
+    </div>
     <div class='listtitle'>
         <h4> Import Drives from CSV</h4>
     </div>
-    <p class="explanation"> Upload HDDs to Order</p>
-    <a href='/importhddtoorder/{{order.id}}'><button class= "uploadlabel2">Import HDDs</button></a>
-</div>
 
+    <p class="explanation"> Select one or multiple CSV files and press <b>Submit</b> to import HDDs to this job </p>
+    <form method="POST" action-"/" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="buttons">
+        <input type="file" id="files" name="myfile" style="display:none;" multiple>
+        <label class="uploadlabel" for="files">Upload CSVs</label>
+        <br><br>
+        <button type="submit" class = "submitbtn2", name="save">Submit</button>
+        </div>
+    </form>
+</div>
 {% endblock %}
 <script src="{% static 'script2.js' %}"></script>

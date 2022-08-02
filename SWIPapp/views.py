@@ -1,7 +1,7 @@
 from multiprocessing import Value
 from ntpath import join
 from django.shortcuts import render, redirect
-from .models import Order, Asset, AssetLog, ebayLookup, Lists
+from .models import Order, Asset, AssetLog, ebayLookup, Lists, HDD
 from django.db.models import Avg, Max, Min
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import CreateNewAsset, CreateNewOrder, CreateNewLog, CreateNewList
@@ -141,9 +141,31 @@ def orders(request):
 def orderindex(request, id):
     order = Order.objects.get(id=id)
     asset = Asset.objects.filter(Order_Number_id=order)
+    hdd = HDD.objects.filter(Order_Number_id=order)
+
+    assetcount = Asset.objects.filter(Order_Number_id=order).count
+    hddcount = HDD.objects.filter(Order_Number_id=order).count
+
+    context = {'order':order,
+                'asset':asset,
+                'hdd':hdd,
+                'assetcount':assetcount,
+                'hddcount':hddcount,
+                }
+
+    return render(request, 'SWIPapp/orderindex.html', context)
+    
+
+
+def importassettoorder(request,id):
+    order = Order.objects.get(id=id)
+    asset = Asset.objects.filter(Order_Number_id=order)
     OrderID = Order.objects.filter(id=id).values('id')[0]['id']
     date = datetime.now()
-    #hdds = HDD.objects.filter(Order_Number_id=order)
+    hdd = HDD.objects.filter(Order_Number_id=order)
+    assetcount = Asset.objects.filter(Order_Number_id=order).count
+    hddcount = HDD.objects.filter(Order_Number_id=order).count
+    
     if request.method == 'POST':
         files=request.FILES.getlist("myfile")
         df = pd.concat(
@@ -163,27 +185,27 @@ def orderindex(request, id):
         df['Model'] = df['Model'].str.replace('HP', '', regex=False)
         df['Serial_Number'] = df['Computer Serial']
 
-            # RULES TO CLEAN UP CPU SYNTAX
+        # RULES TO CLEAN UP CPU SYNTAX
         df[['CPU', 'CPUx']] = df['CPU 1'].str.split(',', n=1, expand=True)
         df['CPU'] = df['CPU'].str.replace('(R)', '', regex=False)
         df['CPU'] = df['CPU'].str.replace('(TM)', '', regex=False)
         df[['RAM', 'RAMx']] = df['RAM'].str.split(' ', n=1, expand=True)
 
-            # RULES TO CLEAN UP RAM SYNTAX AND TURN INTO INTEGER
+        # RULES TO CLEAN UP RAM SYNTAX AND TURN INTO INTEGER
         df['RAM'] = df['RAM'].astype(int)
         df['RAM'] = df['RAM'].div(1024)
 
-            # RULES TO CLEAN UP STORAGE INFO
+        # RULES TO CLEAN UP STORAGE INFO
         df['Storage'] = df['Vendor'] + ' ' + df['Drive Model']
         df['Storage_Serial_Number'] = df['Drive Serial']
 
-            # RULES TO CLEAN UP THE STORAGE CAPACITY SYNTAX, TURN IT INTO INTEGER AND ROUND UP TO FULL NUMBER
+        # RULES TO CLEAN UP THE STORAGE CAPACITY SYNTAX, TURN IT INTO INTEGER AND ROUND UP TO FULL NUMBER
         df[['Storage_Capacity', 'STRx']] = df['Drive Size'].str.split('.', n=1, expand=True)
         df['Storage_Capacity'] = df['Storage_Capacity'].astype(int)
         df['Storage_Capacity'] = df['Storage_Capacity'].div(1024)
         df['Storage_Capacity'] = df['Storage_Capacity'].round(decimals=0)
 
-            # RULES FOR CLEANING UP THE GPU SYNTAX
+        # RULES FOR CLEANING UP THE GPU SYNTAX
         df['GPU'] = df['Video Card 1'].str.replace('Vendor:', '')
         df['GPU'] = df['GPU'].str.replace(', Product:', '', regex=False)
         df['GPU'] = df['GPU'].str.replace('Advanced Micro Devices, Inc. ', '', regex=False)
@@ -223,10 +245,71 @@ def orderindex(request, id):
 
     context = {'order':order,
                 'asset':asset,
-                #'hdds':hdds,
+                'hdd':hdd,
+                'assetcount':assetcount,
+                'hddcount':hddcount,
                 }
 
-    return render(request, 'SWIPapp/orderindex.html', context)
+    return render(request, 'SWIPapp/importassettoorder.html', context)
+    
+def importhddtoorder(request,id):
+    order = Order.objects.get(id=id)
+    asset = Asset.objects.filter(Order_Number_id=order)
+    OrderID = Order.objects.filter(id=id).values('id')[0]['id']
+    date = datetime.now()
+    hdd = HDD.objects.filter(Order_Number_id=order)
+
+    assetcount = Asset.objects.filter(Order_Number_id=order).count
+    hddcount = HDD.objects.filter(Order_Number_id=order).count
+
+    if request.method == 'POST':
+        files=request.FILES.getlist("myfile")
+        df = pd.concat(
+            map(pd.read_csv, files), ignore_index=True)
+        
+        engine = sqlalchemy.create_engine('sqlite:///db.sqlite3')
+
+         # RULES TO CLEAN UP THE BASIC INFO
+        df['Order_Number_id'] = OrderID
+        df['Asset_QR'] = df['user3']
+
+        # RULES TO CLEAN UP STORAGE INFO
+        df['Storage'] = df['Vendor'] + ' ' + df['Drive Model']
+        df['Storage_Serial_Number'] = df['Drive Serial']
+
+        # RULES TO CLEAN UP THE STORAGE CAPACITY SYNTAX, TURN IT INTO INTEGER AND ROUND UP TO FULL NUMBER
+        df[['Storage_Capacity', 'STRx']] = df['Drive Size'].str.split('.', n=1, expand=True)
+        df['Storage_Capacity'] = df['Storage_Capacity'].astype(int)
+        df['Storage_Capacity'] = df['Storage_Capacity'].div(1024)
+        df['Storage_Capacity'] = df['Storage_Capacity'].round(decimals=0)
+
+        df['Wipe_Method'] = df['Wipe Pattern']
+        df['Wipe_Start_Time'] = df['Action Start Time']
+        df['Wipe_End_Time'] = df['Action End Time']
+        df['Wipe_Result'] = df['Action Result']
+
+        # CREATING NEW CLEANED UP DATA TABLE
+        df = df[
+            [
+                'Order_Number_id', 'Asset_QR', 'Storage', 'Storage_Serial_Number', 'Storage_Capacity',
+                 'Wipe_Method', 'Wipe_Start_Time', 'Wipe_End_Time', 'Wipe_Result'
+            ]
+        ]
+
+        df = df.drop_duplicates(subset='Storage_Serial_Number', keep="first")
+
+        df.to_sql('SWIPapp_hdd',engine, if_exists='append', index=False)
+
+
+    context = {'order':order,
+                'asset':asset,
+                'hdd':hdd,
+                'assetcount':assetcount,
+                'hddcount':hddcount,
+                }
+
+    return render(request, 'SWIPapp/importhddtoorder.html', context)
+
 
 def orderreport(request, id):
     order = Order.objects.get(id=id)
@@ -455,7 +538,7 @@ def lists(request):
 
 def listindex(request, id):
     list = Lists.objects.get(id=id)
-    asset = Lists.objects.get(id=id).AttachedAssets.filter()
+    asset = Lists.objects.get(id=id).AttachedAssets.filter
 
 
 

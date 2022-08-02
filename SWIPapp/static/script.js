@@ -21,12 +21,14 @@ const logoutDesc = document.getElementById('logoutdesc')
 const delBut = document.getElementById('delicon')
 const editBut = document.getElementById('editicon')
 const dupBut = document.getElementById('repicon')
+const backBut = document.getElementById('backicon')
 
 //Grabbing icon desctiption paragraphs on Asset page by id:
 
 const delDes = document.getElementById('deldes')
 const editDes = document.getElementById('editdes')
 const dupDes = document.getElementById('repdes')
+const backDes = document.getElementById('backdes')
 
 //Script that grabs hover on icon and makes description visible: 
 
@@ -105,8 +107,17 @@ dupBut.addEventListener('mouseout', function() {
     dupDes.style.visibility='hidden'
 });
 
+backBut.addEventListener('mouseover', function() {
+    backDes.style.visibility='visible'
+});
+
+backBut.addEventListener('mouseout', function() {
+    backDes.style.visibility='hidden'
+});
+
 //Smoothing out the transitions:
 
+document.getElementById('backdes').style.transition = "all 0.2s";
 document.getElementById('deldes').style.transition = "all 0.2s";
 document.getElementById('editdes').style.transition = "all 0.2s";
 document.getElementById('repdes').style.transition = "all 0.2s";
