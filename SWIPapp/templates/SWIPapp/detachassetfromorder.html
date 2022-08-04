@@ -43,33 +43,39 @@
 </div>
 
 <div class="attachedassets">
-    <div class="buttonlabels5">
-        <div class="asset-desc" id='editdes'>  <p class="link-desc">Edit</p></div>
-        <div class="assetbutton" id='editicon'>  <a class="assset-link" href='/detachassetfromorder/{{order.id}}'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-            <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
-            <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
-            <path d="M16 5l3 3"></path>
-         </svg></a></div>
+    <div class="buttonlabels4">
+        <div class="asset-desc" id='backdes'>  <p class="link-desc"> Go Back</p></div>
+        <div class="assetbutton" id="backicon">
+            <a class="assset-link" href='/order/{{order.id}}'>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-back-up" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M9 13l-4 -4l4 -4m-4 4h11a4 4 0 0 1 0 8h-1"></path>
+                 </svg>
+            </a>
+        </div>
     </div>
     <div class='listtitle'>
-        <h4> {{assetcount}} Attached Assets and {{hddcount}} Attached HDDs </h4>
-    </div>
-
+    <h4> Click to <b> detach </b> Assets and HDDs </h4>
+</div>
+<p class="explanation"> This will <b> NOT </b> remove the assets, but disconnect them from {{order.Order_Number}}</p><br>
     <div class='listcontainer'>
-        {%for i in asset %}   
-        <a href='/asset/{{i.id}}'>
-            <div class="listitem">
+        {%for i in asset %}
+
+                <div class="listitem4 shake">
+                    <form action='' method="post">
+                        {% csrf_token %}
+                    <button class="detach" type="submit">
                 <p class="maininfo"> Asset QR: {{i.Asset_QR}}</p>
                 <p class="moreinfo">{{i.Make}} {{i.Model}} {{i.Serial_Number}} </p>
                 <p class="revealinfo">CPU: {{i.CPU}}, Memory: {{i.RAM}} GB RAM </p>
                 <p class="revealinfo">Storage: {{i.Storage}} {{i.Storage_Capacity}}GB</p>
-            </div> 
-        </a>
+            </div>
+        </button>
+    </form>
         {% endfor %}
         <br>
         {%for j in hdd%}
-        <div class="listitem">
+        <div class="listitem4 shake">
             <p class="maininfo"> Hard Drive QR: {{j.Asset_QR}}</p>
             <p class="moreinfo">{{j.Storage}} {{j.Storage_Serial_Number}}</p>
             <p class="revealinfo">Capacity: {{j.Storage_Capacity}}GB</p>
@@ -82,6 +88,7 @@
 
 
 <div class="attachtoorder">
+    <div class = "smallglasshdd"></div>
     <div class='listtitle'>
         <h4> Import Assets from CSV</h4>
     </div>
@@ -90,6 +97,7 @@
 </div>
 
 <div class="attachhddtoorder">
+    <div class = "smallglasshdd"></div>
     <div class='listtitle'>
         <h4> Import Drives from CSV</h4>
     </div>

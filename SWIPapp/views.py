@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from .models import Order, Asset, AssetLog, ebayLookup, Lists, HDD
 from django.db.models import Avg, Max, Min
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import CreateNewAsset, CreateNewOrder, CreateNewLog, CreateNewList
+from .forms import CreateNewAsset, CreateNewOrder, CreateNewLog, CreateNewList, AssetEcommerce
 import sqlalchemy
 import pandas as pd
 import glob
@@ -310,14 +310,26 @@ def importhddtoorder(request,id):
 
     return render(request, 'SWIPapp/importhddtoorder.html', context)
 
+def detachassetfromorder(request,id):
+    order = Order.objects.get(id=id)
+    asset = Asset.objects.filter(Order_Number_id=order)
+    hdd = HDD.objects.filter(Order_Number_id=order)
+
+    context = {'order':order,
+                'asset':asset,
+                'hdd':hdd,
+                }
+
+    return render(request, 'SWIPapp/detachassetfromorder.html', context)
 
 def orderreport(request, id):
     order = Order.objects.get(id=id)
     asset = Asset.objects.filter(Order_Number_id=order)
+    hdd = HDD.objects.filter(Order_Number_id=order)
 
     context = {'order':order,
                 'asset':asset,
-                #'hdds':hdds,
+                'hdd':hdd,
                 }
 
     return render(request, 'SWIPapp/orderreport.html', context)
@@ -480,6 +492,17 @@ def assetindexecommerce (request, id):
 
     return render(request, 'SWIPapp/assetindexecommerce.html', context)
 
+def assetecommerceedit (request, id):
+    asset = Asset.objects.get(id=id)
+    form = AssetEcommerce(instance=asset)
+
+    context = {
+        'form':form,
+        'asset':asset
+    }
+
+    return render(request, 'SWIPapp/assetecommerceedit.html', context)
+
 def createasset(request):
     form = CreateNewAsset()
     context = {
@@ -505,8 +528,10 @@ def updateasset(request, id):
             form.save()
             return HttpResponseRedirect("/asset/{id}/".format(id=id))
 
-    context = {'form':form}
-    return render(request, 'SWIPapp/createasset.html', context)
+    context = {
+        'asset':asset,
+        'form':form}
+    return render(request, 'SWIPapp/updateasset.html', context)
 
 # THIS IS ASSET DELETE PAGE THAT ASKS FOR CONFIRMATION TO DELETE AN ASSET:
 def deleteasset(request, id):

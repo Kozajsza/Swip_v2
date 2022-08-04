@@ -40,8 +40,22 @@ class CreateNewAsset(forms.ModelForm):
             'Storage': forms.TextInput(attrs={'class': 'assetstorage', 'placeholder ': 'Storage Make and Model'}),
             'Storage_Serial_Number': forms.TextInput(attrs={'class': 'assetstorageserial', 'placeholder ': 'Storage Serial Number'}),
             'Storage_Capacity': forms.TextInput(attrs={'class': 'assetstoragecap', 'placeholder ': 'Storage Capacity'}),
-            'Weight': forms.TextInput(attrs={'class': 'assetweight', 'placeholder ': 'Weight in Grams'}),
+            'GPU': forms.TextInput(attrs={'class': 'assetgpu', 'placeholder ': 'GPU Info'}),
+            'Weight': forms.TextInput(attrs={'class': 'assetweight', 'placeholder ': 'Weight'}),
         }
+
+
+class AssetEcommerce(forms.ModelForm):
+    class Meta:
+        model = Asset
+        fields = ('Ecommerce_Title', 'Ecommerce_Category', 'Ecommerce_Condition', 'Ecommerce_Price')
+
+        widgets = {
+            'Ecommerce_Title': forms.TextInput(attrs={'class': 'ecommercetitle', 'placeholder ': 'eBay Title'}),
+            'Ecommerce_Category': forms.TextInput(attrs={'class': 'ecomercecat', 'placeholder ': 'x'}),
+            'Ecommerce_Condition': forms.TextInput(attrs={'class': 'ecomercecat', 'placeholder ': 'x'}),
+            'Ecommerce_Price': forms.TextInput(attrs={'class': 'ecommerceprice', 'placeholder ': 'Price'}),
+         }
 
 class CreateNewList(forms.ModelForm):
     class Meta:

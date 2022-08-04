@@ -1,0 +1,47 @@
+{% extends "SWIPapp/navbar.html" %}
+{% load static %}
+
+{%block content%}
+
+
+
+<div class="assetinfo">
+    <form method="POST" action =''>
+        {% csrf_token %}
+    <div class='listtitle2'>
+      <p class="topinfo"> <b>Asset QR: </b>{{form.Asset_QR}} {{form.Make}} {{form.Model}} {{form.Serial_Number}}</p>
+
+
+
+<div class="assetinfoinner">
+
+
+      <div class="assetspec2">
+        <h5> Basic Asset Info </h5>
+          <p>
+          <b> Processor:</b> {{form.CPU}} </p>
+
+          <p>
+          <b> Memory:</b> {{form.RAM}} GB RAM </p>  
+
+          <p>
+          <b> Storage:</b> {{form.Storage}} {{form.Storage_Serial_Number}}</p> 
+
+          <p><b> Storage Capacity: </b>{{form.Storage_Capacity}} GB</p>
+
+          <p>
+          <b> GPU:</b> {{form.GPU}} </p> 
+
+          <p><b>Item Weight: </b>: {{form.Weight}} grams </p>
+
+         
+       </div>
+       <input type="hidden" name="next" value={{asset.id}}>
+       <button class="submitbtn3", name="save">Submit</button>
+       <a href="{{request.META.HTTP_REFERER}}"><button class='cancelbtn2'>Cancel</button></a>
+    </form>
+</div>
+
+
+{% endblock %}
+<script src="{% static 'script2.js' %}"></script>
