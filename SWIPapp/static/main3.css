@@ -570,7 +570,7 @@ p.moreinfo2{
 }
 
 .listitem4:hover{
-  height: 10vh;
+  height: 9vh;
   background:#E70000;
 }
 
@@ -1358,6 +1358,16 @@ p.topinfo{
   text-align: left;
 }
 
+.assetspec2{
+  position: absolute;
+  left:5vw;
+  top:3vh;
+  width: 80%;
+  height:fit-content;
+  min-height: 50vh;
+  text-align: left;
+}
+
 .creationinfo{
   position:absolute;
   right:3vw;
@@ -1374,7 +1384,19 @@ p.topinfo{
   font-size:2vh;
 }
 
+.assetspec2 h5{
+  margin-top: 1vh;
+  margin-left: 1.5vw;
+  font-size:2vh;
+}
+
 .assetspec p{
+  margin-top: 2vh;
+  margin-left: 2.5vw;
+  display: block;
+}
+
+.assetspec2 p{
   margin-top: 2vh;
   margin-left: 2.5vw;
   display: block;
@@ -1387,7 +1409,26 @@ p.topinfo{
   left: 0.5vw;
 }
 
+.assetspec2 svg{
+  max-width: 2vw;
+  max-height: 2vh;
+  position: absolute;
+  left: 0.5vw;
+}
+
 .assetspec hr{
+  margin-top:2vh;
+  margin-bottom: 2vh;
+  border: 0.1vh solid black 60%;
+  width: 75%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.assetspec2 hr{
   margin-top:2vh;
   margin-bottom: 2vh;
   border: 0.1vh solid black 60%;
@@ -1522,15 +1563,12 @@ p.topinfo{
 }
 
 .assetqr{
-    position: absolute;
-    left: 2vw;
-    top:22vh;
-    text-align: center;
+    text-align: left;
     background-color: white;
     font-size: 1vh;
     border-radius: 1vh;
-    height: 4vh;
-    width: 16vw;
+    height: 5vh;
+    width: 10vw;
     border-style: solid;
     border-color:#888;
     border-width: 0.1ch;
@@ -1540,14 +1578,11 @@ p.topinfo{
   }
 
   .assetmake{
-    position: absolute;
-    left: 2vw;
-    top:28vh;
-    text-align: center;
+    text-align: left;
     background-color: white;
     font-size: 1vh;
     border-radius: 1vh;
-    height: 4vh;
+    height: 5vh;
     width: 12vw;
     border-style: solid;
     border-color:#888;
@@ -1558,14 +1593,11 @@ p.topinfo{
   }
 
   .assetmodel{
-    position: absolute;
-    left: 16vw;
-    top:28vh;
-    text-align: center;
+    text-align: left;
     background-color: white;
     font-size: 1vh;
     border-radius: 1vh;
-    height: 4vh;
+    height: 5vh;
     width: 12vw;
     border-style: solid;
     border-color:#888;
@@ -1576,14 +1608,11 @@ p.topinfo{
   }
 
   .assetserial{
-    position: absolute;
-    left: 30vw;
-    top:28vh;
-    text-align: center;
+    text-align: left;
     background-color: white;
     font-size: 1vh;
     border-radius: 1vh;
-    height: 4vh;
+    height: 5vh;
     width: 12vw;
     border-style: solid;
     border-color:#888;
@@ -1594,14 +1623,11 @@ p.topinfo{
   }
 
   .assetcpu{
-    position: absolute;
-    left: 2vw;
-    top:42vh;
-    text-align: center;
+    text-align: left;
     background-color: white;
-    font-size: 1vh;
+    font-size: 0.75vh;
     border-radius: 1vh;
-    height: 4vh;
+    height: 3vh;
     width: 12vw;
     border-style: solid;
     border-color:#888;
@@ -1612,15 +1638,12 @@ p.topinfo{
   }
   
   .assetram{
-    position: absolute;
-    left: 16vw;
-    top:42vh;
-    text-align: center;
+    text-align: left;
     background-color: white;
-    font-size: 1vh;
+    font-size: 0.75vh;
     border-radius: 1vh;
-    height: 4vh;
-    width: 12vw;
+    height: 3vh;
+    width: 3vw;
     border-style: solid;
     border-color:#888;
     border-width: 0.1ch;
@@ -1631,14 +1654,11 @@ p.topinfo{
   
 
   .assetstorage{
-    position: absolute;
-    left: 2vw;
-    top:48vh;
-    text-align: center;
+    text-align: left;
     background-color: white;
-    font-size: 1vh;
+    font-size: 0.75vh;
     border-radius: 1vh;
-    height: 4vh;
+    height: 3vh;
     width: 12vw;
     border-style: solid;
     border-color:#888;
@@ -1649,14 +1669,11 @@ p.topinfo{
   }
 
   .assetstorageserial{
-    position: absolute;
-    left: 16vw;
-    top:48vh;
-    text-align: center;
+    text-align: left;
     background-color: white;
-    font-size: 1vh;
+    font-size: 0.75vh;
     border-radius: 1vh;
-    height: 4vh;
+    height: 3vh;
     width: 12vw;
     border-style: solid;
     border-color:#888;
@@ -1667,15 +1684,12 @@ p.topinfo{
   }
 
   .assetstoragecap{
-    position: absolute;
-    left: 30vw;
-    top:48vh;
-    text-align: center;
+    text-align: left;
     background-color: white;
-    font-size: 1vh;
+    font-size: 0.75vh;
     border-radius: 1vh;
-    height: 4vh;
-    width: 12vw;
+    height: 3vh;
+    width: 3vw;
     border-style: solid;
     border-color:#888;
     border-width: 0.1ch;
@@ -1685,14 +1699,26 @@ p.topinfo{
   }
 
   .assetweight{
-    position: absolute;
-    left: 2vw;
-    top:56vh;
-    text-align: center;
+    text-align: left;
     background-color: white;
-    font-size: 1vh;
+    font-size: 0.75vh;
     border-radius: 1vh;
-    height: 4vh;
+    height: 3vh;
+    width: 4vw;
+    border-style: solid;
+    border-color:#888;
+    border-width: 0.1ch;
+    margin: 1vh;
+    text-align: left;
+    text-indent: 1vw;
+  }
+
+  .assetgpu{
+    text-align: left;
+    background-color: white;
+    font-size: 0.75vh;
+    border-radius: 1vh;
+    height: 3vh;
     width: 12vw;
     border-style: solid;
     border-color:#888;
@@ -1701,6 +1727,52 @@ p.topinfo{
     text-align: left;
     text-indent: 1vw;
   }
+
+.ecommercetitle{
+  text-align: left;
+    background-color: white;
+    font-size: 0.75vh;
+    border-radius: 1vh;
+    height: 3vh;
+    width: 18vw;
+    border-style: solid;
+    border-color:#888;
+    border-width: 0.1ch;
+    margin: 1vh;
+    text-align: left;
+    text-indent: 1vw;
+}
+
+.ecommerceprice{
+  text-align: left;
+  background-color: white;
+  font-size: 0.75vh;
+  border-radius: 1vh;
+  height: 3vh;
+  width: 4vw;
+  border-style: solid;
+  border-color:#888;
+  border-width: 0.1ch;
+  margin: 1vh;
+  text-align: left;
+  text-indent: 1vw;
+}
+
+.conditionselect{
+  text-align: left;
+  background-color: white;
+  font-size: 0.75vh;
+  border-radius: 1vh;
+  height: 3vh;
+  width: 10vw;
+  border-style: solid;
+  border-color:#888;
+  border-width: 0.1ch;
+  margin: 1vh;
+  text-align: left;
+  text-indent: 1vw;
+  outline:0;
+}
 
 p.basicinfo{
   position: absolute;
@@ -1811,6 +1883,25 @@ top:0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
+}
+
+.ebayassetinfo{
+  position: absolute;
+
+  left:0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top:30vh;
+  width: 80%;
+  height: 30vh;
+  padding-top: 1vh;
+  text-align: left;
+}
+
+.ebayassetinfo p{
+  margin-left: 1vw;
+  margin-bottom: 0.5vh;
 }
 
 .ebaylookup{

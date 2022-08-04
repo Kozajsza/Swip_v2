@@ -1728,6 +1728,52 @@ p.topinfo{
     text-indent: 1vw;
   }
 
+.ecommercetitle{
+  text-align: left;
+    background-color: white;
+    font-size: 0.75vh;
+    border-radius: 1vh;
+    height: 3vh;
+    width: 18vw;
+    border-style: solid;
+    border-color:#888;
+    border-width: 0.1ch;
+    margin: 1vh;
+    text-align: left;
+    text-indent: 1vw;
+}
+
+.ecommerceprice{
+  text-align: left;
+  background-color: white;
+  font-size: 0.75vh;
+  border-radius: 1vh;
+  height: 3vh;
+  width: 4vw;
+  border-style: solid;
+  border-color:#888;
+  border-width: 0.1ch;
+  margin: 1vh;
+  text-align: left;
+  text-indent: 1vw;
+}
+
+.conditionselect{
+  text-align: left;
+  background-color: white;
+  font-size: 0.75vh;
+  border-radius: 1vh;
+  height: 3vh;
+  width: 10vw;
+  border-style: solid;
+  border-color:#888;
+  border-width: 0.1ch;
+  margin: 1vh;
+  text-align: left;
+  text-indent: 1vw;
+  outline:0;
+}
+
 p.basicinfo{
   position: absolute;
   left:2vw;
@@ -1860,13 +1906,13 @@ top:0;
 
 .ebaylookup{
   position: absolute;
-  top:9.5vh;
+  top:16.5vh;
   left:0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
   width: 90%;
-  height: 62vh;
+  height: 60vh;
 }
 
 
@@ -1886,6 +1932,10 @@ top:0;
   padding-bottom: 1vh;
   width: 75%;
   border-bottom: #282A32 0.1vh solid;
+}
+
+.ecommerceinfo p{
+  padding-bottom: 0.75vh;
 }
 
 .ebaysearch{

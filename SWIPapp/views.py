@@ -90,7 +90,7 @@ def assets(request):
         df['Wipe_Start_Time'] = df['Action Start Time']
         df['Wipe_End_Time'] = df['Action End Time']
         df['Wipe_Result'] = df['Action Result']
-        df['Weight'] = ''
+        df['Weight'] = '0'
         df['Ecommerce_Title']= df['Make'] + ' ' + df['Model'] + ' ' + df['CPU'] + ' ' + df['RAM'].astype(str) + 'GB RAM' + df['Storage_Capacity'].astype(str)
         df['Ecommerce_Category']=''
         df['Ecommerce_Condition']=''
@@ -220,7 +220,7 @@ def importassettoorder(request,id):
         df['Wipe_Start_Time'] = df['Action Start Time']
         df['Wipe_End_Time'] = df['Action End Time']
         df['Wipe_Result'] = df['Action Result']
-        df['Weight'] = ''
+        df['Weight'] = '0'
         df['Ecommerce_Title']= df['Make'] + ' ' + df['Model'] + ' ' + df['CPU']  + ' ' + df['RAM'].astype(str) + 'GB RAM'
         df['Ecommerce_Title'] = df['Ecommerce_Title'].str.replace('.0', '', regex=False)
         df['Ecommerce_Category']=''
@@ -242,6 +242,8 @@ def importassettoorder(request,id):
         ]
         df = df.drop_duplicates(subset='Serial_Number', keep="first") #for some reason pandas sometimes duplicates some of the files, this drops duplicate records
         df.to_sql('SWIPapp_asset',engine, if_exists='append', index=False)
+
+        return HttpResponseRedirect("/order/{id}".format(id=id))
 
     context = {'order':order,
                 'asset':asset,
@@ -300,6 +302,7 @@ def importhddtoorder(request,id):
 
         df.to_sql('SWIPapp_hdd',engine, if_exists='append', index=False)
 
+        return HttpResponseRedirect("/order/{id}".format(id=id))
 
     context = {'order':order,
                 'asset':asset,
@@ -414,15 +417,8 @@ def assetindexecommerce (request, id):
 
     def eBay():
         if request.method == 'POST':
-                df = pd.DataFrame.from_records(Asset.objects.filter(id=id).values('Make', 'Model'))
-                df['Make'] = AssetMake
-                df['Make'] = df['Make'].astype(str)
-                df['Model'] = AssetModel
-                df['Model'] = df['Model'].astype(str)
-                df['Search'] = df['Make'] + df['Model']
-                df['Search'] = df['Search'].str.replace(' ', '+', regex=False)
-                df['Search'] = df['Search']
-                df = df['Search']
+                df = pd.DataFrame.from_records(Asset.objects.filter(id=id).values('Ecommerce_Title'))
+                df = df['Ecommerce_Title']
                 searchterm = df.to_string(index=False)
             
                 def get_data(searchterm):
@@ -495,6 +491,12 @@ def assetindexecommerce (request, id):
 def assetecommerceedit (request, id):
     asset = Asset.objects.get(id=id)
     form = AssetEcommerce(instance=asset)
+
+    if request.method == 'POST':
+        form = AssetEcommerce(request.POST, instance=asset)
+        if form.is_valid:
+            form.save()
+            return HttpResponseRedirect("/asset/{id}/ecommerce".format(id=id))
 
     context = {
         'form':form,

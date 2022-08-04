@@ -47,5 +47,14 @@
                 <p class='wipeinfo'><b> Wipe Result:</b> {{i.Wipe_Result}}</p>
             </div> 
             {% endfor %}
+            <br>
+        {%for j in hdd%}
+            <div class="listitem">
+                <p class="maininfo"> Hard Drive QR: {{j.Asset_QR}}</p>
+                <p class="moreinfo">{{j.Storage}} {{j.Storage_Serial_Number}}</p>
+                <p class="revealinfo">Capacity: {{j.Storage_Capacity}}GB</p>
+                <p class="revealinfo">Wiped: {{j.Wipe_End_Time}} <b>Result: </b>{{j.Wipe_Result}}</p>
+            </div>
+            {% endfor %}
 
 </body>

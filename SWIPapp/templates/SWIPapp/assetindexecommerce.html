@@ -31,28 +31,27 @@
   </div>
 
   <div class="ecommerceinfo">
-    <br>
-    <p> <b>Proposed listing title:</b> {{asset.Ecommerce_Title}} </p><br> 
-    <p> </p>
-    <p> Found {{ebayitemcount}} sold items for the max price of £{{ebayitemmax}} and the minimum price of £{{ebayitemmin}}.</p>
-    <br>
-    <p> <b>Average Sale Price:</b> £{{ebayitemavg}}</p>
-  </div>
+    <p class="maininfo"> General Listing Info </p>
+    <p> <b>Title:</b> {{asset.Ecommerce_Title}} </p>
+    
+    <p> <b>Item Category:</b> {{asset.Ecommerce_Category}} </p>
 
-  <div class="ebayassetinfo">
-  <p> <b>Item Category:</b> {{asset.Ecommerce_Category}} </p>
-<br>
-  <p> <b>Item Condition:</b> {{asset.Ecommerce_Condition}} </p>
-<br>
-  <p> <b>Price:</b> £{{asset.Ecommerce_Price}} </p>
+      <p> <b>Item Condition:</b> {{asset.Ecommerce_Condition}} </p>
 
+      <p> <b>Price:</b> £{{asset.Ecommerce_Price}} </p>
 
   </div>
+
 </div>
 
 <div class="ebaysearch">
   <div class='listtitle2'>
-    <p class="topinfo"><b>Similar Items Sold Recently</p>
+    <p class="topinfo"><b>Similar Items Sold Recently</b></p>
+    </div>
+    <br>
+    <p> Found {{ebayitemcount}} sold items for the max price of £{{ebayitemmax}} and the minimum price of £{{ebayitemmin}}.</p>
+    <br>
+    <p> <b>Average Sale Price:</b> £{{ebayitemavg}}</p>
       <form method="POST" action-"/">
         {% csrf_token %}
       <a href='/asset/{{asset.id}}/ecommerce'><button  class='ebaysearchbtn' type='submit' name-'save' value={{ebaysearch}}>

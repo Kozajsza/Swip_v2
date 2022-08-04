@@ -20,6 +20,15 @@ class Order(models.Model):
     def __str__(self):
         return self.Order_Number
 
+ConditionCodes = [
+    ('2750 - Like New', '2750 - Like New'),
+    ('3000 - Used', '3000 - Used'),
+    ('4000 - Very Good', '4000 - Very Good'),
+    ('5000 - Good', '5000 - Good'),
+    ('6000 - Acceptable', '6000 - Acceptable'),
+    ('7000 - For parts not working', '7000 - For parts not working'),
+    ]
+
 class Asset(models.Model):
     Order_Number = models.ForeignKey(Order, on_delete=models.CASCADE, null=True, blank=True)
     Asset_QR = models.CharField(max_length=100, default='')
@@ -41,10 +50,10 @@ class Asset(models.Model):
     Wipe_Start_Time = models.CharField(max_length=100, default='',null=True, blank=True)
     Wipe_End_Time = models.CharField(max_length=100, default='',null=True, blank=True)
     Wipe_Result = models.CharField(max_length=100, default='',null=True, blank=True)
-    Weight = models.FloatField(null=True, blank=True)
+    Weight = models.FloatField(null=True, blank=True, default='0')
     Ecommerce_Title = models.CharField(max_length=80, default='', null=True, blank=True)
     Ecommerce_Category = models.CharField(max_length=30, default='', null=True, blank=True)
-    Ecommerce_Condition = models.CharField(max_length=10, default='', null=True, blank=True)
+    Ecommerce_Condition = models.CharField(max_length=20, default='', null=True, blank=True)
     Ecommerce_Condition_Description = models.CharField(max_length=1000, default='', null=True, blank=True)
     Ecommerce_Item_Description = models.CharField(max_length=1000, default='', null=True, blank=True)
     Ecommerce_Price = models.FloatField(null=True, blank=True, default='0')

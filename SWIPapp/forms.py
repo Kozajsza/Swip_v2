@@ -45,6 +45,15 @@ class CreateNewAsset(forms.ModelForm):
         }
 
 
+ConditionCodes = [
+    ('2750 - like new', '2750 - Like New'),
+    ('3000 - used', '3000 - Used'),
+    ('4000 - very good', '4000 - Very Good'),
+    ('5000 - good', '5000 - Good'),
+    ('6000 - acceptable', '6000 - Acceptable'),
+    ('7000 - for parts not working', '7000 - For parts not working'),
+    ]
+
 class AssetEcommerce(forms.ModelForm):
     class Meta:
         model = Asset
@@ -53,7 +62,7 @@ class AssetEcommerce(forms.ModelForm):
         widgets = {
             'Ecommerce_Title': forms.TextInput(attrs={'class': 'ecommercetitle', 'placeholder ': 'eBay Title'}),
             'Ecommerce_Category': forms.TextInput(attrs={'class': 'ecomercecat', 'placeholder ': 'x'}),
-            'Ecommerce_Condition': forms.TextInput(attrs={'class': 'ecomercecat', 'placeholder ': 'x'}),
+            'Ecommerce_Condition': forms.Select(choices=ConditionCodes, attrs={'class':'conditionselect'}),
             'Ecommerce_Price': forms.TextInput(attrs={'class': 'ecommerceprice', 'placeholder ': 'Price'}),
          }
 

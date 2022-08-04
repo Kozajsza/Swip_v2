@@ -21,21 +21,23 @@
     <div class="buttonlabels2">
     </div>
 
-
+  <form method="POST" action =''>
+      {% csrf_token %}
   <div class="ecommerceinfo">
-    <br>
-    <p> <b>Listing title:</b> {{form.Ecommerce_Title}} </p><br> 
+    <p class="maininfo"> General Listing Info </p>
+    <p> <b>Listing title:</b> {{form.Ecommerce_Title}} </p>
+
+    <p> <b>Item Category:</b> {{form.Ecommerce_Category}} </p>
+
+    <p> <b>Item Condition:</b> {{form.Ecommerce_Condition}} </p>
+  
+    <p> <b>Price:</b> £{{form.Ecommerce_Price}} </p>  <br>
   </div>
 
-  <div class="ebayassetinfo">
-  <p> <b>Item Category:</b> {{form.Ecommerce_Category}} </p>
-<br>
-  <p> <b>Item Condition:</b> {{form.Ecommerce_Condition}} </p>
-<br>
-  <p> <b>Price:</b> £{{form.Ecommerce_Price}} </p>
+  <button class="submitbtn3", name="save">Submit</button>
+</form>
+  <a href="{{request.META.HTTP_REFERER}}"><button class='cancelbtn2'>Cancel</button></a>
 
-
-  </div>
 </div>
 
 
