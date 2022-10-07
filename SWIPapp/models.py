@@ -29,6 +29,34 @@ ConditionCodes = [
     ('7000 - For parts not working', '7000 - For parts not working'),
     ]
 
+CategoryCodes = [
+    ('111418 - Apple Desktop', '111418 - Apple Desktop/iMac'),
+    ('179 - PC Desktop/AIO', '179 - PC Desktop/AIO'),
+    ('111422 - Apple Laptop', '111422 - Apple Laptop'),
+    ('177 - PC Laptop', '177 - PC Laptop')
+    ]
+
+ItemTypes = [
+    ('All-in-One', 'All-in-One'),
+    ('Desktop', 'Desktop'),
+    ('Laptop/Notebook', 'Laptop/Notebook'),
+]
+
+OperatingSystems = [
+    ('Windows 10', 'Windows 10'),
+    ('Windows 10 Pro', 'Windows 10 Pro'),
+    ('Windows 10 Home', 'Windows 10 Home'),
+    ('Windows 11', 'Windows 11'),
+    ('Mac OS 10.11 El Capitan', 'Mac OS 10.11 El Capitan'),
+    ('Mac OS 10.12 Sierra', 'Mac OS 10.12 Sierra'),
+    ('Mac OS 10.13 High Sierra', 'Mac OS 10.13 High Sierra'),
+    ('Mac OS 10.14 Mojave', 'Mac OS 10.14 Mojave'),
+    ('Mac OS 10.15 Catalina', 'Mac OS 10.15 Catalina'),
+    ('Mac OS 11 Big Sur', 'Mac OS 11 Big Sur'),
+    ('Mac OS 12 Monterey', 'Mac OS 12 Monterey'),
+    ('Mac OS 13 Ventura', 'Mac OS 13 Ventura'),
+]
+
 class Asset(models.Model):
     Order_Number = models.ForeignKey(Order, on_delete=models.CASCADE, null=True, blank=True)
     Asset_QR = models.CharField(max_length=100, default='')
@@ -42,6 +70,7 @@ class Asset(models.Model):
     Storage = models.CharField(max_length=100, default='',null=True, blank=True)
     Storage_Serial_Number = models.CharField(max_length=100, default='',null=True, blank=True)
     Storage_Capacity = models.FloatField(null=True, blank=True)
+    Storage_Type = models.CharField(max_length=100, default='',null=True, blank=True)
     GPU = models.CharField(max_length=100, default='',null=True, blank=True)
     Motherboard_Test = models.CharField(max_length=100, default='',null=True, blank=True)
     CPU_Test = models.CharField(max_length=100, default='',null=True, blank=True)
@@ -51,12 +80,19 @@ class Asset(models.Model):
     Wipe_End_Time = models.CharField(max_length=100, default='',null=True, blank=True)
     Wipe_Result = models.CharField(max_length=100, default='',null=True, blank=True)
     Weight = models.FloatField(null=True, blank=True, default='0')
+    Operating_System = models.CharField(max_length=100, default='Not Installed',null=True, blank=True)
+    Screen_Size = models.CharField(max_length=10, default='N/A',null=True, blank=True)
+    Screen_Resolution = models.CharField(max_length=10, default='N/A',null=True, blank=True)
     Ecommerce_Title = models.CharField(max_length=80, default='', null=True, blank=True)
-    Ecommerce_Category = models.CharField(max_length=30, default='', null=True, blank=True)
+    Ecommerce_Category = models.CharField(max_length=35, default='', null=True, blank=True)
     Ecommerce_Condition = models.CharField(max_length=20, default='', null=True, blank=True)
     Ecommerce_Condition_Description = models.CharField(max_length=1000, default='', null=True, blank=True)
     Ecommerce_Item_Description = models.CharField(max_length=1000, default='', null=True, blank=True)
     Ecommerce_Price = models.FloatField(null=True, blank=True, default='0')
+    Ecommerce_SuitableFor = models.CharField(max_length=200, default='', null=True, blank=True)
+    Ecommerce_FormFactor = models.CharField(max_length=35, default='', null=True, blank=True)
+    Ecommerce_Features = models.CharField(max_length=200, default='', null=True, blank=True)
+    Ecommerce_Connectivity = models.CharField(max_length=200, default='', null=True, blank=True)
     Created = models.DateTimeField(auto_now_add=True, null=True) #this is currently broken - works on import but updating returns error if null=False for some reason
     Updated = models.DateTimeField(auto_now_add=True, null= True) #this is currently broken - works on import but updating returns error if null=False for some reason
 

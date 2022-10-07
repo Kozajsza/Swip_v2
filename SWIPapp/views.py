@@ -423,7 +423,6 @@ def assetindexecommerce (request, id):
             
                 def get_data(searchterm):
                     url = f'https://www.ebay.co.uk/sch/i.html?_from=R40&_nkw={searchterm}&_sacat=0&LH_TitleDesc=0&LH_BIN=1&LH_ItemCondition=3000&rt=nc&LH_Sold=1&LH_Complete=1'
-
                     r = requests.get(url)
                     soup = BeautifulSoup(r.text, 'html.parser')
                     return soup
@@ -434,7 +433,7 @@ def assetindexecommerce (request, id):
                     results = soup.find_all('div', {'class': 's-item__info clearfix'})
                     for item in results:
                         product = {
-                            'Title': item.find('h3', {'class': 's-item__title s-item__title--has-tags'}),
+                            'Title': item.find('div', {'class': 's-item__title s-item__title--has-tags'}),
                             'SoldPrice': item.find('span', {'class': 's-item__price'}),
                             'SoldDate': item.find('div', {'class': 's-item__title--tagblock'}),
                             'ListingLink': item.find('a', {'class': 's-item__link'})['href'],
@@ -448,7 +447,7 @@ def assetindexecommerce (request, id):
 
                     productsdf = pd.DataFrame(productslist)
                     productsdf['Title'] = productsdf['Title'].astype(str)
-                    productsdf['Title'] = productsdf['Title'].str.replace('<h3 class="s-item__title s-item__title--has-tags">', '', regex=False).str.replace('</h3>', '', regex=False).str.replace('<span class="LIGHT_HIGHLIGHT">New listing</span>', '', regex=False)
+                    productsdf['Title'] = productsdf['Title'].str.replace('<div class="s-item__title s-item__title--has-tags"><span aria-level="3" role="heading">', '', regex=False).str.replace('</span></div>', '', regex=False)
                     productsdf.drop(productsdf.index[productsdf['Title']== 'None'], inplace=True)
 
 
@@ -465,7 +464,7 @@ def assetindexecommerce (request, id):
                     productsdf = productsdf[
                         ['ConnectedAsset_id', 'Title', 'SoldPrice', 'SoldDate', 'ListingLink']
                         ]
-
+                    productsdf.to_csv('test.csv', index=False)
                     productsdf.to_sql('SWIPapp_ebaylookup',engine, if_exists='append', index=False)
 
                     

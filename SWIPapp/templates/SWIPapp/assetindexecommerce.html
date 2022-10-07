@@ -31,17 +31,30 @@
   </div>
 
   <div class="ecommerceinfo">
-    <p class="maininfo"> General Listing Info </p>
-    <p> <b>Title:</b> {{asset.Ecommerce_Title}} </p>
+    <p class="ecommerce1"> General Listing Info </p>
+    <p class='ecommerce2'> <b>Listing Title:</b> {{asset.Ecommerce_Title}} </p>
     
-    <p> <b>Item Category:</b> {{asset.Ecommerce_Category}} </p>
+    <p class='ecommerce2'> <b>Item Type:</b> {{asset.Type}} </p>
 
-      <p> <b>Item Condition:</b> {{asset.Ecommerce_Condition}} </p>
+    <p class='ecommerce2'> <b>Item Category:</b> {{asset.Ecommerce_Category}} </p>
 
-      <p> <b>Price:</b> £{{asset.Ecommerce_Price}} </p>
+      <p class='ecommerce2'> <b>Item Condition:</b> {{asset.Ecommerce_Condition}} </p>
 
+      <p class='ecommerce2'> <b>Price:</b> £{{asset.Ecommerce_Price}} </p>
   </div>
+  
+  <div class="ecommercefeatures">
+  <p class="ecommerce1"> Features </p>
 
+  <p class='ecommerce2'> <b>Operating System:</b> {{asset.Operating_System}} </p>
+
+  <p id='screeninfo' class='ecommerce2'> {{asset.Screen_Size}} screen with {{asset.Screen_Resolution}} resolution</p>
+  <p id='formfactor' class='ecommerce2'> <b>Form Factor:</b> {{asset.Ecommerce_FormFactor}} </p>
+
+  <p class='ecommerce2'> <b>Suitable For:</b> {{asset.Ecommerce_SuitableFor}} </p>
+  <p class='ecommerce2'> <b>Connectivity:</b> {{asset.Ecommerce_Connectivity}} </p>
+  <p class='ecommerce2'> <b>Other Features:</b> {{asset.Ecommerce_Features}} </p>
+  </div>
 </div>
 
 <div class="ebaysearch">

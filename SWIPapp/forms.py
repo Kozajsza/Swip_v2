@@ -22,8 +22,6 @@ class CreateNewLog(forms.ModelForm):
         'Log': forms.TextInput(attrs={'class': 'LogInput', 'placeholder ': 'Input Log Change'}),
     }
 
-
-
 class CreateNewAsset(forms.ModelForm):
     class Meta:
         model = Asset
@@ -31,7 +29,6 @@ class CreateNewAsset(forms.ModelForm):
 
         widgets = {
             'Asset_QR': forms.TextInput(attrs={'class': 'assetqr', 'placeholder ': 'Asset Unique QR Code'}),
-            'Type': forms.TextInput(attrs={'class': 'assettype', 'placeholder ': 'Asset Type'}),
             'Make': forms.TextInput(attrs={'class': 'assetmake', 'placeholder ': 'Asset Make'}),
             'Model': forms.TextInput(attrs={'class': 'assetmodel', 'placeholder ': 'Asset Model'}),
             'Serial_Number': forms.TextInput(attrs={'class': 'assetserial', 'placeholder ': 'Asset Serial Number'}),
@@ -46,24 +43,54 @@ class CreateNewAsset(forms.ModelForm):
 
 
 ConditionCodes = [
-    ('2750 - like new', '2750 - Like New'),
-    ('3000 - used', '3000 - Used'),
-    ('4000 - very good', '4000 - Very Good'),
-    ('5000 - good', '5000 - Good'),
-    ('6000 - acceptable', '6000 - Acceptable'),
-    ('7000 - for parts not working', '7000 - For parts not working'),
+    ('2750 - Like New', '2750 - Like New'),
+    ('3000 - Used', '3000 - Used'),
+    ('4000 - Very Good', '4000 - Very Good'),
+    ('5000 - Good', '5000 - Good'),
+    ('6000 - Acceptable', '6000 - Acceptable'),
+    ('7000 - For Parts Not Working', '7000 - For parts not working'),
     ]
+
+CategoryCodes = [
+    ('111418 - Apple Desktop', '111418 - Apple Desktop/iMac'),
+    ('179 - PC Desktop/AIO', '179 - PC Desktop/AIO'),
+    ('111422 - Apple Laptop', '111422 - Apple Laptop'),
+    ('177 - PC Laptop', '177 - PC Laptop')
+    ]
+
+ItemTypes = [
+    ('All-in-One', 'All-in-One'),
+    ('Desktop', 'Desktop'),
+    ('Laptop/Notebook', 'Laptop/Notebook'),
+]
+
+OperatingSystems = [
+    ('Windows 10', 'Windows 10'),
+    ('Windows 10 Pro', 'Windows 10 Pro'),
+    ('Windows 10 Home', 'Windows 10 Home'),
+    ('Windows 11', 'Windows 11'),
+    ('Mac OS 10.11 El Capitan', 'Mac OS 10.11 El Capitan'),
+    ('Mac OS 10.12 Sierra', 'Mac OS 10.12 Sierra'),
+    ('Mac OS 10.13 High Sierra', 'Mac OS 10.13 High Sierra'),
+    ('Mac OS 10.14 Mojave', 'Mac OS 10.14 Mojave'),
+    ('Mac OS 10.15 Catalina', 'Mac OS 10.15 Catalina'),
+    ('Mac OS 11 Big Sur', 'Mac OS 11 Big Sur'),
+    ('Mac OS 12 Monterey', 'Mac OS 12 Monterey'),
+    ('Mac OS 13 Ventura', 'Mac OS 13 Ventura'),
+]
 
 class AssetEcommerce(forms.ModelForm):
     class Meta:
         model = Asset
-        fields = ('Ecommerce_Title', 'Ecommerce_Category', 'Ecommerce_Condition', 'Ecommerce_Price')
+        fields = ('Ecommerce_Title', 'Ecommerce_Category', 'Ecommerce_Condition', 'Ecommerce_Price', 'Type', 'Operating_System',)
 
         widgets = {
             'Ecommerce_Title': forms.TextInput(attrs={'class': 'ecommercetitle', 'placeholder ': 'eBay Title'}),
-            'Ecommerce_Category': forms.TextInput(attrs={'class': 'ecomercecat', 'placeholder ': 'x'}),
+            'Ecommerce_Category': forms.Select(choices=CategoryCodes, attrs={'class':'conditionselect'}),
             'Ecommerce_Condition': forms.Select(choices=ConditionCodes, attrs={'class':'conditionselect'}),
             'Ecommerce_Price': forms.TextInput(attrs={'class': 'ecommerceprice', 'placeholder ': 'Price'}),
+            'Type': forms.Select(choices=ItemTypes, attrs={'class':'conditionselect'}),
+            'Operating_System': forms.Select(choices=OperatingSystems, attrs={'class':'conditionselect'}),
          }
 
 class CreateNewList(forms.ModelForm):

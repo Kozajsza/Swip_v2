@@ -20,7 +20,7 @@ def parse(soup):
     results = soup.find_all('div', {'class': 's-item__info clearfix'})
     for item in results:
         product = {
-            'Title': item.find('h3', {'class': 's-item__title s-item__title--has-tags'}),
+            'Title': item.find('div', {'class': 's-item__title s-item__title--has-tags'}),
             'SoldPrice': item.find('span', {'class': 's-item__price'}),
             'SoldDate': item.find('div', {'class': 's-item__title--tagblock'}),
             'ListingLink': item.find('a', {'class': 's-item__link'})['href'],
@@ -30,11 +30,11 @@ def parse(soup):
 
 def output(productslist):
     
-    engine = sqlalchemy.create_engine('sqlite:///db.sqlite3')
+    #engine = sqlalchemy.create_engine('sqlite:///db.sqlite3')
 
     productsdf = pd.DataFrame(productslist)
     productsdf['Title'] = productsdf['Title'].astype(str)
-    productsdf['Title'] = productsdf['Title'].str.replace('<h3 class="s-item__title s-item__title--has-tags">', '', regex=False).str.replace('</h3>', '', regex=False).str.replace('<span class="LIGHT_HIGHLIGHT">New listing</span>', '', regex=False)
+    productsdf['Title'] = productsdf['Title'].str.replace('<div class="s-item__title s-item__title--has-tags"><span aria-level="3" role="heading">', '', regex=False).str.replace('</span></div>', '', regex=False)
     productsdf.drop(productsdf.index[productsdf['Title']== 'None'], inplace=True)
 
 
@@ -51,8 +51,8 @@ def output(productslist):
     productsdf = productsdf[
         ['ConnectedAsset_id', 'Title', 'SoldPrice', 'SoldDate', 'ListingLink']
         ]
-    #productsdf.to_csv('output.csv')    
-    productsdf.to_sql('SWIPapp_ebaylookup',engine, if_exists='append', index=False)
+    productsdf.to_csv('output.csv')   
+    #productsdf.to_sql('SWIPapp_ebaylookup',engine, if_exists='append', index=False)
 
     return
 

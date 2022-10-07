@@ -521,6 +521,22 @@ h4{
   align-items: center;
 }
 
+p.ecommerce1{
+  font-size: 2vh;
+  color:black;
+  text-align: left;
+  margin-left: 1vh;
+  margin-top: 0.75vh;
+  padding-bottom: 1vh;
+}
+
+p.ecommerce2{
+  font-size: 1.25vh;
+  color:black;
+  text-align: left;
+  margin-left: 1.5vh;
+  padding-bottom: 0.5vh;
+}
 
 p.maininfo{
   font-size: 1.5vh;
@@ -966,6 +982,26 @@ p.explanation{
 }
 
 .cancelbtn3:hover{
+  background-color: #E70000;
+}
+
+.cancelbtn4{
+  position: fixed;
+  bottom:14vh;
+  left:17.5vw;
+  height: 6vh;
+  width: 8vw;
+  background: #555; 
+  text-decoration: none;
+  font-size: 1.8vh;
+  color: white;
+  border-radius: 1vh;
+  border: none;
+  transition: 0.4s;
+  z-index: 1000;
+}
+
+.cancelbtn4:hover{
   background-color: #E70000;
 }
 
@@ -1856,38 +1892,35 @@ top:0;
 }
 
 .ecommerceinfo{
+  width: 75%;
+  padding-bottom: 1vh;
+  border-bottom: #282A32 0.1vh solid;
   position: absolute;
   left:0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
   top:10vh;
-  width: 90%;
-  height: 20vh;
+  height: fit-content;
   padding-top: 1vh;
   text-align: left;
 }
 
-.ecommerceinfo p{
-  margin-left: 1vw;
-  margin-bottom: 0.5vh;
-}
-
-
-.ecommerceinfo h3{
+.ecommercefeatures{
   position: absolute;
-  bottom: 0vh;
-  color: black;
-  font-size: 2vh;
-  left:0;
-  right: 0;
+  left: 0;
+  right:0;
   margin-left: auto;
   margin-right: auto;
+  top: 30vh;
+  width: 75%;
+  padding-top: 1vh;
+  text-align: left;
 }
+
 
 .ebayassetinfo{
   position: absolute;
-
   left:0;
   right: 0;
   margin-left: auto;
@@ -1906,13 +1939,13 @@ top:0;
 
 .ebaylookup{
   position: absolute;
-  top:9.5vh;
+  top:16.5vh;
   left:0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
   width: 90%;
-  height: 62vh;
+  height: 60vh;
 }
 
 
@@ -1927,11 +1960,15 @@ top:0;
   box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
 }
 
-.ecommerceinfo{
-  height: fit-content;
-  padding-bottom: 1vh;
-  width: 75%;
-  border-bottom: #282A32 0.1vh solid;
+.ecommerceedit{
+  position: fixed;
+  top:15vh;
+  left: 12vw;
+  height: 75vh;
+  width:75vw;
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
 }
 
 .ebaysearch{

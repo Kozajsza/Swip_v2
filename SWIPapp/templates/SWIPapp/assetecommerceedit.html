@@ -4,18 +4,11 @@
 {%block content%}
 
 
-<dic class = 'ecommerce'>
-    <div class="buttonlabels4">
-        <div class="asset-desc" id='backdes'>  <p class="link-desc"> Go Back</p></div>
-        <div class="assetbutton" id="backicon">
-            <a class="assset-link" href='/asset/{{asset.id}}/ecommerce'>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-back-up" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M9 13l-4 -4l4 -4m-4 4h11a4 4 0 0 1 0 8h-1"></path>
-                 </svg>
-            </a>
-        </div>
-    </div>
+<a class="assset-link" href='/asset/{{asset.id}}/ecommerce'>
+  <button class='cancelbtn4'>Cancel</button>
+</a>
+
+<div class = 'ecommerce'>
   <div class='listtitle2'>
     <p class="topinfo"><b>{{asset.Asset_QR}}</b> {{asset.Make}} {{asset.Model}} {{asset.Serial_Number}}</p>
     <div class="buttonlabels2">
@@ -24,20 +17,35 @@
   <form method="POST" action =''>
       {% csrf_token %}
   <div class="ecommerceinfo">
-    <p class="maininfo"> General Listing Info </p>
-    <p> <b>Listing title:</b> {{form.Ecommerce_Title}} </p>
+    <p class="ecommerce1"> General Listing Info </p>
+    <p class="ecommerce2"> <b>Listing title:</b> {{form.Ecommerce_Title}} </p>
 
-    <p> <b>Item Category:</b> {{form.Ecommerce_Category}} </p>
+    <p class="ecommerce2"> <b>Item Type:</b> {{form.Type}} </p>
 
-    <p> <b>Item Condition:</b> {{form.Ecommerce_Condition}} </p>
+    <p class="ecommerce2"> <b>Item Category:</b> {{form.Ecommerce_Category}} </p>
+
+    <p class="ecommerce2"> <b>Item Condition:</b> {{form.Ecommerce_Condition}} </p>
+
+    <p class="ecommerce2"> <b>Operating System:</b> {{form.Operating_System}} </p>
   
-    <p> <b>Price:</b> £{{form.Ecommerce_Price}} </p>  <br>
+    <p class="ecommerce2"> <b>Price:</b> £{{form.Ecommerce_Price}} </p>  <br>
+
+
   </div>
+
+
+
+
+
+  <div class="ebaysearch">
+    <div class='listtitle2'>
+      <p class="topinfo"><b>Other Features</b></p>
+      </div>
 
   <button class="submitbtn3", name="save">Submit</button>
 </form>
-  <a href="{{request.META.HTTP_REFERER}}"><button class='cancelbtn2'>Cancel</button></a>
 
+</div>
 </div>
 
 
