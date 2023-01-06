@@ -52,16 +52,11 @@
               <img src="{% static image_static %}" width="" height=""/>
             {% endwith %}
           </div>
-        <div class="labelcontent">
-            <p> <b>Unique QR identifier:</b> {{asset.Asset_QR}}</p>
-            <p> {{asset.Make}} {{asset.Model}} {{asset.Serial_Number}}</p>
-            <p> {{asset.CPU}},  </p>
-            <p> {{asset.RAM}} GB RAM </p>
-            <p> <b>Storage:</b> {{asset.Storage}} {{asset.Storage_Serial_Number}} </p>
-            <p> <b>Capacity:</b> {{asset.Storage_Capacity}} GB </p>
+        <div class="labelcontent"> 
+            <p>{{asset.Asset_QR}}</p>
         </div>
           <div class ="labelclick">
-            <p> Click on the Label to print it</p>
+            <p> Click to print</p>
         </div>
       </a>
     </div>

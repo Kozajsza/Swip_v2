@@ -3,6 +3,7 @@ from io import BytesIO
 from django.core.files import File
 import qrcode  
 from PIL import Image, ImageDraw
+from multiselectfield import MultiSelectField
 
 # Create your models here.
 
@@ -21,7 +22,7 @@ class Order(models.Model):
         return self.Order_Number
 
 ConditionCodes = [
-    ('2750 - Like New', '2750 - Like New'),
+    ('2750', '2750'),
     ('3000 - Used', '3000 - Used'),
     ('4000 - Very Good', '4000 - Very Good'),
     ('5000 - Good', '5000 - Good'),
@@ -57,6 +58,57 @@ OperatingSystems = [
     ('Mac OS 13 Ventura', 'Mac OS 13 Ventura'),
 ]
 
+ScreenSize = [
+    ('11in', '11in'),
+    ('13in', '13in'),
+    ('14in', '14in'),
+    ('15in', '15in'),
+    ('17in', '17in'),
+    ('21in', '21in'),
+    ('24in', '24in'),
+    ('27in', '27in'),
+]
+
+ScreenResolution = [
+    ('1280x720', '1280x720'),
+    ('1366x768', '1366x768'),
+    ('1600x900', '1600x900'),
+    ('1920x1080', '1920x1080'),
+    ('2560x1440', '2560x1440'),
+    ('3840x2160', '3840x2160'),
+]
+
+SuitableFor = [
+    ('Casual Computing', 'Casual Computing'),
+    ('Gaming', 'Gaming'),
+    ('Office', 'Office'),
+    ('Workstation', 'Workstation'),
+    ('Graphic Design', 'Graphic Design'),
+]
+
+Connectivity = [
+    ('USB 2.0', 'USB 2.0'),
+    ('USB 3.0', 'USB 3.0'),
+    ('USB-C', 'USB-C'),
+    ('VGA', 'VGA'),
+    ('HDMI', 'HDMI'),
+    ('Display-Port', 'Display-Port'),
+    ('DVI', 'DVI'),
+    ('DVI-D', 'DVI-D'),
+]
+
+Features =[
+    ('Backlit Keyboard', 'Backlit Keyboard'),
+    ('Bluetooth', 'Bluetooth'),
+    ('Built-in Camera', 'Built-in Camera'),
+    ('Built-in Microphone', 'Built-in Microphone'),
+    ('Touchscreen', 'Touchscreen'),
+    ('Wi-Fi', 'Wi-Fi'),
+    ('Memory Card(s) Reader', 'Memory Card(s) Reader'),
+    ('SD Card Slot', 'SD Card Slot'),
+    ('Touch ID', 'Touch ID'),
+]
+
 class Asset(models.Model):
     Order_Number = models.ForeignKey(Order, on_delete=models.CASCADE, null=True, blank=True)
     Asset_QR = models.CharField(max_length=100, default='')
@@ -89,10 +141,10 @@ class Asset(models.Model):
     Ecommerce_Condition_Description = models.CharField(max_length=1000, default='', null=True, blank=True)
     Ecommerce_Item_Description = models.CharField(max_length=1000, default='', null=True, blank=True)
     Ecommerce_Price = models.FloatField(null=True, blank=True, default='0')
-    Ecommerce_SuitableFor = models.CharField(max_length=200, default='', null=True, blank=True)
+    Ecommerce_SuitableFor = MultiSelectField(default='Casual Computing', choices=SuitableFor)
     Ecommerce_FormFactor = models.CharField(max_length=35, default='', null=True, blank=True)
-    Ecommerce_Features = models.CharField(max_length=200, default='', null=True, blank=True)
-    Ecommerce_Connectivity = models.CharField(max_length=200, default='', null=True, blank=True)
+    Ecommerce_Features = MultiSelectField(choices=Features, null=True, blank=True)
+    Ecommerce_Connectivity = MultiSelectField(default='USB 2.0', choices=Connectivity, null=True, blank=True)
     Created = models.DateTimeField(auto_now_add=True, null=True) #this is currently broken - works on import but updating returns error if null=False for some reason
     Updated = models.DateTimeField(auto_now_add=True, null= True) #this is currently broken - works on import but updating returns error if null=False for some reason
 

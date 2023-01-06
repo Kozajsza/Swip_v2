@@ -3,7 +3,7 @@ from ntpath import join
 from django.shortcuts import render, redirect
 from .models import Order, Asset, AssetLog, ebayLookup, Lists, HDD
 from django.db.models import Avg, Max, Min
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, FileResponse
 from .forms import CreateNewAsset, CreateNewOrder, CreateNewLog, CreateNewList, AssetEcommerce
 import sqlalchemy
 import pandas as pd
@@ -11,6 +11,12 @@ import glob
 from datetime import datetime
 from bs4 import BeautifulSoup
 import requests
+import csv
+
+import io
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import mm
+from reportlab_qrcode import QRCodeImage
 
 # Create your views here.
 
@@ -21,18 +27,66 @@ def navbar(request):
     return render (request, 'SWIPsite/navbar.html')
 
 def home(request):
-    return render (request, 'SWIPapp/home.html')
+    asset = Asset.objects.all()
+    order = Order.objects.all()
+
+
+    context = {
+        'asset':asset,
+        'order':order,
+    }
+
+    return render (request, 'SWIPapp/home.html', context)
 
 def login(request):
     return render (request, 'SWIPapp/login.html')
 
 def assetlabel(request,id):
     asset = Asset.objects.get(id=id)
-    context = {
-        'asset':asset,
-    }
+    buf = io.BytesIO()
+    pagesize = (89 * mm, 41 * mm)
+    c = canvas.Canvas(buf, pagesize = pagesize, bottomup=0)
+    
 
-    return render(request, 'SWIPapp/assetlabel.html', context)
+    textob = c.beginText()
+    textob.setTextOrigin(36 * mm, 12 * mm)
+    textob.setFont("Helvetica", 6)
+    assetmaininfo = asset.Make + ' ' + asset.Model
+    assetmeminfo = str(asset.RAM) + ' GB RAM'
+    assetstoragecap = 'Storage Capacity: ' + str(asset.Storage_Capacity) + " GB"
+    
+
+    qr = QRCodeImage(asset.Asset_QR, size = 38 * mm)
+    qr.drawOn(c, 0, 0)
+
+    lines = []
+
+    lines.append(asset.Asset_QR)
+    lines.append(assetmaininfo)
+    lines.append(asset.Serial_Number)
+    lines.append(asset.CPU)
+    lines.append(assetmeminfo)
+    lines.append(asset.Storage)
+    lines.append(assetstoragecap)
+
+    for line in lines:
+        textob.textLine(line)
+
+    c.drawText(textob)
+    
+    c.showPage()
+    c.save()
+    buf.seek(0)
+
+
+
+    #c.drawText(textob)
+    #c.showPage()
+    #c.save()
+    #buf.seek(0)
+
+
+    return FileResponse(buf, as_attachment=True, filename = asset.Asset_QR + '.pdf')
 
 def assets(request):
     asset = Asset.objects.order_by('-Created')
@@ -97,6 +151,10 @@ def assets(request):
         df['Ecommerce_Condition_Description']=''
         df['Ecommerce_Item_Description']=''
         df['Ecommerce_Price']='0'
+        df['Ecommerce_SuitableFor']='Casual Computing'
+        df['Ecommerce_FormFactor']=''
+        df['Ecommerce_Features']=''
+        df['Ecommerce_Connectivity']=''
         df['Created'] = date
         df['Updated'] = date
 
@@ -106,12 +164,12 @@ def assets(request):
                 'Order_Number_id', 'Asset_QR', 'Type', 'Make', 'Model', 'Serial_Number', 'CPU', 'RAM', 'Storage', 'Storage_Serial_Number', 'Storage_Capacity',
                 'GPU', 'Motherboard_Test', 'CPU_Test', 'RAM_Test', 'Wipe_Method', 'Wipe_Start_Time', 'Wipe_End_Time', 'Wipe_Result',
                 'Weight', 'Ecommerce_Title', 'Ecommerce_Category', 'Ecommerce_Condition', 'Ecommerce_Condition_Description', 'Ecommerce_Item_Description', 'Ecommerce_Price',
-                'Created', 'Updated'
+                'Ecommerce_SuitableFor', 'Ecommerce_FormFactor','Ecommerce_Features', 'Ecommerce_Connectivity' ,'Created', 'Updated'
             ]
         ]
         df = df.drop_duplicates(subset='Serial_Number', keep="first") #for some reason pandas sometimes duplicates some of the files, this drops duplicate records
         df.to_sql('SWIPapp_asset',engine, if_exists='append', index=False)
-
+        df.to_csv('final2.csv', index=False)
 
 
     context={
@@ -228,6 +286,10 @@ def importassettoorder(request,id):
         df['Ecommerce_Condition_Description']=''
         df['Ecommerce_Item_Description']=''
         df['Ecommerce_Price']='0'
+        df['Ecommerce_SuitableFor']='Casual Computing'
+        df['Ecommerce_FormFactor']=''
+        df['Ecommerce_Features']=''
+        df['Ecommerce_Connectivity']=''
         df['Created'] = date
         df['Updated'] = date
 
@@ -237,7 +299,7 @@ def importassettoorder(request,id):
                 'Order_Number_id', 'Asset_QR', 'Type', 'Make', 'Model', 'Serial_Number', 'CPU', 'RAM', 'Storage', 'Storage_Serial_Number', 'Storage_Capacity',
                 'GPU', 'Motherboard_Test', 'CPU_Test', 'RAM_Test', 'Wipe_Method', 'Wipe_Start_Time', 'Wipe_End_Time', 'Wipe_Result',
                 'Weight', 'Ecommerce_Title', 'Ecommerce_Category', 'Ecommerce_Condition', 'Ecommerce_Condition_Description', 'Ecommerce_Item_Description', 'Ecommerce_Price',
-                'Created', 'Updated'
+                'Ecommerce_SuitableFor', 'Ecommerce_FormFactor','Ecommerce_Features', 'Ecommerce_Connectivity','Created', 'Updated'
             ]
         ]
         df = df.drop_duplicates(subset='Serial_Number', keep="first") #for some reason pandas sometimes duplicates some of the files, this drops duplicate records
@@ -473,7 +535,6 @@ def assetindexecommerce (request, id):
                 productslist = parse(soup)
                 output(productslist)
 
-   
 
     context = {
         'asset':asset,
@@ -486,6 +547,30 @@ def assetindexecommerce (request, id):
             }
 
     return render(request, 'SWIPapp/assetindexecommerce.html', context)
+   
+
+def assettocsv (request, id):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=eBayListing.csv'
+
+    writer = csv.writer(response)
+    asset = Asset.objects.get(id=id)
+
+    #index row
+    writer.writerow(['*Action(SiteID=UK|Country=GB|Currency=GBP|Version=1193|CC=UTF-8)','CustomLabel', '*Category', 'StoreCategory', '*Title', 'Subtitle','Relationship', 'RelationshipDetails', '*ConditionID', 'VAT%', '*C:Brand', '*C:Type', '*C:Series', '*C:RAM Size', '*C:Processor', '*C:Hard Drive Capacity', '*C:Storage Type', '*C:Form Factor', '*C:GPU', '*C:Operating System',
+    '*C:Processor Speed', '*C:Most Suitable For', '*C:Screen Size', '*C:Connectivity', '*C:Features', '*C:Model', '*C:MPN', '*C:Unit Quantity', '*C:Unit Type', '*C:Release Year', '*C:SSD Capacity', 'C:Maximum RAM Capacity', '*C:Colour', 'C:Graphics Processing Type', 'C:Country/Region of Manufacture', 'C:Manufacturer Warranty', 'C:Custom Bundle',
+    'C:Bundle Description', 'C:Item Height', 'C:Item Length', 'C:Item Width', 'C:Motherboard Model', '*C:Maximum Resolution', 'C:Item Weight', 'PicURL', 'GalleryType', '*Description', '*Format', '*Duration', '*StartPrice', 'BuyItNowPrice', '*Quantity', 'PayPalAccepted', 'PayPalEmailAddress', 'ImmediatePayRequired', 'PaymentInstructions',
+    '*Location', 'ShippingType', 'ShippingService-1:Option', 'ShippingService-1:Cost', 'ShippingService-2:Option', 'ShippingService-2:Cost', '*DispatchTimeMax', 'PromotionalShippingDiscount', 'ShippingDiscountProfileID', 'DomesticRateTable', '*ReturnsAcceptedOption', 'ReturnsWithinOption', 'RefundOption', 'ShippingCostPaidByOption',
+    'AdditionalDetails', 'TakeBackPolicyID', 'ProductCompliancePolicyID'])
+    
+    #info row
+    writer.writerow(['Add', asset.Asset_QR, asset.Ecommerce_Category, '', asset.Ecommerce_Title, '', '', '', asset.Ecommerce_Condition, '20', asset.Make, asset.Type, asset.Model, asset.RAM, asset.CPU, asset.Storage_Capacity, asset.Storage_Type, asset.Ecommerce_FormFactor, asset.GPU, asset.Operating_System, 'CPU SPEED xxx', asset.Ecommerce_SuitableFor, asset.Screen_Size, asset.Ecommerce_Connectivity, asset.Ecommerce_Features,
+    asset.Model, asset.Model,'1', 'Unit', 'N/A', asset.Storage_Capacity, 'N/A', '', '', '', 'None', 'No', '', '', '', '', '', asset.Screen_Resolution, asset.Weight, 'Picture', '', 'Description', 'FixedPrice', 'GDC', asset.Ecommerce_Price, asset.Ecommerce_Price, '1', 'Yes', 'PayPalEmailAddress', '1', 'PaymentInstructions',
+    'NW10 6HJ', 'ShippingType', 'UK_OtherCourier3Days', '0', 'ShippingService-2:Option', 'ShippingService-2:Cost', '2', 'PromotionalShippingDiscount', 'ShippingDiscountProfileID', 'DomesticRateTable', 'Days_30', 'ReturnsWithinOption', 'RefundOption', 'ShippingCostPaidByOption',
+    'AdditionalDetails', 'TakeBackPolicyID', 'ProductCompliancePolicyID'])
+
+    return response
+
 
 def assetecommerceedit (request, id):
     asset = Asset.objects.get(id=id)

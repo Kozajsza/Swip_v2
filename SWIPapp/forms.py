@@ -43,19 +43,19 @@ class CreateNewAsset(forms.ModelForm):
 
 
 ConditionCodes = [
-    ('2750 - Like New', '2750 - Like New'),
-    ('3000 - Used', '3000 - Used'),
-    ('4000 - Very Good', '4000 - Very Good'),
-    ('5000 - Good', '5000 - Good'),
-    ('6000 - Acceptable', '6000 - Acceptable'),
-    ('7000 - For Parts Not Working', '7000 - For parts not working'),
+    ('2750', '2750 - Like New'),
+    ('3000', '3000 - Used'),
+    ('4000', '4000 - Very Good'),
+    ('5000', '5000 - Good'),
+    ('6000', '6000 - Acceptable'),
+    ('7000', '7000 - For parts not working'),
     ]
 
 CategoryCodes = [
-    ('111418 - Apple Desktop', '111418 - Apple Desktop/iMac'),
-    ('179 - PC Desktop/AIO', '179 - PC Desktop/AIO'),
-    ('111422 - Apple Laptop', '111422 - Apple Laptop'),
-    ('177 - PC Laptop', '177 - PC Laptop')
+    ('111418', '111418 - Apple Desktop/iMac'),
+    ('179', '179 - PC Desktop/AIO'),
+    ('111422', '111422 - Apple Laptop'),
+    ('177', '177 - PC Laptop')
     ]
 
 ItemTypes = [
@@ -79,10 +79,61 @@ OperatingSystems = [
     ('Mac OS 13 Ventura', 'Mac OS 13 Ventura'),
 ]
 
+ScreenSize = [
+    ('11in', '11in'),
+    ('13in', '13in'),
+    ('14in', '14in'),
+    ('15in', '15in'),
+    ('17in', '17in'),
+    ('21in', '21in'),
+    ('24in', '24in'),
+    ('27in', '27in'),
+]
+
+ScreenResolution = [
+    ('1280x720', '1280x720'),
+    ('1366x768', '1366x768'),
+    ('1600x900', '1600x900'),
+    ('1920x1080', '1920x1080'),
+    ('2560x1440', '2560x1440'),
+    ('3840x2160', '3840x2160'),
+]
+
+SuitableFor = [
+    ('Casual Computing', 'Casual Computing'),
+    ('Gaming', 'Gaming'),
+    ('Office', 'Office'),
+    ('Workstation', 'Workstation'),
+    ('Graphic Design', 'Graphic Design'),
+]
+
+Connectivity = [
+    ('USB 2.0', 'USB 2.0'),
+    ('USB 3.0', 'USB 3.0'),
+    ('USB-C', 'USB-C'),
+    ('VGA', 'VGA'),
+    ('HDMI', 'HDMI'),
+    ('Display-Port', 'Display-Port'),
+    ('DVI', 'DVI'),
+    ('DVI-D', 'DVI-D'),
+]
+
+Features =[
+    ('Backlit Keyboard', 'Backlit Keyboard'),
+    ('Bluetooth', 'Bluetooth'),
+    ('Built-in Microphone', 'Built-in Microphone'),
+    ('Built-in Camera', 'Built-in Camera'),
+    ('Touchscreen', 'Touchscreen'),
+    ('Wi-Fi', 'Wi-Fi'),
+    ('Memory Card(s) Reader', 'Memory Card(s) Reader'),
+    ('SD Card Slot', 'SD Card Slot'),
+    ('Touch ID', 'Touch ID'),
+]
+
 class AssetEcommerce(forms.ModelForm):
     class Meta:
         model = Asset
-        fields = ('Ecommerce_Title', 'Ecommerce_Category', 'Ecommerce_Condition', 'Ecommerce_Price', 'Type', 'Operating_System',)
+        fields = ('Ecommerce_Title', 'Ecommerce_Category', 'Ecommerce_Condition', 'Ecommerce_Price', 'Type', 'Operating_System', 'Screen_Size', 'Screen_Resolution', 'Ecommerce_SuitableFor', 'Ecommerce_Connectivity','Ecommerce_Features',)
 
         widgets = {
             'Ecommerce_Title': forms.TextInput(attrs={'class': 'ecommercetitle', 'placeholder ': 'eBay Title'}),
@@ -91,6 +142,11 @@ class AssetEcommerce(forms.ModelForm):
             'Ecommerce_Price': forms.TextInput(attrs={'class': 'ecommerceprice', 'placeholder ': 'Price'}),
             'Type': forms.Select(choices=ItemTypes, attrs={'class':'conditionselect'}),
             'Operating_System': forms.Select(choices=OperatingSystems, attrs={'class':'conditionselect'}),
+            'Screen_Size': forms.Select(choices=ScreenSize, attrs={'class':'conditionselect'}),
+            'Screen_Resolution': forms.Select(choices=ScreenResolution, attrs={'class':'conditionselect'}),
+            'Ecommerce_SuitableFor': forms.CheckboxSelectMultiple(choices=SuitableFor),
+            'Ecommerce_Connectivity': forms.CheckboxSelectMultiple(choices=Connectivity),
+            'Ecommerce_Features': forms.CheckboxSelectMultiple(choices=Features),
          }
 
 class CreateNewList(forms.ModelForm):

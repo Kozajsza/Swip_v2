@@ -17,77 +17,74 @@
   </ul>
 </div>
 
-<dic class = 'ecommerce'>
+<dic class = 'assetinfo'>
   <div class='listtitle2'>
     <p class="topinfo"><b>{{asset.Asset_QR}}</b> {{asset.Make}} {{asset.Model}} {{asset.Serial_Number}}</p>
-    <div class="buttonlabels2">
-      <div id='editdes'>  <p class="link-desc">Edit</p></div>
-    <div class="assetbutton" id='editicon'>  <a class="assset-link" href='/asset/{{asset.id}}/ecommerceedit'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-      <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
-      <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
-      <path d="M16 5l3 3"></path>
-   </svg></a></div>
+    <div class="buttonlabels">
+      <div class="asset-desc" id='deldes'>  <p class="link-desc"> Delete</p></div>
+        <div class="asset-desc" id='editdes'>  <p class="link-desc">Edit</p></div>
+
+      <div class="assetbutton" id='delicon'>  <a class="assset-link" href='/deleteasset/{{asset.id}}'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash-x" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M4 7h16"></path>
+        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+        <path d="M10 12l4 4m0 -4l-4 4"></path>
+     </svg></a></div>
+    
+     <div class="assetbutton" id='editicon'>  <a class="assset-link" href='/asset/{{asset.id}}/ecommerceedit'><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
+        <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
+        <path d="M16 5l3 3"></path>
+     </svg></a></div>
   </div>
 
-  <div class="ecommerceinfo">
-    <p class="ecommerce1"> General Listing Info </p>
-    <p class='ecommerce2'> <b>Listing Title:</b> {{asset.Ecommerce_Title}} </p>
+  <div class="assetinfoinner">
+    <a href='/assetlabel/{{asset.id}}'>
+      <div class = "assetlabel">  
+        <div class ="qrimage">
+          {% load static %}
+          {% with 'SWIPapp/images/qr_codes/'|add:asset.Asset_QR|add:'.png' as image_static %}
+            <img src="{% static image_static %}" width="" height=""/>
+          {% endwith %}
+        </div>
+      <div class="labelcontent"> 
+          <p>{{asset.Asset_QR}}</p>
+      </div>
+        <div class ="labelclick">
+          <p> Click to print</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="assetspec">
+    <h5> General Listing Info </h5>
+    <p> <b>Title:</b> {{asset.Ecommerce_Title}} </p>
     
-    <p class='ecommerce2'> <b>Item Type:</b> {{asset.Type}} </p>
+    <p> <b>Item Type:</b> {{asset.Type}} </p>
 
-    <p class='ecommerce2'> <b>Item Category:</b> {{asset.Ecommerce_Category}} </p>
+    <p> <b>Item Category:</b> {{asset.Ecommerce_Category}} </p>
 
-      <p class='ecommerce2'> <b>Item Condition:</b> {{asset.Ecommerce_Condition}} </p>
+      <p> <b>Item Condition:</b> {{asset.Ecommerce_Condition}} </p>
 
-      <p class='ecommerce2'> <b>Price:</b> £{{asset.Ecommerce_Price}} </p>
+      <p> <b>Price:</b> £{{asset.Ecommerce_Price}} </p>
   </div>
   
-  <div class="ecommercefeatures">
-  <p class="ecommerce1"> Features </p>
+  <div class="assetwipe">
+  <h5> Features </h5>
 
-  <p class='ecommerce2'> <b>Operating System:</b> {{asset.Operating_System}} </p>
+  <p> <b>Operating System:</b> {{asset.Operating_System}} </p>
 
-  <p id='screeninfo' class='ecommerce2'> {{asset.Screen_Size}} screen with {{asset.Screen_Resolution}} resolution</p>
-  <p id='formfactor' class='ecommerce2'> <b>Form Factor:</b> {{asset.Ecommerce_FormFactor}} </p>
+  <p id='screeninfo'> {{asset.Screen_Size}} screen with {{asset.Screen_Resolution}} resolution</p>
 
-  <p class='ecommerce2'> <b>Suitable For:</b> {{asset.Ecommerce_SuitableFor}} </p>
-  <p class='ecommerce2'> <b>Connectivity:</b> {{asset.Ecommerce_Connectivity}} </p>
-  <p class='ecommerce2'> <b>Other Features:</b> {{asset.Ecommerce_Features}} </p>
+  <p> <b>Suitable For:</b> {{asset.Ecommerce_SuitableFor}} </p>
+  <p><b> Connectivity: </b>{{asset.Ecommerce_Connectivity}} </p>
+  <p> <b>Other Features:</b> {{asset.Ecommerce_Features}} </p>
   </div>
+  <a href="/asset/{{asset.id}}/ecommerce/assettocsv"><button type="submit" class = "submitbtn2", name="save">Download CSV</button></a>
 </div>
 
-<div class="ebaysearch">
-  <div class='listtitle2'>
-    <p class="topinfo"><b>Similar Items Sold Recently</b></p>
-    </div>
-    <br>
-    <p> Found {{ebayitemcount}} sold items for the max price of £{{ebayitemmax}} and the minimum price of £{{ebayitemmin}}.</p>
-    <br>
-    <p> <b>Average Sale Price:</b> £{{ebayitemavg}}</p>
-      <form method="POST" action-"/">
-        {% csrf_token %}
-      <a href='/asset/{{asset.id}}/ecommerce'><button  class='ebaysearchbtn' type='submit' name-'save' value={{ebaysearch}}>
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rotate-rectangle" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-          <path d="M16.3 5h.7a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h5l-2.82 -2.82m0 5.64l2.82 -2.82" transform="rotate(-45 12 12)"></path>
-       </svg></button></a>
-      </form>
 
-    
-    
-      <div class="ebaylookup">
-        <div class='listcontainer'>
-          {%for i in ebayitem %}   
-          <a href={{i.ListingLink}} target="_blank">
-              <div class="listitem">
-                  <p class="maininfo2"> {{i.Title}}</p>
-                  <p class="moreinfo2">Sold for: £{{i.SoldPrice}} on {{i.SoldDate}} </p>
-                  <p class="revealinfo2">Click to open the listing in a new tab</p>
-            </div>
-          </a>
-          {% endfor %}
-
-</div>
 
 {% endblock %}

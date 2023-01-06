@@ -1,0 +1,32 @@
+<div class="ebaysearch">
+    <div class='listtitle2'>
+      <p class="topinfo"><b>Similar Items Sold Recently</b></p>
+      </div>
+      <br>
+      <p> Found {{ebayitemcount}} sold items for the max price of £{{ebayitemmax}} and the minimum price of £{{ebayitemmin}}.</p>
+      <br>
+      <p> <b>Average Sale Price:</b> £{{ebayitemavg}}</p>
+        <form method="POST" action-"/">
+          {% csrf_token %}
+        <a href='/asset/{{asset.id}}/ecommerce'><button  class='ebaysearchbtn' type='submit' name='save' value={{ebaysearch}}>
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-rotate-rectangle" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M16.3 5h.7a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h5l-2.82 -2.82m0 5.64l2.82 -2.82" transform="rotate(-45 12 12)"></path>
+         </svg></button></a>
+        </form>
+  
+      
+      
+        <div class="ebaylookup">
+          <div class='listcontainer'>
+            {%for i in ebayitem %}   
+            <a href={{i.ListingLink}} target="_blank">
+                <div class="listitem">
+                    <p class="maininfo2"> {{i.Title}}</p>
+                    <p class="moreinfo2">Sold for: £{{i.SoldPrice}} on {{i.SoldDate}} </p>
+                    <p class="revealinfo2">Click to open the listing in a new tab</p>
+              </div>
+            </a>
+            {% endfor %}
+  
+  </div>

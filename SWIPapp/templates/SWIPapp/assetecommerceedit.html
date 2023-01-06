@@ -34,13 +34,35 @@
   </div>
 
 
-
-
-
   <div class="ebaysearch">
     <div class='listtitle2'>
-      <p class="topinfo"><b>Other Features</b></p>
+      <p class="topinfo"><b>Screen Info and Features</b></p>
       </div>
+
+      <div class="ecommerceinfo">
+        <p class="ecommerce1"> Screen Info </p>
+      <p class="ecommerce2"> <b>Screen Size:</b> {{form.Screen_Size}} </p>
+      <p class="ecommerce2"> <b>Screen Resolution:</b> {{form.Screen_Resolution}} </p>
+      </div>
+      <div class = 'eccommercemoreinfo'>
+        <div class="linkscontainer">
+        <a href="#id1">Suitable For</a>
+        <a href="#id2">Connectivity</a>
+        <a href="#id3">Other Features</a>
+        </div>
+        <div class='contentselect'>
+        <div class= 'contentcontainer'>
+          <div class='contentcontainer' id='id1'>
+      <p class="ecommerce2">{{form.Ecommerce_SuitableFor}} </p>
+          </div>
+          <div class='contentcontainer' id='id2'>
+      <p class="ecommerce2">{{form.Ecommerce_Connectivity}} </p>
+          </div>
+          <div class='contentcontainer' id='id3'>
+      <p class="ecommerce2">{{form.Ecommerce_Features}} </p>
+          </div>
+        </div>
+    </div></div>
 
   <button class="submitbtn3", name="save">Submit</button>
 </form>

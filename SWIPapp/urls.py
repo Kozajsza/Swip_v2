@@ -16,6 +16,7 @@ urlpatterns = [
     path('detachassetfromorder/<str:id>', views.detachassetfromorder, name='detachassetfromorder'),
     path('asset/<int:id>/', views.assetindex, name='assetindex'),
     path('asset/<int:id>/ecommerce', views.assetindexecommerce, name='assetindexecommerce'),
+    path('asset/<int:id>/ecommerce/assettocsv', views.assettocsv, name='assettocsv'),
     path('asset/<str:id>/ecommerceedit', views.assetecommerceedit, name='assetecommerceedit'),
     path('assetlabel/<int:id>/', views.assetlabel, name='assetlabel'),
     path('createasset', views.createasset, name='createasset'),

@@ -30,29 +30,57 @@ body{
   font-weight: lighter;
 }
 
+
 .search{
-  position: fixed;
-  top:3vh;
-  right: 10vw;
-  text-align: center;
-  }
-  
+    position: absolute;
+    top: 15vh;
+    left: 50%;
+    transform: translateX(-50%);
+    }
+    
 form .searchbar{
-    text-align: center;
-    width: 30vw;
-    height: 5vh;
-    border-radius: 1vh;
-    outline: 0;
-    border: 0;
-    background-color: white;
-    transition: 1s;
-    font-size: 1.5vh;
-    box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
-  }
-  
+      text-align: center;
+      width: 25vw;
+      height: 3vh;
+      border-radius: 1vh;
+      outline: 0;
+      border: 0;
+      background-color: white;
+      transition: 1s;
+      font-size: 1vh;
+    }
+    
 form .searchbar:hover{
-    background-color: #282A32;
+    transition:1s;
+    width:35vw;
+    height:5vh;
+    box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+    font-size: 2vh;
+    }
+  
+  form .searchbar:focus{
+    transition:1s;
+    width:35vw;
+    height:5vh;
+    box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+    font-size: 2vh;
+    }
+  
+  form .searchbar:hover::placeholder{
+    transition:1s;
+    color:transparent;
   }
+
+.searchresults{
+  position: absolute;
+  top: 8vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width:60vw;
+  height:60vh;
+  background-color: red;
+}
+
 
 .sidebar{
     position:fixed;
@@ -71,6 +99,69 @@ form .searchbar:hover{
   left:6.5vw;
   height: fit-content;
   width: fit-content;
+}
+
+.profile{
+  position: fixed;
+  top:3vh;
+  right: 10vw;
+  text-align: center;
+  width: 6vw;
+  height: 10vh;
+  background-color: white;
+  transition: 2s;
+  border-radius: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+}
+
+.profile:hover{
+  width:20vw;
+  transition: 1s;
+}
+
+.profileinfo{
+  position: absolute;
+  top:10%;
+  left:1vw;
+  width:13vw;
+  height:8vh;
+  visibility: hidden;
+  transition: 0.2s;
+}
+
+.profile:hover .profileinfo{
+  visibility: visible;
+}
+
+.profilepic{
+  position: absolute;
+  top:10%;
+  right: 1vw;
+  width: 4vw;
+  height: 8vh;
+  border-radius: 1vh;
+}
+
+.profilepic img{
+  width: 4vw;
+  height: 8vh;
+  border-radius: 1vh;
+}
+
+.profilename{
+  position:absolute;
+  top:5%;
+  left:5%;
+}
+
+.profilename p{
+  font-size: 2.5vh;
+}
+
+.profilepos{
+  position: absolute;
+  bottom:10%;
+  left:10%;
 }
 
 .nav-item{
@@ -1283,7 +1374,7 @@ p.explanation{
   left:3vw;
   top: 5vh;
   width: 10vw;
-  height: 35vh;
+  height: 24vh;
   background-color: white;
   border-radius: 2vh;
   border-width: 0.01vh;
@@ -1297,10 +1388,11 @@ p.explanation{
 }
 
 .assetlabel p{
-  font-size: 0.75vh;
+  font-size: 1vh;
   text-decoration: none;
   color:black;
-  text-align: left;
+  text-align: center;
+  align-self: center;
 }
 
 .qrimage{
@@ -1319,22 +1411,23 @@ p.explanation{
 }
 
 .qrimage img{
-  max-width: 120%;
-  max-height: 120%;
+  max-width: 110%;
+  max-height: 110%;
   display: block;
 }
 
 .labelcontent{
   position:absolute;
-  top:18vh;
-  width: fit-content;
-  height: fit-content;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top:16vh;
 }
 
 .labelcontent p{
-  font-size: 0.75vh;
-  text-align: center;
-  align-self: center;
+  font-size: 1.4vh;
+
 }
 
 .labelclick{
@@ -1918,6 +2011,73 @@ top:0;
   text-align: left;
 }
 
+.eccommercemoreinfo{
+  position: absolute;
+  left:0;
+  right:0;
+  margin-left: auto;
+  margin-right: auto;
+  top: 30vh;
+  width: 75%;
+  padding-top: 1vh;
+}
+
+.contentselect{
+  position: absolute;
+  left:0;
+  right:0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 25vh;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.linkscontainer{
+  height:5vh;
+}
+
+.linkscontainer a{
+ height:4vh;
+ border-radius: 1vh;
+ padding: 1vh;
+ text-decoration: none;
+ color: black;
+}
+
+.linkscontainer a:hover{
+  background: rgb(205, 205, 205);
+}
+
+.linkscontainer a:active{
+  color:rgb(103,26,255);
+  
+}
+
+
+
+.contentcontainer{
+  text-align: left;
+  width:100%;
+}
+
+.contentcontainer#id1{
+  position: absolute;
+  top:0;
+}
+
+.contentcontainer#id2{
+  position: absolute;
+  top:0;
+  left:100%;
+}
+
+.contentcontainer#id3{
+  position: absolute;
+  top:0;
+  left:200%;
+}
 
 .ebayassetinfo{
   position: absolute;
