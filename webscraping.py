@@ -6,21 +6,22 @@ import requests
 import sqlalchemy
 
 
-searchterm = 'HP+Elitebook+840+G2'
+searchterm = input("Type what you searching for: ")
+searchterm.replace(" ", "+")
 
 def get_data(searchterm):
-    url = f'https://www.ebay.co.uk/sch/i.html?_from=R40&_nkw={searchterm}&_sacat=0&LH_TitleDesc=0&LH_BIN=1&LH_ItemCondition=3000&rt=nc&LH_Sold=1&LH_Complete=1'
-
+    url = f'https://www.ebay.co.uk/sch/i.html?_from=R40&_nkw={searchterm}&_sacat=0&LH_TitleDesc=0&LH_BIN=1&LH_ItemCondition=3000&rt=nc&LH_Sold=1&LH_Complete=1&LH_ItemCondition=3000'
+    print(url)
     r = requests.get(url)
     soup = BeautifulSoup(r.text, 'html.parser')
     return soup
 
 def parse(soup):
     productslist = []
-    results = soup.find_all('div', {'class': 's-item__info clearfix'})
+    results = soup.find_all('div', {'class': 's-item__wrapper clearfix'})
     for item in results:
         product = {
-            'Title': item.find('div', {'class': 's-item__title s-item__title--has-tags'}),
+            'Title': item.find('div', {'class': 's-item__title'}).text,
             'SoldPrice': item.find('span', {'class': 's-item__price'}),
             'SoldDate': item.find('div', {'class': 's-item__title--tagblock'}),
             'ListingLink': item.find('a', {'class': 's-item__link'})['href'],
@@ -51,7 +52,27 @@ def output(productslist):
     productsdf = productsdf[
         ['ConnectedAsset_id', 'Title', 'SoldPrice', 'SoldDate', 'ListingLink']
         ]
-    productsdf.to_csv('output.csv')   
+    
+    rowcount = productsdf.shape[0]
+    print("Found items: " + str(rowcount))
+    todelete = round(0.05*rowcount)
+    print("Deleting top and bottom: " + str(todelete))
+
+    productsdf = productsdf.drop(productsdf.head(todelete).index)
+    productsdf = productsdf.drop(productsdf.tail(todelete).index)
+
+    median = productsdf['SoldPrice'].median()
+    print("Price median: £" + str(median))
+
+    Neat = round(0.3* median)
+    Good = round(0.15* median)
+    Faulty = round(0.05* median)
+
+    print("Neat offer: £" + str(Neat))
+    print("Good offer: £" + str(Good))
+    print("Faulty or locked offer: £" + str(Faulty))
+
+    productsdf.to_csv('output2.csv')   
     #productsdf.to_sql('SWIPapp_ebaylookup',engine, if_exists='append', index=False)
 
     return

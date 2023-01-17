@@ -3,7 +3,7 @@
 <!doctype html>
 <html>
 <head>
-    <link rel="stylesheet" href={% static "main.css" %}>
+    <link rel="stylesheet" href={% static "main3.css" %}>
 
     
 <meta charset="utf-8">
@@ -13,21 +13,17 @@
 <body>
 
 
-
+  <div class="search">
+    <form id="search-form" autocomplete="off" method=POST action="{% url 'searchresults' %}">
+      {% csrf_token %}
+      <input type "text" name="query" id="search-input" class="searchbar" placeholder="Type QR, Make, Model, Job and press Enter" data-search>
+    </form>
+</div>
   
 
 <div class="footer"><p class="footertext">SWIP™ created by Mateusz Kozinski - all rights reserved. Current version: v0.85</p></div>
 
-<div class = "profile">
-  <div class = "profilepic">
-    {% load static %}
-    <img src="{% static 'SWIPapp/images/First-Mile-Logo-3.png' %}" width="" height=""  object-fit:cover;/>
-  </div>
-  <div class = "profileinfo">
-    <div class = "profilename"> <p>Mateusz Kozinski</p></div>
-    <div class = "profilepos"> <p> ITAD Manager </p> </div>
-  </div>
-</div>
+
 
 
 <div class="sidebar">

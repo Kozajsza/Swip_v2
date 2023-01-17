@@ -32,15 +32,14 @@ body{
 
 .search{
     position: absolute;
-    top: 15vh;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 8vh;
+    right: 10vw;
     }
     
 form .searchbar{
       text-align: center;
-      width: 25vw;
-      height: 3vh;
+      width: 15vw;
+      height: 4vh;
       border-radius: 1vh;
       outline: 0;
       border: 0;
@@ -51,18 +50,16 @@ form .searchbar{
     
 form .searchbar:hover{
     transition:1s;
-    width:35vw;
-    height:5vh;
+    width:20vw;
     box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
-    font-size: 2vh;
+    font-size: 1.25vh;
     }
   
   form .searchbar:focus{
     transition:1s;
-    width:35vw;
-    height:5vh;
+    width:20vw;
     box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
-    font-size: 2vh;
+    font-size: 1.25vh;
     }
   
   form .searchbar:hover::placeholder{
@@ -71,13 +68,15 @@ form .searchbar:hover{
   }
 
 .searchresults{
-  position: absolute;
-  top: 8vh;
+  position: fixed;
+  background-color: white;
+  top: 17vh;
   left: 50%;
   transform: translateX(-50%);
-  width:60vw;
+  width:50vw;
   height:60vh;
-  background-color: red;
+  border-radius: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
 }
 
 
@@ -114,7 +113,7 @@ form .searchbar:hover{
 }
 
 .profile:hover{
-  width:12vw;
+  width:14vw;
   transition: 1s;
 }
 
@@ -135,15 +134,13 @@ form .searchbar:hover{
 .profilepic{
   position: absolute;
   top:10%;
-  right: 0.5vw;
-  width: 2vw;
-  height: 4vh;
+  right: 0.5em;
   border-radius: 1vh;
 }
 
 .profilepic img{
-  width: 2vw;
-  height: 4vh;
+  width: 2.5em;
+  height: 2.5em;
   border-radius: 1vh;
 }
 
@@ -154,7 +151,7 @@ form .searchbar:hover{
 }
 
 .profilename p{
-  font-size: 1.5vh;
+  font-size: 1em;
 }
 
 .profilepos{
@@ -164,7 +161,7 @@ form .searchbar:hover{
 }
 
 .profilepos p{
-  font-size: 1vh;
+  font-size: 0.7em;
 }
 
 .nav-item{
@@ -843,6 +840,38 @@ p.revealinfo2{
   background-color: rgba(18,92,219,1);
 }
 
+.importfromhtml{
+  position:fixed;
+  top:68vh;
+  right: 10vw;
+  height: 25vh;
+  width:30vw;
+  background-color: white;
+  border-radius: 1vh;
+  box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
+}
+
+.importfromhtml button{
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  height: 6vh;
+  width: 16vw;
+  bottom:6vh;
+  background: #555; 
+  text-decoration: none;
+  font-size: 1.8vh;
+  color: white;
+  border-radius: 1vh;
+  border: none;
+  transition: 0.4s;
+}
+
+.importfromhtml button:hover{
+  background-color: rgba(18,92,219,1);
+}
 
 .createorder{
   position:fixed;
@@ -854,6 +883,8 @@ p.revealinfo2{
   border-radius: 1vh;
   box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.24);
 }
+
+
 
 p.explanation{
   position:absolute;

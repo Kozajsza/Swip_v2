@@ -8,10 +8,14 @@ from .forms import CreateNewAsset, CreateNewOrder, CreateNewLog, CreateNewList, 
 import sqlalchemy
 import pandas as pd
 import glob
+import datetime
 from datetime import datetime
 from bs4 import BeautifulSoup
 import requests
 import csv
+import random
+import numpy as np
+import lxml
 
 import io
 from reportlab.pdfgen import canvas
@@ -26,9 +30,27 @@ from reportlab_qrcode import QRCodeImage
 def navbar(request):
     return render (request, 'SWIPsite/navbar.html')
 
+def searchresults(request):
+    if request.method == 'POST':
+        query = request.POST['query']
+
+        assets = Asset.objects.filter(Asset_QR__contains=query)
+
+        context = {'query':query,
+        'assets':assets,}
+        return render (request, 'SWIPapp/searchresults.html', context)
+    else:
+        context = {}
+        return render (request, 'SWIPapp/searchresults.html', context)        
+
+
+
+
+
 def home(request):
     asset = Asset.objects.all()
     order = Order.objects.all()
+
 
 
     context = {
@@ -213,6 +235,12 @@ def orderindex(request, id):
 
     return render(request, 'SWIPapp/orderindex.html', context)
     
+
+
+def importassetlshw(request):
+
+
+    return render(request, 'SWIPapp/importassetlshw.html')
 
 
 def importassettoorder(request,id):
@@ -438,112 +466,69 @@ def assetindex(request, id):
 def assetindexecommerce (request, id):
     asset = Asset.objects.get(id=id)
     ebayitem = ebayLookup.objects.filter(ConnectedAsset_id=asset)
-    AssetMake = Asset.objects.filter(id=id).values('Make')[0]['Make']
-    AssetModel = Asset.objects.filter(id=id).values('Model')[0]['Model']
-    AssetID = Asset.objects.filter(id=id).values('id')[0]['id']
 
-    #Grabbing the average price, transforming it into a list and then into float and rounding it up to 2 decimal places:
-    ebayitemavg = ebayLookup.objects.filter(ConnectedAsset_id=asset).aggregate(Avg('SoldPrice')).values()
-    ebayitemmax = ebayLookup.objects.filter(ConnectedAsset_id=asset).aggregate(Max('SoldPrice')).values()
-    ebayitemmin = ebayLookup.objects.filter(ConnectedAsset_id=asset).aggregate(Min('SoldPrice')).values()
-
-    averageprice = list(ebayitemavg)
-    maxprice = list(ebayitemmax)
-    minprice = list(ebayitemmin)
-    
-    for i in averageprice:
-        if i is None:
-            y = 0
-        else:
-            x = float(i)
-            y = round(x,2)
-
-    for j in maxprice:
-        if j is None:
-            max = 0
-        else:
-            z=float(j)
-            max = round(z,2)
-
-    for k in minprice:
-        if k is None:
-            min = 0
-        else:
-            a=float(k)
-            min = round(a,2)
-
-    ebayitemcount = ebayLookup.objects.filter(ConnectedAsset_id=asset).count
-
-    for item in ebayLookup.objects.values_list('ListingLink', flat=True).distinct():
-        ebayLookup.objects.filter(pk__in=ebayLookup.objects.filter(ListingLink=item).values_list('ListingLink', flat=True)[1:]).delete() #this currently doesn't work - it should delete old records before generating new ones
-
-    def eBay():
-        if request.method == 'POST':
-                df = pd.DataFrame.from_records(Asset.objects.filter(id=id).values('Ecommerce_Title'))
-                df = df['Ecommerce_Title']
-                searchterm = df.to_string(index=False)
-            
-                def get_data(searchterm):
-                    url = f'https://www.ebay.co.uk/sch/i.html?_from=R40&_nkw={searchterm}&_sacat=0&LH_TitleDesc=0&LH_BIN=1&LH_ItemCondition=3000&rt=nc&LH_Sold=1&LH_Complete=1'
-                    r = requests.get(url)
-                    soup = BeautifulSoup(r.text, 'html.parser')
-                    return soup
+    searchterm = asset.Ecommerce_Title
+    searchterm.replace(" ", "+")
 
 
-                def parse(soup):
-                    productslist = []
-                    results = soup.find_all('div', {'class': 's-item__info clearfix'})
-                    for item in results:
-                        product = {
-                            'Title': item.find('div', {'class': 's-item__title s-item__title--has-tags'}),
-                            'SoldPrice': item.find('span', {'class': 's-item__price'}),
-                            'SoldDate': item.find('div', {'class': 's-item__title--tagblock'}),
-                            'ListingLink': item.find('a', {'class': 's-item__link'})['href'],
-                        }
-                        productslist.append(product)
-                    return productslist
-                
-                def output(productslist):
-            
-                    engine = sqlalchemy.create_engine('sqlite:///db.sqlite3')
 
-                    productsdf = pd.DataFrame(productslist)
-                    productsdf['Title'] = productsdf['Title'].astype(str)
-                    productsdf['Title'] = productsdf['Title'].str.replace('<div class="s-item__title s-item__title--has-tags"><span aria-level="3" role="heading">', '', regex=False).str.replace('</span></div>', '', regex=False)
-                    productsdf.drop(productsdf.index[productsdf['Title']== 'None'], inplace=True)
+    url = f'https://www.ebay.co.uk/sch/i.html?_from=R40&_nkw={searchterm}&_sacat=0&LH_TitleDesc=0&LH_BIN=1&LH_ItemCondition=3000&rt=nc&LH_Sold=1&LH_Complete=1&LH_ItemCondition=3000'
+
+    r = requests.get(url)
+    soup = BeautifulSoup(r.text, 'html.parser')
 
 
-                    productsdf['SoldPrice'] = productsdf['SoldPrice'].astype(str)
-                    productsdf['SoldPrice'] = productsdf['SoldPrice'].str.replace('<span class="s-item__price">', '', regex=False).str.replace('</span>', '', regex=False).str.replace('<span class="POSITIVE">', '', regex=False).str.replace('<span class="DEFAULT POSITIVE">', '', regex=False).str.replace('£', '', regex=False).str.replace('$', '', regex=False).str.replace('<span class="POSITIVE ITALIC">', '', regex=False).str.replace('<span', '', regex=False).str.replace(',', '', regex=False)
-                    productsdf['SoldPrice'] = productsdf['SoldPrice'].str.split(' ').str[0]
-                    productsdf['SoldPrice'] = productsdf['SoldPrice'].astype(float)
 
-                    productsdf['SoldDate'] = productsdf['SoldDate'].astype(str)
-                    productsdf['SoldDate'] = productsdf['SoldDate'].str.replace('<div class="s-item__title--tagblock"><span class="POSITIVE">Sold  ', '', regex=False).str.replace('</span><span class="clipped">Sold item</span></div>', '', regex=False)
+    productslist = []
+    results = soup.find_all('div', {'class': 's-item__wrapper clearfix'})
+    for item in results:
+        product = {
+            'Title': item.find('div', {'class': 's-item__title'}).text,
+            'SoldPrice': item.find('span', {'class': 's-item__price'}),
+            'SoldDate': item.find('div', {'class': 's-item__title--tagblock'}),
+            'ListingLink': item.find('a', {'class': 's-item__link'})['href'],
+        }
+        productslist.append(product)
 
-                    productsdf['ConnectedAsset_id'] = AssetID
-                    
-                    productsdf = productsdf[
-                        ['ConnectedAsset_id', 'Title', 'SoldPrice', 'SoldDate', 'ListingLink']
-                        ]
-                    productsdf.to_csv('test.csv', index=False)
-                    productsdf.to_sql('SWIPapp_ebaylookup',engine, if_exists='append', index=False)
 
-                    
 
-                soup = get_data(searchterm)
-                productslist = parse(soup)
-                output(productslist)
 
+    productsdf = pd.DataFrame(productslist)
+    productsdf['Title'] = productsdf['Title'].astype(str)
+    productsdf['Title'] = productsdf['Title'].str.replace('<div class="s-item__title s-item__title--has-tags"><span aria-level="3" role="heading">', '', regex=False).str.replace('</span></div>', '', regex=False)
+    productsdf.drop(productsdf.index[productsdf['Title']== 'None'], inplace=True)
+
+
+    productsdf['SoldPrice'] = productsdf['SoldPrice'].astype(str)
+    productsdf['SoldPrice'] = productsdf['SoldPrice'].str.replace('<span class="s-item__price">', '', regex=False).str.replace('</span>', '', regex=False).str.replace('<span class="POSITIVE">', '', regex=False).str.replace('<span class="DEFAULT POSITIVE">', '', regex=False).str.replace('£', '', regex=False).str.replace('$', '', regex=False).str.replace('<span class="POSITIVE ITALIC">', '', regex=False).str.replace('<span', '', regex=False).str.replace(',', '', regex=False)
+    productsdf['SoldPrice'] = productsdf['SoldPrice'].str.split(' ').str[0]
+    productsdf['SoldPrice'] = productsdf['SoldPrice'].astype(float)
+
+    productsdf['SoldDate'] = productsdf['SoldDate'].astype(str)
+    productsdf['SoldDate'] = productsdf['SoldDate'].str.replace('<div class="s-item__title--tagblock"><span class="POSITIVE">Sold  ', '', regex=False).str.replace('</span><span class="clipped">Sold item</span></div>', '', regex=False)
+
+        
+    productsdf = productsdf[
+            ['Title', 'SoldPrice', 'SoldDate', 'ListingLink']
+            ]
+        
+    productsdf = productsdf.sort_values(by=['SoldPrice'])
+
+    rowcount = productsdf.shape[0]
+    todelete = round(0.05*rowcount)
+        
+    productsdf = productsdf.drop(productsdf.head(todelete).index)
+    productsdf = productsdf.drop(productsdf.tail(todelete).index)
+
+    median = productsdf['SoldPrice'].median()
+
+    productsdf.to_csv('output.csv')
 
     context = {
         'asset':asset,
         'ebayitem': ebayitem,
-        'ebayitemavg':y,
-        'ebayitemcount':ebayitemcount,
-        'ebayitemmax':max,
-        'ebayitemmin':min,
-        'ebaysearch':eBay,
+        'searchterm':searchterm,
+        'median':median,
             }
 
     return render(request, 'SWIPapp/assetindexecommerce.html', context)
@@ -555,19 +540,20 @@ def assettocsv (request, id):
 
     writer = csv.writer(response)
     asset = Asset.objects.get(id=id)
+    Cpuclock = asset.CPU.split("@ ")[1]
+    RamValue = str(asset.RAM).split(".")[0] + " GB"
+    StorageCapacity = str(asset.Storage_Capacity).split(".")[0] + " GB"
 
     #index row
     writer.writerow(['*Action(SiteID=UK|Country=GB|Currency=GBP|Version=1193|CC=UTF-8)','CustomLabel', '*Category', 'StoreCategory', '*Title', 'Subtitle','Relationship', 'RelationshipDetails', '*ConditionID', 'VAT%', '*C:Brand', '*C:Type', '*C:Series', '*C:RAM Size', '*C:Processor', '*C:Hard Drive Capacity', '*C:Storage Type', '*C:Form Factor', '*C:GPU', '*C:Operating System',
     '*C:Processor Speed', '*C:Most Suitable For', '*C:Screen Size', '*C:Connectivity', '*C:Features', '*C:Model', '*C:MPN', '*C:Unit Quantity', '*C:Unit Type', '*C:Release Year', '*C:SSD Capacity', 'C:Maximum RAM Capacity', '*C:Colour', 'C:Graphics Processing Type', 'C:Country/Region of Manufacture', 'C:Manufacturer Warranty', 'C:Custom Bundle',
-    'C:Bundle Description', 'C:Item Height', 'C:Item Length', 'C:Item Width', 'C:Motherboard Model', '*C:Maximum Resolution', 'C:Item Weight', 'PicURL', 'GalleryType', '*Description', '*Format', '*Duration', '*StartPrice', 'BuyItNowPrice', '*Quantity', 'PayPalAccepted', 'PayPalEmailAddress', 'ImmediatePayRequired', 'PaymentInstructions',
+    'C:Bundle Description', 'C:Item Height', 'C:Item Length', 'C:Item Width', 'C:Motherboard Model', '*C:Maximum Resolution', 'C:Item Weight', 'PicURL', 'GalleryType', '*Description', '*Format', '*Duration', '*ListingDuration', '*StartPrice', '*Quantity', 'PayPalAccepted', 'PayPalEmailAddress', 'ImmediatePayRequired', 'PaymentInstructions',
     '*Location', 'ShippingType', 'ShippingService-1:Option', 'ShippingService-1:Cost', 'ShippingService-2:Option', 'ShippingService-2:Cost', '*DispatchTimeMax', 'PromotionalShippingDiscount', 'ShippingDiscountProfileID', 'DomesticRateTable', '*ReturnsAcceptedOption', 'ReturnsWithinOption', 'RefundOption', 'ShippingCostPaidByOption',
     'AdditionalDetails', 'TakeBackPolicyID', 'ProductCompliancePolicyID'])
     
     #info row
-    writer.writerow(['Add', asset.Asset_QR, asset.Ecommerce_Category, '', asset.Ecommerce_Title, '', '', '', asset.Ecommerce_Condition, '20', asset.Make, asset.Type, asset.Model, asset.RAM, asset.CPU, asset.Storage_Capacity, asset.Storage_Type, asset.Ecommerce_FormFactor, asset.GPU, asset.Operating_System, 'CPU SPEED xxx', asset.Ecommerce_SuitableFor, asset.Screen_Size, asset.Ecommerce_Connectivity, asset.Ecommerce_Features,
-    asset.Model, asset.Model,'1', 'Unit', 'N/A', asset.Storage_Capacity, 'N/A', '', '', '', 'None', 'No', '', '', '', '', '', asset.Screen_Resolution, asset.Weight, 'Picture', '', 'Description', 'FixedPrice', 'GDC', asset.Ecommerce_Price, asset.Ecommerce_Price, '1', 'Yes', 'PayPalEmailAddress', '1', 'PaymentInstructions',
-    'NW10 6HJ', 'ShippingType', 'UK_OtherCourier3Days', '0', 'ShippingService-2:Option', 'ShippingService-2:Cost', '2', 'PromotionalShippingDiscount', 'ShippingDiscountProfileID', 'DomesticRateTable', 'Days_30', 'ReturnsWithinOption', 'RefundOption', 'ShippingCostPaidByOption',
-    'AdditionalDetails', 'TakeBackPolicyID', 'ProductCompliancePolicyID'])
+    writer.writerow(['Add', asset.Asset_QR, asset.Ecommerce_Category, '', asset.Ecommerce_Title, '', '', '', asset.Ecommerce_Condition, '20', asset.Make, asset.Type, asset.Model, RamValue, asset.CPU, StorageCapacity, asset.Storage_Type, asset.Type, asset.GPU, asset.Operating_System, Cpuclock, asset.Ecommerce_SuitableFor, asset.Screen_Size, asset.Ecommerce_Connectivity, asset.Ecommerce_Features,
+    asset.Model, asset.Model,'1', 'Unit', 'N/A', StorageCapacity, 'N/A', '', '', '', 'None', 'No', '', '', '', '', '', asset.Screen_Resolution, asset.Weight, 'https://i.imgur.com/jTHazme.jpg', '', 'Description', 'FixedPrice', 'GTC','GTC', asset.Ecommerce_Price, '1', '', '', '1', '', 'NW10 6HJ', '', 'UK_OtherCourier3Days', '0', '', '', '2', '', '', '', 'Days_30', '', '', '', '', '', ''])
 
     return response
 
@@ -660,3 +646,10 @@ def listindex(request, id):
     }
 
     return render (request, 'SWIPapp/listindex.html', context)
+
+
+def webscraper (request):
+    
+    context = {}
+
+    return render (request, 'SWIPapp/webscraper.html', context)

@@ -1,0 +1,23 @@
+{% extends "SWIPapp/navbar.html" %}
+{% load static %}
+
+
+
+{%block content%}
+
+<div class = "deleteprompt">
+    <div class='listtitle'>
+        <h4> Import Asset from LSHW html file</h4>
+    </div>
+    <form method="POST" action-"/" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="buttons">
+        <input type="file" id="files" name="myfile" style="display:none;" multiple>
+        <label class="uploadlabel" for="files">Upload HTML</label>
+        <br><br>
+        <button type="submit" class = "submitbtn2", name="save">Submit</button>
+    </form>
+        </div>
+</div>
+
+{% endblock %}

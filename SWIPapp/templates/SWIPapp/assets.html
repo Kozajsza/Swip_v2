@@ -23,7 +23,7 @@
 </div>
 
     <div class='uploadasset'>
-    <div class='listtitle'><h4> Add or Import Assets</h4></div>
+    <div class='listtitle'><h4> Import from CSV</h4></div>
     <p class="explanation"> Select one or multiple CSV files and press <b>Submit</b> to import Assets </p>
             <form method="POST" action-"/" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -44,5 +44,9 @@
         <a href='createasset'><button> Add Asset Manually </button> </a>
     </div>
 
+    <div class ='uploadhtml'> 
+        <div class='listtitle'><h4> Import from HTML </h4></div> 
+        <a href='importassetlshw'><button> Import HTML </button> </a>
+    </div>
 
 {% endblock %}

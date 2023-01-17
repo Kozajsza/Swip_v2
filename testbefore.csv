@@ -1,3 +1,3 @@
 Type,Make,Model,Serial Number,CPU,RAM,nvme_Storage,nvme_Storage_Serial_Number,nvme_Storage_Capacity,sata_Storage,sata_Storage_Serial_Number,sata_Storage_Capacity,GPU
-All In One,Apple Inc.,"iMac14,1 (System SKU#)",C02P69CKF8J2,Intel(R) Core(TM) i5-4570R CPU @ 2.70GHz,8GiB,,,,,,,Intel Corporation Intel Corporation
+Desktop Computer,Hewlett-Packard,HP Pro3500 Series (C5X65EA#ABU),CZC3364WQ9,Intel(R) Core(TM) i5-3470 CPU @ 3.20GHz,8GiB,,,,Western Digital WDC WD30EFRX-68E,WD-WCC4N5LAP4DZ,2794.0,Intel Corporation Xeon E3-1200 v2/3rd Gen Core processor Graphics Controller
 ,,,,,,,,,,,,

@@ -1,0 +1,24 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href={% static "webscrape.css" %}>
+
+    
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+    
+<div class="search">
+    <form id="search-form" autocomplete="off" method=POST action="{% url 'searchresults' %}">
+      {% csrf_token %}
+      <input type "text" name="query" id="search-input" class="searchbar" placeholder="Search" data-search>
+    </form>
+</div>
+
+
+</body>

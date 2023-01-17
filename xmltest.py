@@ -2,7 +2,6 @@ import tkinter
 from tkinter import Tk
 from tkinter.filedialog import askopenfilename
 import pandas as pd
-import xml.etree.ElementTree as ET
 import numpy as np
 import sqlalchemy
 import time
@@ -98,7 +97,7 @@ except:
 #NVME STORAGE CAPACITY EXTRACTION:
 
 try:
-    nvmecap = pd.read_html(report,match='/dev/nvme0n1')
+    nvmecap = pd.read_html(report, match='/dev/nvme0n1')
     nvmecaparr = np.array(nvmecap, dtype=object)
     try:
         nvmecaparr2 = np.reshape(nvmecaparr, (3,10))
@@ -211,7 +210,9 @@ df['Asset_QR'] = 'FM' + dateoutput
 #Make is ok
 #Model is ok
 df['Serial_Number'] = df['Serial Number']
-#cpu is ok
+df['CPU'] = df['CPU'].str.replace('(R)', '', regex=False)
+df['CPU'] = df['CPU'].str.replace('(TM)', '', regex=False)
+
 df['RAM'] = df['RAM'].str.replace('GiB', '', regex=False)
 df['RAM'] = df['RAM'].fillna(0)
 df['RAM'] = df['RAM'].astype(int)
@@ -238,13 +239,13 @@ df['Wipe_Start_Time'] = 'None'
 df['Wipe_End_Time'] = 'None'
 df['Wipe_Result'] = 'None'
 df['Weight'] = '0'
-df['Ecommerce_Title']= df['Make'] + ' ' + df['Model'] + ' ' + df['CPU'] + ' ' + df['RAM'].astype(str) + 'GB RAM' + ' ' + df['Storage_Capacity'].astype(str)
+df['Ecommerce_Title']= df['Make'].astype(str) + ' ' + df['Model'].astype(str) + ' ' + df['CPU'].astype(str) + ' ' + df['RAM'].astype(str) + 'GB RAM' + ' ' + df['Storage_Capacity'].astype(str)
 df['Ecommerce_Category']=''
 df['Ecommerce_Condition']=''
 df['Ecommerce_Condition_Description']=''
 df['Ecommerce_Item_Description']=''
 df['Ecommerce_Price']='0'
-df['Ecommerce_SuitableFor']='Casual Computing'
+df['Ecommerce_SuitableFor']='Casual Computing, Office'
 df['Ecommerce_FormFactor']=''
 df['Ecommerce_Features']=''
 df['Ecommerce_Connectivity']=''
@@ -265,3 +266,6 @@ df = df.drop(df.index[1:])
 
 df.to_csv('finaltest.csv', index=False)
 df.to_sql('SWIPapp_asset',engine, if_exists='append', index=False)
+
+#ATA Disk search not working properly
+#Disk type add

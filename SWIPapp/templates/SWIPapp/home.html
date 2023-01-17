@@ -5,53 +5,6 @@
 
 {%block content%}
 
-<div class="search">
-    <form id="search-form" autocomplete="off">
-      {% csrf_token %}
-      <input type "text" id="search-input" class="searchbar" placeholder="Search QR, Make, Model, Job..." data-search>
-    </form>
-
-
-<div class ="searchresults">
-    <div class='listcontainer'>
-        {%for i in asset %}   
-        <a href='/asset/{{i.id}}'>
-            <div class="listitem" >
-                <p class="maininfo" id='qr'> Asset QR: {{i.Asset_QR}}</p>
-                <p class="moreinfo" assetinfo>{{i.Make}} {{i.Model}} {{i.Serial_Number}} </p>
-                <p class="revealinfo">CPU: {{i.CPU}}, Memory: {{i.RAM}} GB RAM </p>
-                <p class="revealinfo">Storage: {{i.Storage}} {{i.Storage_Capacity}}GB</p>
-            </div> 
-        </a>
-        {% endfor %}
-    
-        {%for i in order %}   
-        <a href='/order/{{i.id}}'>
-            <div class="listitem">
-                <p class="maininfo"> Order Number: {{i.Order_Number}}</p>
-                <p class="moreinfo">Customer: {{i.Customer}} </p>
-                <p class="revealinfo">Address: {{i.Customer_Address}}</p>
-                <p class="revealinfo">Created: {{i.Created}}, Last Update: {{i.Updated}}</p>
-            </div> 
-        </a>
-        {% endfor %}
-    </div>      
-</div>
-
-<script>
-    const assetInfo = document.querySelector('[assetinfo]').innerHTML
-    console.log(assetInfo)
-
-    const searchInput = document.querySelector("[data-search]")
-    searchInput.addEventListener("input", (e) => {
-        const value = e.target.value
-        console.log(value)
-    })
-
-
-    
-    
-</script>
 
 {% endblock %}
 

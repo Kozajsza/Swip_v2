@@ -1,0 +1,18 @@
+
+
+.search{
+    position:fixed;
+    left:50%;
+    right:50%;
+    top:10vh;
+}
+
+form .searchbar{
+    text-align: center;
+    width: 15vw;
+    height: 4vh;
+    border-radius: 1vh;
+    outline: 0;
+    border: 0;
+    background-color: grey;
+    font-size: 1vh;}

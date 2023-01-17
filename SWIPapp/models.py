@@ -59,6 +59,7 @@ OperatingSystems = [
 ]
 
 ScreenSize = [
+    ('N/A', 'N/A'),
     ('11in', '11in'),
     ('13in', '13in'),
     ('14in', '14in'),
@@ -70,6 +71,7 @@ ScreenSize = [
 ]
 
 ScreenResolution = [
+    ('N/A', 'N/A'),
     ('1280x720', '1280x720'),
     ('1366x768', '1366x768'),
     ('1600x900', '1600x900'),

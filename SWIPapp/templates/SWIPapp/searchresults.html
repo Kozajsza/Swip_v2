@@ -1,0 +1,34 @@
+{% extends "SWIPapp/navbar.html" %}
+{% load static %}
+
+
+
+{%block content%}
+
+<div class ='searchresults'>
+
+    <div class='listtitle'>
+        <h4> Your Search Results </h4>
+    </div>
+
+
+<div class='listcontainer'>
+{% for i in assets %}
+
+<a href='/asset/{{i.id}}'>
+    <div class="listitem">
+        <p class="maininfo"> Asset QR: {{i.Asset_QR}}</p>
+        <p class="moreinfo">{{i.Make}} {{i.Model}} {{i.Serial_Number}} </p>
+        <p class="revealinfo">CPU: {{i.CPU}}, Memory: {{i.RAM}} GB RAM </p>
+        <p class="revealinfo">Storage: {{i.Storage}} {{i.Storage_Capacity}}GB</p>
+    </div> 
+</a>
+
+{% endfor %}
+</div>
+
+</div>
+
+
+
+{% endblock %}
