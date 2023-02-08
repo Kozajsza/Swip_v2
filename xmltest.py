@@ -84,7 +84,7 @@ try:
     nvmeinfo_header = nvmeinfodf.iloc[0] #grab the first row for the header
     nvmeinfodf = nvmeinfodf[1:] #take the data less the header row
     nvmeinfodf.columns = nvmeinfo_header #set the header row as the df header
-    nvmeinfodf['nvme_Storage'] = nvmeinfodf['vendor:'] + ' ' + nvmeinfodf['product:']
+    nvmeinfodf['nvme_Storage'] = nvmeinfodf['product:']
     nvmeinfodf['nvme_Storage_Serial_Number'] = nvmeinfodf['serial:']
     nvmeinfodf = nvmeinfodf[['nvme_Storage', 'nvme_Storage_Serial_Number']]
 
@@ -152,7 +152,7 @@ try:
     satainfo_header = satainfodf.iloc[0] #grab the first row for the header
     satainfodf = satainfodf[1:] #take the data less the header row
     satainfodf.columns = satainfo_header #set the header row as the df header
-    satainfodf ['sata_Storage'] = satainfodf['vendor:'] + ' ' + satainfodf['product:']
+    satainfodf ['sata_Storage'] = satainfodf['product:']
     satainfodf['sata_Storage_Serial_Number'] = satainfodf['serial:']
     satainfodf['sata_Storage_Capacity'] = satainfodf['size:']
     satainfodf = satainfodf.dropna()
@@ -213,9 +213,10 @@ df['Serial_Number'] = df['Serial Number']
 df['CPU'] = df['CPU'].str.replace('(R)', '', regex=False)
 df['CPU'] = df['CPU'].str.replace('(TM)', '', regex=False)
 
+df['RAM'] = df['RAM'].astype(str)
 df['RAM'] = df['RAM'].str.replace('GiB', '', regex=False)
 df['RAM'] = df['RAM'].fillna(0)
-df['RAM'] = df['RAM'].astype(int)
+df['RAM'] = df['RAM'].astype(float)
 
 df['Storage'] = df['nvme_Storage'].fillna(df['sata_Storage'])
 df['Storage_Serial_Number'] = df['nvme_Storage_Serial_Number'].fillna(df['sata_Storage_Serial_Number'])
@@ -268,4 +269,4 @@ df.to_csv('finaltest.csv', index=False)
 df.to_sql('SWIPapp_asset',engine, if_exists='append', index=False)
 
 #ATA Disk search not working properly
-#Disk type add
+#Disk type add x  
