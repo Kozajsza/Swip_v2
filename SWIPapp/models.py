@@ -143,10 +143,10 @@ class Asset(models.Model):
     Ecommerce_Condition_Description = models.CharField(max_length=1000, default='', null=True, blank=True)
     Ecommerce_Item_Description = models.CharField(max_length=1000, default='', null=True, blank=True)
     Ecommerce_Price = models.FloatField(null=True, blank=True, default='0')
-    Ecommerce_SuitableFor = MultiSelectField(default='Casual Computing', choices=SuitableFor)
+    Ecommerce_SuitableFor = MultiSelectField(default='Casual Computing', choices=SuitableFor, max_length=150)
     Ecommerce_FormFactor = models.CharField(max_length=35, default='', null=True, blank=True)
-    Ecommerce_Features = MultiSelectField(choices=Features, null=True, blank=True)
-    Ecommerce_Connectivity = MultiSelectField(default='USB 2.0', choices=Connectivity, null=True, blank=True)
+    Ecommerce_Features = MultiSelectField(choices=Features, null=True, blank=True, max_length=150)
+    Ecommerce_Connectivity = MultiSelectField(default='USB 2.0', choices=Connectivity, null=True, blank=True, max_length=150)
     Created = models.DateTimeField(auto_now_add=True, null=True) #this is currently broken - works on import but updating returns error if null=False for some reason
     Updated = models.DateTimeField(auto_now_add=True, null= True) #this is currently broken - works on import but updating returns error if null=False for some reason
 
