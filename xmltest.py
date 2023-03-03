@@ -130,7 +130,6 @@ try:
         nvmecapdf['nvme_Storage_Capacity'] = nvmecapdf['nvme_Storage_Capacity'].str.replace('GiB', '', regex=False)
         nvmecapdf['nvme_Storage_Capacity'] = nvmecapdf['nvme_Storage_Capacity'].astype(float)
         nvmecapdf = nvmecapdf[['nvme_Storage_Capacity']]
-        nvmecapdf.to_csv('nvme.csv')
         print(nvmecapdf)
 
 
@@ -210,8 +209,8 @@ df['Asset_QR'] = 'FM' + dateoutput
 #Make is ok
 #Model is ok
 df['Serial_Number'] = df['Serial Number']
-df['CPU'] = df['CPU'].str.replace('(R)', '', regex=False)
-df['CPU'] = df['CPU'].str.replace('(TM)', '', regex=False)
+df['CPU'] = df['CPU'].astype(str).str.replace('(R)', '', regex=False)
+df['CPU'] = df['CPU'].astype(str).str.replace('(TM)', '', regex=False)
 
 df['RAM'] = df['RAM'].astype(str)
 df['RAM'] = df['RAM'].str.replace('GiB', '', regex=False)
