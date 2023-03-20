@@ -141,7 +141,7 @@ class Asset(models.Model):
     Ecommerce_Category = models.CharField(max_length=35, default='', null=True, blank=True)
     Ecommerce_Condition = models.CharField(max_length=20, default='', null=True, blank=True)
     Ecommerce_Condition_Description = models.CharField(max_length=1000, default='', null=True, blank=True)
-    Ecommerce_Item_Description = models.CharField(max_length=1000, default='', null=True, blank=True)
+    Ecommerce_Item_Description = models.TextField(max_length=20000, default='', null=True, blank=True)
     Ecommerce_Price = models.FloatField(null=True, blank=True, default='0')
     Ecommerce_SuitableFor = MultiSelectField(default='Casual Computing', choices=SuitableFor, max_length=150)
     Ecommerce_FormFactor = models.CharField(max_length=35, default='', null=True, blank=True)

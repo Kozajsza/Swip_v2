@@ -1,1 +1,3 @@
 Type,Make,Model,Serial Number,CPU,RAM,nvme_Storage,nvme_Storage_Serial_Number,nvme_Storage_Capacity,sata_Storage,sata_Storage_Serial_Number,sata_Storage_Capacity,GPU
+Desktop Computer,Dell Inc.,OptiPlex 7040 (06B9),BZ5F2J2,Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz,16GiB,,,,,,,Intel Corporation HD Graphics 530
+,,,,,,,,,,,,

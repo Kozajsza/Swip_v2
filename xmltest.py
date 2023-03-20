@@ -243,7 +243,9 @@ df['Ecommerce_Title']= df['Make'].astype(str) + ' ' + df['Model'].astype(str) + 
 df['Ecommerce_Category']=''
 df['Ecommerce_Condition']=''
 df['Ecommerce_Condition_Description']=''
-df['Ecommerce_Item_Description']=''
+with open('ebaydesc.txt.', 'r') as f:
+    desc = f.read()
+df['Ecommerce_Item_Description'] = desc
 df['Ecommerce_Price']='0'
 df['Ecommerce_SuitableFor']='Casual Computing, Office'
 df['Ecommerce_FormFactor']=''

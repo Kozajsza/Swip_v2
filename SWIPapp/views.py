@@ -553,7 +553,7 @@ def assettocsv (request, id):
     
     #info row
     writer.writerow(['Add', asset.Asset_QR, asset.Ecommerce_Category, '', asset.Ecommerce_Title, '', '', '', asset.Ecommerce_Condition, '20', asset.Make, asset.Type, asset.Model, RamValue, asset.CPU, StorageCapacity, asset.Storage_Type, asset.Type, asset.GPU, asset.Operating_System, Cpuclock, asset.Ecommerce_SuitableFor, asset.Screen_Size, asset.Ecommerce_Connectivity, asset.Ecommerce_Features,
-    asset.Model, asset.Model,'1', 'Unit', 'N/A', StorageCapacity, 'N/A', '', '', '', 'None', 'No', '', '', '', '', '', asset.Screen_Resolution, asset.Weight, 'https://i.imgur.com/jTHazme.jpg', '', 'Description', 'FixedPrice', 'GTC','GTC', asset.Ecommerce_Price, '1', '', '', '1', '', 'NW10 6HJ', '', 'UK_OtherCourier3Days', '0', '', '', '2', '', '', '', 'Days_30', '', '', '', '', '', ''])
+    asset.Model, asset.Model,'1', 'Unit', 'N/A', StorageCapacity, 'N/A', '', '', '', 'None', 'No', '', '', '', '', '', asset.Screen_Resolution, asset.Weight, 'https://i.imgur.com/jTHazme.jpg', '', asset.Ecommerce_Item_Description, 'FixedPrice', 'GTC','GTC', asset.Ecommerce_Price, '1', '', '', '1', '', 'NW10 6HJ', '', 'UK_OtherCourier3Days', '0', '', '', '2', '', '', '', 'Days_30', '', '', '', '', '', ''])
 
     return response
 

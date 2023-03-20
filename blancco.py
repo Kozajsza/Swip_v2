@@ -186,7 +186,9 @@ for file in files:
         df['Ecommerce_Category']=''
         df['Ecommerce_Condition']='3000'
         df['Ecommerce_Condition_Description']=''
-        df['Ecommerce_Item_Description']='Description'
+        with open('ebaydesc.txt.', 'r') as f:
+            desc = f.read()
+        df['Ecommerce_Item_Description'] = desc
         df['Ecommerce_Price']='0'
         df['Ecommerce_SuitableFor']='Casual Computing'
         df['Ecommerce_FormFactor']= df['chassis_type_system']
@@ -211,7 +213,7 @@ for file in files:
         df.to_sql('SWIPapp_asset',engine, if_exists='append', index=False)
 
 
-        new_filename = today + '_' + random_numbers + os.path.splitext(file)[1]
+        new_filename = today + '_' + ''.join(str(num) for num in random_numbers) + os.path.splitext(file)[1]
         destination_path = os.path.join(destination_dir, today, new_filename)
         shutil.move(source_path, destination_path)
         print(df)
